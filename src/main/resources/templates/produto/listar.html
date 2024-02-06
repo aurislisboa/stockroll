@@ -1,0 +1,46 @@
+<!DOCTYPE html><!--esse-aparece-->
+<html th:replace="~{base :: layout(~{::main})}">
+  <main class="container">
+    <br>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Listagem de Produtos</h1>
+      </div>
+    </div><!--row-->
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Produtos</th>
+                  <th scope="col">Cód. Barra</th>
+                  <th scope="col">Estoque</th>
+                  <th scope="col">Ideal</th>
+                  <th scope="col">Mínimo</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="produto : ${produtos}">
+                  <th scope="row" th:text="${produto.id}"></th>
+                  <td >
+                      <a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nomeProduto}"></a>
+                  </td>
+                  <td th:text="${produto.codigoBarra}"></td>
+                  <td th:text="${produto.qtdAtualEstoque}"></td>
+                  <td th:text="${produto.qtdIdealEstoque}"></td>
+                  <td th:text="${produto.qtdMinEstoque}"></td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+    </div><!--row-->
+    <div class="row">
+      <div class="col-sm-12">
+          <a th:href="@{produto/cadastrar}" class="btn btn-primary btn-sm">Novo Produto</a>
+      </div>
+    </div>
+  </main><!--container-->
+</body><!--não-aparece-->
+</html><!--esse-aparece-->
