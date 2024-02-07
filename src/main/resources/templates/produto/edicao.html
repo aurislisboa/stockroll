@@ -13,15 +13,18 @@
             <form method="post" th:object="${produto}">
                 <div class="mb-3">
                     <label for="nomeProduto" class="form-label">Nome do Produto:</label>
-                    <input type="text" class="form-control" id="nomeProduto" th:field="*{nomeProduto}" placeholder="Digite o nome do produto">
+                    <input type="text" class="form-control" id="nomeProduto" th:field="*{nomeProduto}" 
+                    placeholder="Digite o nome do produto">
                 </div>
                 <div class="mb-3">
                     <label for="qtdIdealEstoque" class="form-label">Quantidade Ideal:</label>
-                    <input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}" placeholder="Digite a quantidade ideal para o estoque">
+                    <input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}" 
+                    placeholder="Digite a quantidade ideal para o estoque">
                 </div>
                 <div class="mb-3">
                     <label for="qtdMinEstoque" class="form-label">Quantidade Mínima:</label>
-                    <input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}" placeholder="Digite a quantidade mínima para o estoque">
+                    <input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}" 
+                    placeholder="Digite a quantidade mínima para o estoque">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>

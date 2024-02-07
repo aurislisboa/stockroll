@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html th:replace="~{base :: layout(~{::main})}">
+<!-- <html th:replace="~{base :: layout(~{::main})}"> -->
+<html th:replace="~{layout_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<head>
+    <title>Cadastrar Novo Produto</title>
+</head>
+<body>
 <main class="container">
-    <br>
+    <!-- <br>
     <div class="row">
         <div class="col-sm-12">
             <h1>Cadastrar Novo Produto</h1>
         </div>
-    </div><!--row-->
-    <br>
+    </div>
+    <br> -->
     <div class="row">
         <div class="col-sm-6">
             <form method="post" th:object="${produto}">
