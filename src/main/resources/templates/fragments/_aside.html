@@ -1,6 +1,8 @@
 <!-- Main Sidebar Container -->
 <!-- <aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4"> -->
-<aside th:fragment="aside" class="main-sidebar sidebar-light-primary elevation-2">
+<!-- <aside th:fragment="aside" class="main-sidebar sidebar-light-primary elevation-2"> -->
+  <aside th:fragment="aside" class="main-sidebar sidebar-light-info elevation-4">
+<!-- ========================================= SIDEBAR =============================================== -->
   
   <!-- Brand Logo -->
   <a th:href="@{/produto}" class="brand-link">
@@ -14,9 +16,10 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-barcode"></i>
             <p>
               Produtos
               <i class="fas fa-angle-left right"></i>
@@ -37,8 +40,33 @@
             </li>
           </ul>
         </li>
-        
-        <!-- <li class="nav-item">
+         
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <!-- <i class="nav-icon fas fa-briefcase"></i> -->
+            <p>
+              Categoria
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/cargos/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/cargos}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li> 
+
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user-tie"></i>
             <p>
@@ -60,33 +88,9 @@
               </a>
             </li>
           </ul>
-        </li> -->
-<!--         
+        </li> 
+<!--        
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-briefcase"></i>
-            <p>
-              Cargos
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a th:href="@{/cargos/cadastrar}" class="nav-link">
-                <i class="nav-icon fas fa-edit nav-icon"></i>
-                <p>Cadastrar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/cargos}" class="nav-link">
-                <i class="fas fa-table nav-icon"></i>
-                <p>Listar</p>
-              </a>
-            </li>
-          </ul>
-        </li> -->
-        
-        <!-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-project-diagram"></i>
             <p>
@@ -108,7 +112,8 @@
               </a>
             </li>
           </ul>
-        </li> -->
+        </li>
+-->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

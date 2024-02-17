@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<!-- <html th:replace="~{base :: layout(~{::main})}"> -->
-<html th:replace="~{layout_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
 <head>
     <title>Cadastrar Novo Produto</title>
 </head>
 <body>
-<main class="container">
-    <!-- <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Cadastrar Novo Produto</h1>
-        </div>
-    </div>
-    <br> -->
+<main>
     <div class="row">
         <div class="col-sm-6">
-            <form method="post" th:object="${produto}">
-                <div class="mb-3">
-                    <label for="codigoBarra" class="form-label">Código de Barras:</label>
-                    <input type="text" class="form-control" id="codigoBarra" th:field="*{codigoBarra}"
-                           placeholder="Digite o número do código de barras">
-                </div>
-                <div class="mb-3">
-                    <label for="nomeProduto" class="form-label">Nome do Produto:</label>
-                    <input type="text" class="form-control" id="nomeProduto" th:field="*{nomeProduto}"
-                    placeholder="Digite o nome do produto">
-                </div>
-                <div class="mb-3">
-                    <label for="qtdIdealEstoque" class="form-label">Quantidade Ideal:</label>
-                    <input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}"
-                    placeholder="Qual a quantidade ideal no estoque?">
-                </div>
-                <div class="mb-3">
-                    <label for="qtdMinEstoque" class="form-label">Quantidade Mínima:</label>
-                    <input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}"
-                    placeholder="Qual a quantidade mínima no estoque?">
-                </div>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </form>
-        </div>
+					<div class="card card-cyan">
+            <div class="card-header">
+                <h5 class="card-title">[[${produto.id == null ? 'Cadastrar Novo' : 'Editar'}]] Produto</h5>
+            </div>
+						<div class="card-body">
+							<form method="post" th:object="${produto}">
+									<div class="mb-3">
+											<label for="codigoBarra" class="form-label">Código de Barras:</label>
+											<input type="text" class="form-control" id="codigoBarra" th:field="*{codigoBarra}"
+											placeholder="Digite o número do código de barras">
+									</div>
+									<div class="mb-3">
+											<label for="nomeProduto" class="form-label">Nome do Produto:</label>
+											<input type="text" class="form-control" id="nomeProduto" th:field="*{nomeProduto}"
+											placeholder="Digite o nome do produto">
+									</div>
+									<div class="mb-3">
+											<label for="qtdIdealEstoque" class="form-label">Quantidade Ideal:</label>
+											<input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}"
+											placeholder="Qual a quantidade ideal no estoque?">
+									</div>
+									<div class="mb-3">
+											<label for="qtdMinEstoque" class="form-label">Quantidade Mínima:</label>
+											<input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}"
+											placeholder="Qual a quantidade mínima no estoque?">
+									</div>
+									<button type="submit" class="btn btn-primary">Cadastrar</button>
+							</form>
+						</div><!--card-body-->
+					</div><!--card-->
+        </div><!--col-->
     </div><!--row-->
-</main><!--container-->
+</main>
+
+<th:block th:replace="${scripts}"></th:block>
 </body>
 </html>
