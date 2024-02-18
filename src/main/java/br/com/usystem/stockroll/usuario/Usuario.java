@@ -20,8 +20,11 @@ public class Usuario {
     @Column(name = "id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String nome;
+
     private String senha;
+
     @Enumerated(EnumType.STRING)
     private Perfil perfil;
 }

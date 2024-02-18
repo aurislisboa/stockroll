@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br" th:fragment="layout (title, content, styles, scripts)">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>
       Stock Roll | <th:block th:include="${title}">Dashboard</th:block>
   </title>
@@ -38,30 +40,33 @@
 <body class="hold-transition sidebar-mini sidebar-collapse">
   <div class="wrapper">
       
+    <!-- ------------------------------------ NavBar ------------------------------------ -->
     <!--Navbar-->    
-<!-- ------------------------------------ NavBar ------------------------------------ -->
     <nav th:replace="~{fragments/_navbar :: nav}"></nav>
       
+
+    <!-- ------------------------------------ SideBar ------------------------------------ -->
     <!--Sidebar-->    
-<!-- ------------------------------------ SideBar ------------------------------------ -->
     <aside th:replace="~{fragments/_aside :: aside}"></aside>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
 
-        <!-- Content Header (Page header) -->
-        <div th:replace="~{fragments/_header :: content-header (${title})}"></div>
-        <!-- /.content-header -->
+    <!-- ------------------------------------ Main ------------------------------------ -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+      <!-- Content Header (Page header) -->
+      <!-- <div th:replace="~{fragments/_header :: content-header (${title})}"></div> -->
+      <br><br>
+      <!-- /.content-header -->
 
         <!-- Main content -->    
-<!-- ------------------------------------ Main ------------------------------------ -->
         <section class="content">
             <div class="container-fluid" th:include="${content}"></div>
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
+    </div>
+    <!-- /.content-wrapper -->
 
 
 <!-- ------------------------------------ Footer ------------------------------------ -->

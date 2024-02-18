@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<head>
+  <title>Cadastrar Novo Usuário</title>
+</head>
+<body>
+<main>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card card-cyan">
+          <div class="card-header">
+            <h5 class="card-title">[[${usuario.id == null ? 'Cadastrar Novo' : 'Editar'}]] Usuário</h5>
+          </div>
+          <div class="card-body">
+            <form method="post" th:object="${usuario}">
+                <div class="mb-3">
+                  <label for="nome" class="form-label">Nome:</label>
+                  <input type="text" class="form-control" id="nome" th:field="*{nome}"
+                        placeholder="Digite o nome do usuário">
+                </div>
+                <div class="mb-3">
+                  <label for="senha" class="form-label">Senha:</label>
+                  <input type="text" class="form-control" id="senha" th:field="*{senha}"
+                        placeholder="Digite a senha do usário">
+                </div>
+                <div class="mb-3">
+                  <label for="perfil" class="form-label">Perfil:</label>
+                  <!-- <select name="perfil" class="form-control" id="perfil" th:field="*{perfil}"> 
+                     <option th:each="opcao : ${T(br.com.usystem.stockroll.usuario.Perfil).values()}" th:value="${opcao}" th:text="${opcao}"></option> -->
+                  <select class="form-control" th:field="*{perfil}">
+                    <option th:each="opcao : ${perfil}" th:value="${opcao}" th:text="${opcao.tipo}"></option>
+                  </select>
+                </div>
+								<br>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </form>
+        </div><!--card-body-->
+      </div><!--card-->
+    </div><!--col-->
+  </div><!--row-->
+</main>
+
+</body>
+</html>

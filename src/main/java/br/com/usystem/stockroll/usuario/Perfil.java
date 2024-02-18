@@ -16,7 +16,9 @@ public enum Perfil {
     GESTOR("Gestor"),
     USUARIO("Usuario");
 
+
     private String tipo;
+
 
     Perfil(String tipo) {
         this.tipo = tipo;
@@ -25,4 +27,5 @@ public enum Perfil {
     public String getTipo() {
         return tipo;
     }
+
 }

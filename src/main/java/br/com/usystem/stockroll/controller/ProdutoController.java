@@ -3,12 +3,13 @@ package br.com.usystem.stockroll.controller;
 import br.com.usystem.stockroll.produto.Produto;
 import br.com.usystem.stockroll.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/produto")
 public class ProdutoController {
 
@@ -44,19 +45,9 @@ public class ProdutoController {
 
 
 
-    @GetMapping("/{id}/excluir")
-    public ModelAndView exluir(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/produto");
-        //System.out.println("Produto " + id + " excluido com sucesso!");
-        produtoRepository.deleteById(id);
-        return modelAndView;
-    }
-
-
-
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar() {
-        ModelAndView modelAndView = new ModelAndView("produto/cadastro");
+        ModelAndView modelAndView = new ModelAndView("produto/formulario");
         modelAndView.addObject("produto", new Produto());
 
         return modelAndView;
@@ -75,7 +66,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("produto/edicao");
+        ModelAndView modelAndView = new ModelAndView("produto/formulario");
 
         Produto produto = produtoRepository.getReferenceById(id);
         modelAndView.addObject("produto", produto);
@@ -90,5 +81,14 @@ public class ProdutoController {
         return modelAndView;
     }
 
+
+
+    @GetMapping("/{id}/excluir")
+    public ModelAndView exluir(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/produto");
+        produtoRepository.deleteById(id);
+
+        return modelAndView;
+    }
 
 }
