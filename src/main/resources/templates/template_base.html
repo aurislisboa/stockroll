@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>
-      Stock Roll | <th:block th:include="${title}">Dashboard</th:block>
+    Stock Roll | <th:block th:include="${title}">Dashboard</th:block>
   </title>
+  <!-- <title th:replace="${title}">StockRoll</title> -->
 
 
 
@@ -62,7 +64,7 @@
         <!-- Main content -->    
         <section class="content">
             <!-- <div class="container-fluid" th:include="${content}"></div> -->
-            <div class="container-fluid" th:insert="${content}"></div>
+            <div class="container-fluid" th:replace="${content}"></div>
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
