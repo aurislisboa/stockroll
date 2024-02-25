@@ -21,7 +21,7 @@
 										<tr>
 												<th scope="col">#</th>
 												<th scope="col">Nome</th>
-												<th scope="col">Perfil de Acesso</th>
+												<th scope="col">Perfil</th>
 												<th scope="col">Cadastro</th>
 										</tr>
 									</thead>
@@ -33,8 +33,8 @@
 												</td>
 												<td th:text="${usuario.perfil}"></td>
 												<!-- <td th:text="${#strings.toLowerCase(usuario.perfil)}"></td> -->
-												<!--<td th:text="${usuario.cadastro}"></td>-->
-												<td>15/10/2024</td>
+												<!-- <td th:text="${usuario.cadastro}"></td> -->
+												<td th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}"></td>
 										</tr>
 									</tbody>
 								</table>

@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.usuario;
+package br.com.usystem.stockroll.models;
 
 /*
 public enum Perfil {
@@ -8,8 +8,6 @@ public enum Perfil {
 */
 
 
-// Modelo abaixo não funcionou, tentar descobrir o porquê.
-// 
 
 public enum Perfil {
     

@@ -1,5 +1,6 @@
 package br.com.usystem.stockroll.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.usuario.Perfil;
-import br.com.usystem.stockroll.usuario.Usuario;
-import br.com.usystem.stockroll.usuario.UsuarioRepository;
+import br.com.usystem.stockroll.models.Perfil;
+import br.com.usystem.stockroll.models.Usuario;
+import br.com.usystem.stockroll.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/usuario")
@@ -66,8 +67,12 @@ public class UsuarioController {
     public ModelAndView cadastrar(Usuario usuario) {
         ModelAndView modelAndView = new ModelAndView("redirect:/usuario");
 
+        usuario.setCadastro(LocalDateTime.now());
+
+         //System.out.println(usuario);
+
+
         usuarioRepository.save(usuario);
-        System.out.println(usuario);
         return modelAndView;
     }
 
@@ -83,6 +88,8 @@ public class UsuarioController {
 
     @PostMapping("/{id}/editar")
     public String editar(Usuario usuario) {
+
+        usuario.setCadastro(LocalDateTime.now());
 
         usuarioRepository.save(usuario);
 

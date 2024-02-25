@@ -10,27 +10,34 @@
             <div class="card card-cyan">
                 <div class="card-header">
                     <h5 class="card-title">Detalhes do Usuário</h5>
+                    <div class="card-tools">
+                        <a th:href="@{/usuario}" class="btn btn-block btn-sm btn-dark">
+                            <i class="fas fa-table"></i>&nbsp;&nbsp; Listar</a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Nome:
-                        <strong><span th:text="${usuario.nome}"></span></strong>
-                    </p>
-                    <p class="card-text">Perfil:
-                        <strong><span th:text="${usuario.perfil}"></span></strong>
-                    </p>
-                    <p class="card-text">Cadastro:
-                        <strong><span>10/10/2024</span></strong>
-                    </p>
-                    <p class="card-text">Senha:
-                        <strong><span th:text="${usuario.senha}"></span></strong>
-                    </p>
-                    <br><br>
-                    <p>
-                        <a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
-                        <a th:href="@{/usuario/{id}/excluir (id=${usuario.id})}"
-                           onclick="return confirm('Deseja realmente excluir esse usuário?');"
-                           class="btn btn-danger btn-sm">Excluir</a>
-                    </p>
+                    <ul class="list-group list-group-flush">
+                        <li class="card-text list-group-item">Nome:
+                            <strong><span th:text="${usuario.nome}"></span></strong>
+                        </li>
+                        <li class="card-text list-group-item">Perfil:
+                            <strong><span th:text="${usuario.perfil}"></span></strong>
+                        </li>
+                        <li class="card-text list-group-item">Cadastro:
+                            <strong><span th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}">10/10/2024</span></strong>
+                        </li>
+                        <li class="card-text list-group-item">Senha:
+                            <strong><span th:text="${usuario.senha}"></span></strong>
+                        </li>
+                        <br>
+                        <li class="list-group-item text-center">
+                            <a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" 
+                                class="btn btn-warning">Editar</a>
+                            <a th:href="@{/usuario/{id}/excluir (id=${usuario.id})}"
+                            onclick="return confirm('Deseja realmente excluir esse usuário?');"
+                            class="btn btn-danger">Excluir</a>
+                        </li>
+                    </ul>
                 </div><!--card-body-->
             </div><!--card-->
         </div><!--col-->

@@ -22,8 +22,10 @@ CREATE TABLE Usuario
 	-- caso não preencha o perfil, será atribído o perfil Usuário como padrão:
 	perfil  VARCHAR(50) NOT NULL DEFAULT 'Usuario',
 
+	cadastro DATETIME NOT NULL DEFAULT NOW(),
+
 	-- o usuário terá o perfil ativo no momento da criação.
-	ativo	BIT NOT NULL DEFAULT 1
+	ativo	BIT NOT NULL DEFAULT 1 
 );
 
 	-- não existe usuário com nomes idênticos.

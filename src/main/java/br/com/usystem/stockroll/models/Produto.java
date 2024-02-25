@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.produto;
+package br.com.usystem.stockroll.models;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,11 +1,12 @@
 package br.com.usystem.stockroll.controller;
 
-import br.com.usystem.stockroll.produto.Produto;
-import br.com.usystem.stockroll.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import br.com.usystem.stockroll.models.Produto;
+import br.com.usystem.stockroll.repositories.ProdutoRepository;
 
 import java.util.List;
 
