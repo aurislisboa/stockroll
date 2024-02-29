@@ -6,13 +6,13 @@
 <body>
 <main>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-md-8 mx-auto">
       <div class="card card-cyan">
           <div class="card-header">
             <h5 class="card-title">[[${usuario.id == null ? 'Cadastrar Novo' : 'Editar'}]] Usuário</h5>
           </div>
-          <div class="card-body">
-            <form method="post" th:object="${usuario}">
+          <form method="post" th:object="${usuario}">
+            <div class="card-body">
                 <div class="mb-3">
                   <label for="nome" class="form-label">Nome:</label>
                   <input type="text" class="form-control" id="nome" th:field="*{nome}"
@@ -32,11 +32,11 @@
                   </select>
                 </div>
 								<br>
-                <div class="text-right">
-                  <button type="submit" class="btn btn-success">Salvar</button>
-                </div>
+              </div><!--card-body-->
+              <div class="card-footer text-right">
+                <button type="submit" class="btn btn-success">Salvar</button>
+              </div><!--card-footer-->
             </form>
-        </div><!--card-body-->
       </div><!--card-->
     </div><!--col-->
   </div><!--row-->

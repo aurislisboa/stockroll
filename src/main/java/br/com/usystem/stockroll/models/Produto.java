@@ -1,15 +1,14 @@
 package br.com.usystem.stockroll.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 // Lombok
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@ToString
 
 // JPA
 @Table
@@ -19,7 +18,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_produto")
-    private Long id;
+    private Integer id;
 
     @Column(name="cod_barra")
     private String codigoBarra;
@@ -35,4 +34,9 @@ public class Produto {
 
     @Column(name = "qtd_estoque")
     private Integer qtdAtualEstoque;
+
+
+
+    // @OneToMany(mappedBy = "produto")
+    // private List<Estoque> estoque;
 }

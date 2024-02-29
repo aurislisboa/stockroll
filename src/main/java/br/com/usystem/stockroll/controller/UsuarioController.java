@@ -43,7 +43,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}")
-    public ModelAndView detalhar(@PathVariable Long id) {
+    public ModelAndView detalhar(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("usuario/detalhar");
 
         Usuario usuario = usuarioRepository.getReferenceById(id);
@@ -78,7 +78,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable Long id) {
+    public ModelAndView editar(@PathVariable Integer id) {
         var modelAndView = new ModelAndView("usuario/formulario");
             modelAndView.addObject("usuario", usuarioRepository.getReferenceById(id));
         
@@ -98,7 +98,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}/excluir")
-    public String excluir(@PathVariable Long id) {
+    public String excluir(@PathVariable Integer id) {
 
         usuarioRepository.deleteById(id);
 

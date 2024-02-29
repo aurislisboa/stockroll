@@ -1,4 +1,3 @@
--- Active: 1707624501760@@127.0.0.1@3306@estoquev4_prod5
 
 -- ////////////////////////////////////////// CREATES ///////////////////////////////////////////
  -- USE master;
@@ -20,7 +19,7 @@ CREATE TABLE Usuario
 	senha	VARCHAR(250) NOT NULL,
 
 	-- caso não preencha o perfil, será atribído o perfil Usuário como padrão:
-	perfil  VARCHAR(50) NOT NULL DEFAULT 'Usuario',
+	perfil  ENUM('GESTOR', 'USUARIO') NOT NULL DEFAULT 'Usuario',
 
 	cadastro DATETIME NOT NULL DEFAULT NOW(),
 
@@ -44,7 +43,7 @@ CREATE TABLE Usuario
 
 CREATE TABLE Produto
 (
-	id_produto BIGINT AUTO_INCREMENT PRIMARY KEY,
+	id_produto INT AUTO_INCREMENT PRIMARY KEY,
 	cod_barra VARCHAR(100),
 	nome_produto VARCHAR(255) NOT NULL,
 	estoque_min INT NOT NULL,
@@ -91,18 +90,18 @@ CREATE TABLE EstoqueTracking
 
 -- ------------------------ MOVIMENTAÇÃO ESTOQUE ------------------------------
 
-CREATE TABLE MovimentacaoEstoque 
+CREATE TABLE Estoque 
 (
 	id_mov BIGINT AUTO_INCREMENT PRIMARY KEY,
 
 	-- caso não preencha a data, será atribuído a data atual para a movimentação:
 	data_mov DATETIME NOT NULL DEFAULT NOW(),
 	id_usuario INT NOT NULL,
-	id_produto BIGINT NOT NULL,
+	id_produto INT NOT NULL,
 
 	-- caso não preencha uma quantidade, será atribuído '0'
 	qtd_produto INT NOT NULL DEFAULT 0,
-	valor_unitario DECIMAL(6,2),
+	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
 
 	 -- caso não preencha o tipo, será atribído 'Entrada' como padrão:
 	tipo_mov VARCHAR(7) NOT NULL DEFAULT 'Entrada'
@@ -112,27 +111,27 @@ CREATE TABLE MovimentacaoEstoque
   
 
 	-- relacionamento com a tabela Usuário:
-	ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT FK_MovimentacaoEstoque_Usuario FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario);
+	ALTER TABLE Estoque ADD CONSTRAINT FK_Estoque_Usuario FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario);
 
 	-- relacionamento com a tabela Produto:
-	ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT FK_MovimentacaoEstoque_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
+	ALTER TABLE Estoque ADD CONSTRAINT FK_Estoque_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
 
 	-- confere se o valor digitado é maior que '0', não existe entrada negativa no estoque.
-	ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT CK_MovimentacaoEstoque_qtd_produto CHECK(qtd_produto > 0);
+	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_qtd_produto CHECK(qtd_produto > 0);
 
 	-- o preço do produto precisa ser positivo.
-	ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT CK_Produto_valor_unitario CHECK(valor_unitario >= 0);
+	ALTER TABLE Estoque ADD CONSTRAINT CK_Produto_valor_unitario CHECK(valor_unitario >= 0);
 
 
 	-- confere se a palavra corresponde exatamente.
-	ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT CK_MovimentacaoEstoque_tipo_mov CHECK(tipo_mov IN('Entrada','Saida'));
+	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_tipo_mov CHECK(tipo_mov IN('Entrada','Saida'));
 
 	-- confere se a palavra corresponde exatamente.
-	-- ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT CK_MovimentacaoEstoque_local_armazenagem CHECK(local_armazenagem IN('Estoque','Quiosque'));
+	-- ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_local_armazenagem CHECK(local_armazenagem IN('Estoque','Quiosque'));
 
 	-- caso não preencha o local, será atribído Estoque como padrão:
-	-- ALTER TABLE MovimentacaoEstoque ADD CONSTRAINT DF_MovimentacaoEstoque_local_armazenagem DEFAULT 'Estoque' FOR local_armazenagem;
+	-- ALTER TABLE Estoque ADD CONSTRAINT DF_Estoque_local_armazenagem DEFAULT 'Estoque' FOR local_armazenagem;
 
 	
 	
