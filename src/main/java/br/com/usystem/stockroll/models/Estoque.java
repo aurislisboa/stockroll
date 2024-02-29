@@ -1,10 +1,13 @@
 package br.com.usystem.stockroll.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,12 +47,12 @@ public class Estoque {
     private Produto produto;
 
 
-    
+    @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "data_mov")
-    private LocalDateTime dataMovimentacao;
+    private LocalDate dataMovimentacao;
 
     @Column(name = "qtd_produto")
-    private Integer qtdProduto;
+    private Integer quantidade;
 
     @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
     private BigDecimal valorUnitario;

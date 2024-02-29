@@ -24,7 +24,7 @@ public class Produto {
     private String codigoBarra;
 
     @Column(name = "nome_produto")
-    private String nomeProduto;
+    private String nome;
 
     @Column(name = "estoque_min")
     private Integer qtdMinEstoque;

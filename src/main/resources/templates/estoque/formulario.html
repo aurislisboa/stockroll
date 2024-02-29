@@ -18,10 +18,38 @@
 							<div class="form-group mb-3">
 								<label for="usuario" class="form-label">Usuário:</label>
 								<select class="form-control custom-select rounded-0" th:field="*{usuario}">
-									<option th:each="usuario : ${usuarios}" th:text="${usuario.nome}" th:value="${usuario.id}"></option>
+									<option th:each="user : ${usuarios}" th:text="${user.nome}" th:value="${user.id}"></option>
 								</select>
 							</div>
-						</div>
+							<div class="form-group">
+								<label for="produto">Produto:</label>
+								<select class="form-control custom-select" th:field="*{produto}">
+									<option th:each="prod : ${produtos}" th:text="${prod.nome}" th:value="${prod.id}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="dataMovimentacao">Data:</label>
+								<input type="date" class="form-control" th:field="*{dataMovimentacao}">
+							</div>
+							<div class="form-group">
+								<label for="quantidade">Quantidade:</label>
+								<input type="number" class="form-control" th:field="*{quantidade}" min="1" required>
+							</div>
+							<div class="form-group">
+								<label for="valorUnitario">Preço:</label>
+								<input type="number" class="form-control" th:field="*{valorUnitario}" step="0.01" required>
+							</div> 
+							<div class="form-group">
+								<label for="tipoMovimentacao">Movimentação</label>
+								<select class="form-control custom-select" th:field="*{tipoMovimentacao}">
+									<option th:text="${'Entrada'}" th:value="${'Entrada'}"></option>
+									<option th:text="${'Saida'}" th:value="${'Saida'}"></option>
+								</select>
+							</div>
+						</div><!--card-body-->
+						<div class="card-footer text-right">
+							<button type="submit" class="btn btn-success">Salvar</button>
+						</div><!--card-footer-->
 					</form>
 				</div>
 			</div>

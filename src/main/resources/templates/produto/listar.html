@@ -32,7 +32,7 @@
                 <tr th:each="produto : ${produtos}">
                   <th scope="row" th:text="${produto.id}"></th>
                   <td>
-                      <a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nomeProduto}"></a>
+                      <a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nome}"></a>
                   </td>
                   <td th:text="${produto.codigoBarra}"></td>
                   <td th:text="${produto.qtdAtualEstoque}"></td>
