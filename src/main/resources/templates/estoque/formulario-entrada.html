@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Formulário Movimentação de Estoque</title>
+	<title>Entrada no Estoque</title>
 </head>
 <body>
 	<main>
@@ -11,7 +11,7 @@
 			<div class="col-sm-12 col-md-8 mx-auto">
 				<div class="card card-cyan">
 					<div class="card-header">
-						<h5 class="card-title">[[${estoque.id == null ? 'Nova' : 'Editar'}]] Movimentação de Estoque</h5>
+						<h5 class="card-title">Entrada no Estoque</h5>
 					</div>
 					<form method="post" th:object="${estoque}">
 						<div class="card-body">
@@ -41,9 +41,8 @@
 							</div> 
 							<div class="form-group">
 								<label for="tipoMovimentacao">Movimentação</label>
-								<select class="form-control custom-select" th:field="*{tipoMovimentacao}">
-									<option th:text="${'Entrada'}" th:value="${'Entrada'}"></option>
-									<option th:text="${'Saida'}" th:value="${'Saida'}"></option>
+								<select disabled class="form-control custom-select" th:field="*{tipoMovimentacao}">
+									<option selected th:text="${'Entrada'}" th:value="${'Entrada'}"></option>
 								</select>
 							</div>
 						</div><!--card-body-->

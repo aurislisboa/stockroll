@@ -18,7 +18,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_produto")
-    private Integer id;
+    private Long id;
 
     @Column(name="cod_barra")
     private String codigoBarra;
@@ -32,7 +32,7 @@ public class Produto {
     @Column(name = "estoque_ideal")
     private Integer qtdIdealEstoque;
 
-    @Column(name = "qtd_estoque")
+    @Column(name = "qtd_estoque", columnDefinition = "default '0'")
     private Integer qtdAtualEstoque;
 
 

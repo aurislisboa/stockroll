@@ -58,6 +58,11 @@ public class ProdutoController {
     public ModelAndView cadastrar(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
         //System.out.println("Dados do Cadastro:" + produto.toString());
+
+        if (produto.getQtdAtualEstoque() == null) {
+            produto.setQtdAtualEstoque(0);
+        }
+
         produtoRepository.save(produto);
 
         return modelAndView;

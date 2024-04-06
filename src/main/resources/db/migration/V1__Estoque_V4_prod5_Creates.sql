@@ -43,12 +43,12 @@ CREATE TABLE Usuario
 
 CREATE TABLE Produto
 (
-	id_produto INT AUTO_INCREMENT PRIMARY KEY,
+	id_produto BIGINT AUTO_INCREMENT PRIMARY KEY,
 	cod_barra VARCHAR(100),
 	nome_produto VARCHAR(255) NOT NULL,
 	estoque_min INT NOT NULL,
 	estoque_ideal INT NOT NULL,
-	qtd_estoque INT DEFAULT 0
+	qtd_estoque INT NOT NULL DEFAULT 0
 	-- cod_produto VARCHAR(255),
 	-- valor_unitario DECIMAL(6,2),
 	-- data_vencimento DATE,
@@ -97,7 +97,7 @@ CREATE TABLE Estoque
 	-- caso não preencha a data, será atribuído a data atual para a movimentação:
 	data_mov DATETIME NOT NULL DEFAULT NOW(),
 	id_usuario INT NOT NULL,
-	id_produto INT NOT NULL,
+	id_produto BIGINT NOT NULL,
 
 	-- caso não preencha uma quantidade, será atribuído '0'
 	qtd_produto INT NOT NULL DEFAULT 0,
