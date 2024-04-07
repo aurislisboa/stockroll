@@ -1,57 +1,57 @@
-// package br.com.usystem.stockroll.security;
+package br.com.usystem.stockroll.security;
 
-// import java.util.Collection;
+import java.util.Collection;
 
-// import org.springframework.security.core.GrantedAuthority;
-// import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-// import br.com.usystem.stockroll.models.Usuario;
+import br.com.usystem.stockroll.models.Usuario;
 
-// public class UserDetailsImpl implements UserDetails {
-
-
-//     private final Usuario usuario;
+public class UserDetailsImpl implements UserDetails {
 
 
-//     public UserDetailsImpl(Usuario usuario) {
-//         this.usuario = usuario;
-//     }
+    private final Usuario usuario;
 
 
-//     @Override
-//     public Collection<? extends GrantedAuthority> getAuthorities() {
-//         // TODO Auto-generated method stub
-//         throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
-//     }
+    public UserDetailsImpl(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-//     @Override
-//     public String getPassword() {
-//         return this.usuario.getSenha();
-//     }
 
-//     @Override
-//     public String getUsername() {
-//         return this.usuario.getSenha();
-//     }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+    }
 
-//     @Override
-//     public boolean isAccountNonExpired() {
-//         return true;
-//     }
+    @Override
+    public String getPassword() {
+        return this.usuario.getSenha();
+    }
 
-//     @Override
-//     public boolean isAccountNonLocked() {
-//         return true;
-//     }
+    @Override
+    public String getUsername() {
+        return this.usuario.getSenha();
+    }
 
-//     @Override
-//     public boolean isCredentialsNonExpired() {
-//         return true;
-//     }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-//     @Override
-//     public boolean isEnabled() {
-//         return true;
-//     }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-// }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+}

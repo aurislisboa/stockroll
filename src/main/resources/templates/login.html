@@ -1,39 +1,109 @@
 <!DOCTYPE html>
-<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<html lang="pt-br">
 <head>
-	<title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+  <style>
+      .pos-intro {
+        background: url("../static/img/background.jpg") no-repeat center;
+        /* background-repeat: no-repeat; */
+        /* background-position: center; */
+        background-size: cover;
+        /* background-size: 1300px;  */
+        /* -margin-top: 120px; */
+        padding-top: 80px;
+        width: 100%;
+        height: 480px;
+      }
+  </style>	
+	<title>Stock Roll | Login</title>
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/jqvmap/jqvmap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/dist/css/adminlte.min.css}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/daterangepicker/daterangepicker.css}">
+  <!-- summernote -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/summernote/summernote-bs4.min.css}">
+
 </head>
-<body>
+<body class="hold-transition login-page">
+ <div class="container"><img src="background.jpg" alt=""> </div>
 <main>
-	<div class="row">
-			<div class="col-sm-6 mx-auto">
-					<div class="card card-info">
-						<div class="card-header">
-								<h3 class="card-title">Login</h3>
-						</div>
-						<form class="form-horizontal">
-								<div class="card-body">
-									<div class="mb-3">
-												<label for="nome" class="form-label">Usuário:</label>
-												<input type="nome" class="form-control" id="nome" placeholder="Usuário">
-									</div>
-									<div class="mb-3">
-												<label for="senha" class="form-label">Senha:</label>
-												<input type="password" class="form-control" id="senha" placeholder="Senha">
-									</div>
-									<div class="mb-3 form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">Lembrar</label>
-									</div>
-								</div>
-								<div class="card-footer">
-									<button type="submit" class="btn btn-info">Enviar</button>
-									<button type="submit" class="btn btn-default float-right">Cancel</button>
-								</div>
-						</form>
-					</div>
-			</div>
-	</div><!--row-->
+  <div class="container-fluid">
+    <div class="login-box">
+      <div class="login-logo">
+        <b>Stock</b>Roll
+      </div>
+      <!-- /.login-logo -->
+          <div class="card">
+                <div class="card card-info">
+                      <div class="card-header">
+                          <h3 class="card-title">Login</h3>
+                      </div>
+                      <div class="card-body login-card-body">                    
+                            
+                            <div th:if="${param.error != null}" class="alert alert-danger">
+                              <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+                            </div>
+
+                      <form method="POST" th:action="@{/login}">
+                                      <!-- <label for="nome" class="form-label">Usuário:</label> -->
+                                      <div class="input-group mb-3">
+                                            <input type="nome" class="form-control" id="nome" name="username" placeholder="Usuário" required>
+                                            <div class="input-group-append">
+                                              <div class="input-group-text">
+                                                <span class="fas fa-user"></span>
+                                              </div>
+                                            </div>
+                                      </div>
+                                      <!-- <label for="senha" class="form-label">Senha:</label> -->
+                                      <div class="input-group mb-3">
+                                          <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
+                                          <div class="input-group-append">
+                                            <div class="input-group-text">
+                                              <span class="fas fa-lock"></span>
+                                            </div>
+                                          </div>
+                                      </div>
+                                        
+                                
+                          </div><!--card-body-->
+                          <div class="card-footer">
+                                    <div class="row">
+                                      <div class="col-8">
+                                        <div class="icheck-info">
+                                              <input type="checkbox" id="remember-me" name="remember-me">
+                                              <label class="form-check-label" for="remember-me">Lembrar</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-4">
+                                        <button type="submit" class="btn btn-info float-right">Entrar</button>
+                                      </div>
+                                    </div><!--row-->
+                          </div><!--card-footer-->
+                      </form>
+                </div><!--card-card-info-->
+          </div><!--card-->
+    </div><!--row-->
+  </div><!--container-fluid-->
 </main>
 
 <th:block th:fragment="scripts">
