@@ -6,19 +6,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
-  <style>
-      .pos-intro {
-        background: url("../static/img/background.jpg") no-repeat center;
-        /* background-repeat: no-repeat; */
-        /* background-position: center; */
-        background-size: cover;
-        /* background-size: 1300px;  */
-        /* -margin-top: 120px; */
-        padding-top: 80px;
-        width: 100%;
-        height: 480px;
-      }
-  </style>	
+  
 	<title>Stock Roll | Login</title>
 
 
@@ -45,7 +33,6 @@
 
 </head>
 <body class="hold-transition login-page">
- <div class="container"><img src="background.jpg" alt=""> </div>
 <main>
   <div class="container-fluid">
     <div class="login-box">
@@ -65,7 +52,6 @@
                             </div>
 
                       <form method="POST" th:action="@{/login}">
-                                      <!-- <label for="nome" class="form-label">Usuário:</label> -->
                                       <div class="input-group mb-3">
                                             <input type="nome" class="form-control" id="nome" name="username" placeholder="Usuário" required>
                                             <div class="input-group-append">
@@ -74,7 +60,6 @@
                                               </div>
                                             </div>
                                       </div>
-                                      <!-- <label for="senha" class="form-label">Senha:</label> -->
                                       <div class="input-group mb-3">
                                           <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
                                           <div class="input-group-append">
@@ -91,7 +76,7 @@
                                       <div class="col-8">
                                         <div class="icheck-info">
                                               <input type="checkbox" id="remember-me" name="remember-me">
-                                              <label class="form-check-label" for="remember-me">Lembrar</label>
+                                              <label class="form-check-label" for="remember-me">Lembrar-me</label>
                                         </div>
                                       </div>
                                       <div class="col-4">

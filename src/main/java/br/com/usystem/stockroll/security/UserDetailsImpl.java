@@ -10,7 +10,7 @@ import br.com.usystem.stockroll.models.Usuario;
 public class UserDetailsImpl implements UserDetails {
 
 
-    private final Usuario usuario;
+    private Usuario usuario;
 
 
     public UserDetailsImpl(Usuario usuario) {
@@ -20,8 +20,8 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+
+        return null;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.usuario.getSenha();
+        return this.usuario.getNome();
     }
 
     @Override
