@@ -45,44 +45,40 @@
                       <div class="card-header">
                           <h3 class="card-title">Login</h3>
                       </div>
-                      <div class="card-body login-card-body">                    
-                            
-                            <div th:if="${param.error != null}" class="alert alert-danger">
-                              <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
-                            </div>
-
                       <form method="POST" th:action="@{/login}">
-                                      <div class="input-group mb-3">
-                                            <input type="nome" class="form-control" id="nome" name="username" placeholder="Usuário" required>
-                                            <div class="input-group-append">
-                                              <div class="input-group-text">
-                                                <span class="fas fa-user"></span>
-                                              </div>
-                                            </div>
+                            <div class="card-body login-card-body">                    
+                                <div th:if="${param.error != null}" class="alert alert-danger">
+                                  <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <input type="email" class="form-control" id="email" name="username" placeholder="Email" required>
+                                  <div class="input-group-append">
+                                    <div class="input-group-text">
+                                      <span class="fas fa-envelope"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
+                                    <div class="input-group-append">
+                                      <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
                                       </div>
-                                      <div class="input-group mb-3">
-                                          <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
-                                          <div class="input-group-append">
-                                            <div class="input-group-text">
-                                              <span class="fas fa-lock"></span>
-                                            </div>
-                                          </div>
-                                      </div>
-                                        
-                                
-                          </div><!--card-body-->
+                                    </div>
+                                </div>
+                            </div><!--card-body-->
                           <div class="card-footer">
-                                    <div class="row">
-                                      <div class="col-8">
-                                        <div class="icheck-info">
-                                              <input type="checkbox" id="remember-me" name="remember-me">
-                                              <label class="form-check-label" for="remember-me">Lembrar-me</label>
-                                        </div>
-                                      </div>
-                                      <div class="col-4">
-                                        <button type="submit" class="btn btn-info float-right">Entrar</button>
-                                      </div>
-                                    </div><!--row-->
+                              <div class="row">
+                                <div class="col-8">
+                                  <div class="icheck-info">
+                                    <input type="checkbox" id="remember-me" name="remember-me">
+                                    <label class="form-check-label" for="remember-me">Lembrar-me</label>
+                                  </div>
+                                </div>
+                                <div class="col-4">
+                                  <button type="submit" class="btn btn-info float-right">Entrar</button>
+                                </div>
+                              </div><!--row-->
                           </div><!--card-footer-->
                       </form>
                 </div><!--card-card-info-->

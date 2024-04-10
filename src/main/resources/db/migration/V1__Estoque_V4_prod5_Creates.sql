@@ -16,6 +16,7 @@ CREATE TABLE Usuario
 (
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
 	nome	VARCHAR(200) NOT NULL,
+	email	VARCHAR(100) NOT NULL,
 	senha	VARCHAR(250) NOT NULL,
 
 	-- caso não preencha o perfil, será atribído o perfil Usuário como padrão:
@@ -27,11 +28,14 @@ CREATE TABLE Usuario
 	ativo	BIT NOT NULL DEFAULT 1 
 );
 
-	-- não existe usuário com nomes idênticos.
-	ALTER TABLE Usuario ADD CONSTRAINT UQ_Usuario UNIQUE(nome);
+	-- proibido usuário com nomes idênticos.
+	ALTER TABLE Usuario ADD CONSTRAINT UQ_Usuario_Nome UNIQUE(nome);
 
-	-- existe dois tipos de acesso ao sistema
-	ALTER TABLE Usuario ADD CONSTRAINT CK_Usuario_perfil CHECK(perfil IN('Gestor', 'Usuario'));
+	-- proibido usuário com e-mails idênticos.
+	ALTER TABLE Usuario ADD CONSTRAINT UQ_Usuario_Email UNIQUE(email);
+
+	-- somente esses perfis podem acessar ao sistema.
+	ALTER TABLE Usuario ADD CONSTRAINT CK_Usuario_Perfil CHECK(perfil IN('Gestor', 'Usuario'));
 
 
 
@@ -95,7 +99,8 @@ CREATE TABLE Estoque
 	id_mov BIGINT AUTO_INCREMENT PRIMARY KEY,
 
 	-- caso não preencha a data, será atribuído a data atual para a movimentação:
-	data_mov DATETIME NOT NULL DEFAULT NOW(),
+	-- data_mov DATETIME NOT NULL DEFAULT NOW(),
+	data_mov DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	id_usuario INT NOT NULL,
 	id_produto BIGINT NOT NULL,
 

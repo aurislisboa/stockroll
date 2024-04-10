@@ -9,4 +9,7 @@ import br.com.usystem.stockroll.models.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findByNome(String nome);
+
+    Optional<Usuario> findByEmail(String email);
+
 }
