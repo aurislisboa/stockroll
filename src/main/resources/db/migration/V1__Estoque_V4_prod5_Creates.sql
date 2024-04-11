@@ -92,6 +92,18 @@ CREATE TABLE EstoqueTracking
 */
 
 
+-- ------------------------ MOTIVO SAIDA ------------------------------
+
+CREATE TABLE Motivo_Saida
+(
+	id_motivo INT AUTO_INCREMENT PRIMARY KEY,
+	descricao VARCHAR(150) 
+);
+
+ALTER TABLE Motivo_Saida ADD CONSTRAINT UQ_Motivo_Saida_descricao UNIQUE(descricao);
+
+
+
 -- ------------------------ MOVIMENTAÇÃO ESTOQUE ------------------------------
 
 CREATE TABLE Estoque 
@@ -103,7 +115,7 @@ CREATE TABLE Estoque
 	data_mov DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	id_usuario INT NOT NULL,
 	id_produto BIGINT NOT NULL,
-
+	id_motivo INT NOT NULL,
 	-- caso não preencha uma quantidade, será atribuído '0'
 	qtd_produto INT NOT NULL DEFAULT 0,
 	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
@@ -121,13 +133,14 @@ CREATE TABLE Estoque
 	-- relacionamento com a tabela Produto:
 	ALTER TABLE Estoque ADD CONSTRAINT FK_Estoque_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
+	-- relacionamento com a tabela Motivo_Saida:
+	ALTER TABLE Estoque ADD CONSTRAINT FK_Estoque_Motivo_Saida FOREIGN KEY(id_motivo) REFERENCES Motivo_Saida(id_motivo);
 
 	-- confere se o valor digitado é maior que '0', não existe entrada negativa no estoque.
 	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_qtd_produto CHECK(qtd_produto > 0);
 
 	-- o preço do produto precisa ser positivo.
 	ALTER TABLE Estoque ADD CONSTRAINT CK_Produto_valor_unitario CHECK(valor_unitario >= 0);
-
 
 	-- confere se a palavra corresponde exatamente.
 	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_tipo_mov CHECK(tipo_mov IN('Entrada','Saida'));
@@ -143,5 +156,7 @@ CREATE TABLE Estoque
 	
 	
 -- ------------------------ MOVIMENTAÇÃO QUIOSQUE ------------------------------
+
+
 
 	

@@ -60,4 +60,8 @@ public class Estoque {
     @Column(name = "tipo_mov")
     private String tipoMovimentacao;
 
+    @ManyToOne
+    @JoinColumn(name = "id_motivo")
+    private MotivoSaida motivoSaida;
+
 }
