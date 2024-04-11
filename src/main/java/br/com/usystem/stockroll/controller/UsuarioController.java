@@ -76,7 +76,6 @@ public class UsuarioController {
 
          //System.out.println(usuario);
 
-
         usuarioRepository.save(usuario);
         return modelAndView;
     }

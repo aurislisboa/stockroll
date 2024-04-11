@@ -5,45 +5,45 @@
 </head>
 <body>
 	<main>
-			<div class="row">
-				<div class="col-sm-12 col-md-8 mx-auto">
-						<div class="card card-cyan">
-							<div class="card-header">
-								<h5 class="card-title">Listagem de Usuários</h5>
-								<div class="card-tools">
-									<a th:href="@{/usuario/cadastrar}"
-											class="btn btn-block btn-sm btn-dark">
-											<i class="fas fa-user-tie"></i> &nbsp; Novo Usuário</a>
-								</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-8 mx-auto">
+					<div class="card card-cyan">
+						<div class="card-header">
+							<h5 class="card-title">Listagem de Usuários</h5>
+							<div class="card-tools">
+								<a th:href="@{/usuario/cadastrar}"
+										class="btn btn-block btn-sm btn-dark">
+										<i class="fas fa-user-tie"></i> &nbsp; Novo Usuário</a>
 							</div>
-							<div class="card-body table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th scope="col">#</th>
-											<th scope="col">Nome</th>
-											<th scope="col">Perfil</th>
-											<th scope="col">Cadastro</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="usuario : ${usuarios}">
-											<th scope="row" th:text="${usuario.id}"></th>
-											<td>
-													<a th:href="@{/usuario/{id} (id=${usuario.id})}"
-														th:text="${usuario.nome}"></a>
-											</td>
-											<td th:text="${usuario.perfil}"></td>
-											<!-- <td th:text="${#strings.toLowerCase(usuario.perfil)}"></td> -->
-											<!-- <td th:text="${usuario.cadastro}"></td> -->
-											<td th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div><!--card-body-->
-						</div><!--card-->
-				</div><!--col-->
-			</div><!--row-->
+						</div>
+						<div class="card-body table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Nome</th>
+										<th scope="col">Perfil</th>
+										<th scope="col">Cadastro</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="usuario : ${usuarios}">
+										<th scope="row" th:text="${usuario.id}"></th>
+										<td>
+												<a th:href="@{/usuario/{id} (id=${usuario.id})}"
+													th:text="${usuario.nome}"></a>
+										</td>
+										<td th:text="${usuario.perfil}"></td>
+										<!-- <td th:text="${#strings.toLowerCase(usuario.perfil)}"></td> -->
+										<!-- <td th:text="${usuario.cadastro}"></td> -->
+										<td th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!--card-body-->
+					</div><!--card-->
+			</div><!--col-->
+		</div><!--row-->
 	</main>
 </body>
 </html>

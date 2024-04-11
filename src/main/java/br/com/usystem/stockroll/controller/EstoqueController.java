@@ -1,5 +1,6 @@
 package br.com.usystem.stockroll.controller;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,10 @@ public class EstoqueController {
     public ModelAndView cadastrarEntrada() {
         var modelAndView = new ModelAndView("/estoque/formulario-entrada");
 
-            modelAndView.addObject("estoque", new Estoque());
+            Estoque estoque = new Estoque();
+                    estoque.setDataMovimentacao(LocalDate.now());
+
+            modelAndView.addObject("estoque", estoque);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
             modelAndView.addObject("produtos", produtoRepository.findAll());
 
@@ -62,7 +66,10 @@ public class EstoqueController {
     public ModelAndView cadastrarSaida() {
         var modelAndView = new ModelAndView("/estoque/formulario-saida");
 
-            modelAndView.addObject("estoque", new Estoque());
+        Estoque estoque = new Estoque();
+                estoque.setDataMovimentacao(LocalDate.now());
+
+            modelAndView.addObject("estoque", estoque);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
             modelAndView.addObject("produtos", produtoRepository.findAll());
 

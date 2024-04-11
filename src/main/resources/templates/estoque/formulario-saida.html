@@ -3,15 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Saída de Estoque</title>
+	<title>Saída do Estoque</title>
 </head>
 <body>
 	<main>
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
-				<div class="card card-cyan">
-					<div class="card-header">
-						<h5 class="card-title">Saída de Estoque</h5>
+				<div class="card card-cyan card-outline">
+					<div>
+					<!-- <div class="card-header">
+						<h5 class="card-title">Saída de Estoque</h5> -->
 					</div>
 					<form method="post" th:object="${estoque}">
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

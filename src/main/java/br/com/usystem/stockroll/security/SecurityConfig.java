@@ -32,7 +32,9 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .defaultSuccessUrl("/estoque")
                 .permitAll()
-            );
+            )
+            .logout(logout -> logout
+            .logoutSuccessUrl("/"));
             
             // .anyRequest().permitAll() 
             // .anyRequest().authenticated() 

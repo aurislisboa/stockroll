@@ -9,9 +9,10 @@
 	<main>
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
-				<div class="card card-cyan">
-					<div class="card-header">
-						<h5 class="card-title">Entrada no Estoque</h5>
+				<div class="card card-cyan card-outline">
+					<div>
+					<!-- <div class="card-header"> -->
+						<!-- <h5 class="card-title">Entrada no Estoque</h5> -->
 					</div>
 					<form method="post" th:object="${estoque}">
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
