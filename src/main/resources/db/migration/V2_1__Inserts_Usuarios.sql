@@ -1,4 +1,0 @@
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Renato Henrique Fernão', 'renato@gmail.com', '123456', 'GESTOR', '2024-02-25 02:18:17', b'1');
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('João Ribeiro de Souza',  'jose@gmail.com', '123456', 'USUARIO', '2024-02-25 02:18:32', b'1');
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Maria da Silva', 'maria@gmail.com', '123456', 'USUARIO', '2024-02-25 02:18:53', b'1');
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('admin', 'admin@gmail.com', '$2a$10$QkPjr9.Jj8KPL6cTF2PzA.nsBKfqiCC1PCGtC/k9pZPavjjY9zUTq', 'GESTOR', '2024-04-10 10:28:12', b'1');
