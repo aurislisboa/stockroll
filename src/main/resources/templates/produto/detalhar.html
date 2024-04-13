@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<head>
+    <title>Detalhes do Produto</title>
+</head>
+<body>
+<main>
+		<div class="row">
+				<div class="col-sm-12 col-md-8 mx-auto">
+						<div class="card card-cyan">
+									<div class="card-header">
+										<h5 class="card-title">Detalhes do Produto</h5>
+										<div class="card-tools">
+											<a th:href="@{/produto}" class="btn btn-block btn-sm btn-dark">
+													<i class="fas fa-list"></i>&nbsp;&nbsp; Listar Produtos</a>
+										</div>
+									</div>
+									<div class="card-body">
+										<ul class="list-group list-group-flush">
+												<li class="card-text list-group-item">Nome do Produto:
+													<strong><span th:text="${produto.nome}"></span></strong>
+												</li>
+												<li class="card-text list-group-item">Código de Barras:
+													<strong><span th:text="${produto.codigoBarra}"></span></strong>
+												</li>
+												<li class="card-text list-group-item">Quantidade em Estoque:
+													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
+												</li>
+												<li class="card-text list-group-item">Quantidade Ideal:
+													<strong><span th:text="${produto.qtdIdealEstoque}"></span></strong>
+												</li>
+												<li class="card-text list-group-item">Quantidade Mínima:
+													<strong><span th:text="${produto.qtdMinEstoque}"></span></strong>
+												</li>
+												<br>
+												<li class="list-group-item text-center">
+														<a th:href="@{/produto/{id}/editar (id=${produto.id})}" class="btn btn-warning btn-sm">Editar</a>
+														<a th:href="@{/produto/{id}/excluir (id=${produto.id})}"
+															onclick="return confirm('Deseja realmente excluir esse produto?');"
+															class="btn btn-danger btn-sm">Excluir</a>
+												</li>
+										</ul>
+								</div><!--card-body-->
+						</div><!--card-->
+				</div><!--col-->
+		</div><!--row-->
+</main>
+</body>
+</html>

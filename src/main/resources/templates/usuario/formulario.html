@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<head>
+  <title>Cadastrar Novo Usuário</title>
+</head>
+<body>
+<main>
+  <div class="row">
+    <div class="col-sm-6 col-md-8 mx-auto">
+      <div class="card card-cyan card-outline">
+          <div>
+          <!-- <div class="card-header">
+            <h5 class="card-title">[[${usuario.id == null ? 'Cadastrar Novo' : 'Editar'}]] Usuário</h5> -->
+          </div>
+          <form method="post" th:object="${usuario}">
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <div class="card-body">
+                <div class="mb-3">
+                  <label for="nome" class="form-label">Nome:</label>
+                  <input type="text" class="form-control" id="nome" th:field="*{nome}"
+                        placeholder="Digite o nome do usuário" autofocus="true" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" class="form-control" id="email" th:field="*{email}"
+                        placeholder="Digite o email do usuário" required>
+                </div>
+                <div class="mb-3">
+                  <label for="senha" class="form-label">Senha:</label>
+                  <input type="text" class="form-control" id="senha" th:field="*{senha}"
+                        placeholder="Digite a senha do usário" required>
+                </div>
+                <div class="mb-3">
+                  <label for="perfil" class="form-label">Perfil:</label>
+                  <!-- <select name="perfil" class="form-control" id="perfil" th:field="*{perfil}"> 
+                     <option th:each="opcao : ${T(br.com.usystem.stockroll.usuario.Perfil).values()}" th:value="${opcao}" th:text="${opcao}"></option> -->
+                  <select class="form-control" title="Selecione um perfil de acesso" th:field="*{perfil}">
+                    <option th:each="opcao : ${perfil}" th:value="${opcao}" th:text="${opcao.tipo}"></option>
+                  </select>
+                </div>
+								<br>
+              </div><!--card-body-->
+              <div class="card-footer text-right">
+                <button type="submit" class="btn btn-success">Salvar</button>
+              </div><!--card-footer-->
+            </form>
+      </div><!--card-->
+    </div><!--col-->
+  </div><!--row-->
+</main>
+
+</body>
+</html>

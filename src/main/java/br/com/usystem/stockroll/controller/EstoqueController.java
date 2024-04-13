@@ -1,0 +1,145 @@
+package br.com.usystem.stockroll.controller;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.usystem.stockroll.models.Estoque;
+import br.com.usystem.stockroll.models.MotivoSaida;
+import br.com.usystem.stockroll.models.Produto;
+import br.com.usystem.stockroll.repositories.EstoqueRepository;
+import br.com.usystem.stockroll.repositories.MotivoSaidaRepository;
+import br.com.usystem.stockroll.repositories.ProdutoRepository;
+import br.com.usystem.stockroll.repositories.UsuarioRepository;
+
+@Controller
+@RequestMapping("/estoque")
+public class EstoqueController {
+    
+
+    private final EstoqueRepository estoqueRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final ProdutoRepository produtoRepository;
+    private final MotivoSaidaRepository motivoSaidaRepository;
+
+
+    @Autowired
+    public EstoqueController(EstoqueRepository estoqueRepository, 
+                    UsuarioRepository usuarioRepository, 
+                    ProdutoRepository produtoRepository,
+                    MotivoSaidaRepository motivoSaidaRepository) {
+
+        this.estoqueRepository = estoqueRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.produtoRepository = produtoRepository;
+        this.motivoSaidaRepository = motivoSaidaRepository;
+    }
+
+
+
+    @GetMapping()
+    public ModelAndView listar() {
+        var modelAndView = new ModelAndView("estoque/listar");
+
+        modelAndView.addObject("movimentacao", estoqueRepository.findAll());
+
+        return modelAndView;
+    }
+
+
+
+    @GetMapping("/cadastrar/entrada")
+    public ModelAndView cadastrarEntrada() {
+        var modelAndView = new ModelAndView("/estoque/formulario-entrada");
+
+            Estoque estoque = new Estoque();
+                    estoque.setDataMovimentacao(LocalDate.now());
+                    estoque.setTipoMovimentacao("Entrada");
+                    estoque.setQuantidade(1);
+                    // estoque.setMotivoSaida(new MotivoSaida(1, "-"));
+                    
+                    // var motivo = new MotivoSaida();
+                    //     motivo.setDescricao("-");
+                    // estoque.setMotivoSaida(motivo);
+
+            modelAndView.addObject("estoque", estoque);
+            modelAndView.addObject("usuarios", usuarioRepository.findAll());
+            modelAndView.addObject("produtos", produtoRepository.findAll());
+
+
+        return modelAndView;
+    }
+
+
+
+    @PostMapping("/cadastrar/entrada")
+    public String cadastrarEntrada(Estoque estoque) {
+
+        // System.out.println("----------\n\n" + estoque + " \n\n-------------");
+
+                
+        estoque.setTipoMovimentacao("Entrada");
+        estoque.setMotivoSaida(new MotivoSaida(1, "-"));
+
+        Long produtoId = estoque.getProduto().getId();
+        Produto produto = produtoRepository.getReferenceById(produtoId);
+
+            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() + estoque.getQuantidade());
+
+        //produtoRepository.save(produto);
+
+        estoqueRepository.save(estoque);
+        
+        return "redirect:/estoque";
+    }
+
+
+
+    @GetMapping("/cadastrar/saida")
+    public ModelAndView cadastrarSaida() {
+        var modelAndView = new ModelAndView("/estoque/formulario-saida");
+
+        Estoque estoque = new Estoque();
+                estoque.setDataMovimentacao(LocalDate.now());
+                estoque.setTipoMovimentacao("Saida");
+
+            modelAndView.addObject("estoque", estoque);
+            modelAndView.addObject("usuarios", usuarioRepository.findAll());
+            modelAndView.addObject("produtos", produtoRepository.findAll());
+            modelAndView.addObject("motivos", motivoSaidaRepository.findAll());
+
+        return modelAndView;
+    }
+
+
+   
+
+    @PostMapping("/cadastrar/saida")
+    public String cadastrarSaida(Estoque estoque) {
+                
+        // System.out.println("----------\n\n" + estoque + " \n\n-------------");
+        
+        estoque.setTipoMovimentacao("Saida");
+        Long produtoId = estoque.getProduto().getId();
+        Produto produto = produtoRepository.getReferenceById(produtoId);
+
+        //Integer qtdAtualEstoque = produto.getQtdAtualEstoque();
+        //Integer qtdDigitadaNoForm = estoque.getQuantidade();
+
+            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - estoque.getQuantidade());
+
+        //produtoRepository.save(produto);
+
+        estoqueRepository.save(estoque);
+        
+        return "redirect:/estoque";
+    }
+
+}

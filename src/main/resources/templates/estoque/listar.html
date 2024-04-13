@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
+<head>
+	<title>Movimentação do Estoque</title>
+</head>
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 mx-auto">
+				<div class="card card-cyan card-outline">
+					<div>
+					<!-- <div class="card-header"> -->
+						<!-- <h5 class="card-title">Movimentação do Estoque</h5> -->
+						<div class="card-tools">
+
+						</div>
+					</div>
+					<div class="card-body table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Data</th>
+									<th scope="col">Usuário</th>
+									<th scope="col">Produto</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Preço Unit.</th>
+									<th scope="col">Motivo</th>
+									<th scope="col">Movimentação</th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr th:each="mov : ${movimentacao}">
+										<td th:text="${mov.id}">1</td>
+										<td th:text="${mov.dataMovimentacao}"></td>
+										<td th:text="${mov.usuario.nome}"></td>
+										<td th:text="${mov.produto.nome}"></td>
+										<td th:text="${mov.quantidade}"></td>
+										<td th:text="${mov.valorUnitario}"></td>
+										<td th:text="${mov.motivoSaida.descricao}"></td>
+										<td th:text="${mov.tipoMovimentacao}"></td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+				</div><!--card-->
+			</div><!--col-->
+		</div><!--row-->
+	</main>
+</body>
+</html>

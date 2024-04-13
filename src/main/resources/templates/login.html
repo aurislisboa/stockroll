@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+  <style>
+    .bg-image {
+        background-image: url('/img/bg.jpg') ; 
+        /* background-size: cover;  */
+        background-size: 1300px;
+        height: 1500px; 
+        width: 100%;
+    } 
+    .login-box { 
+      /* display: flex; */
+    }
+  </style>
+	<title>Stock Roll | Login</title>
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/dist/css/adminlte.min.css}">
+
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+  <!-- Tempusdominus Bootstrap 4 -->
+  <!-- <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"> -->
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- JQVMap -->
+  <!-- <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/jqvmap/jqvmap.min.css}"> -->
+  <!-- overlayScrollbars -->
+  <!-- <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}"> -->
+  <!-- Daterange picker -->
+  <!-- <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/daterangepicker/daterangepicker.css}"> -->
+  <!-- summernote -->
+  <!-- <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/summernote/summernote-bs4.min.css}"> -->
+
+</head>
+<body class="hold-transition login-page">
+
+  <!-- <div class="bg-image"></div> -->
+
+<main> 
+  <div class="container-fluid">
+    <div class="login-box">
+      <div class="login-logo">
+        <b>Stock</b>Roll
+      </div>
+      <!-- /.login-logo -->
+          <div class="card">
+              <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Login</h3>
+                </div>
+                <form method="POST" th:action="@{/login}">
+                      <div class="card-body login-card-body">                    
+                        <div th:if="${param.error != null}" class="alert alert-danger">
+                          <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input type="email" class="form-control" id="email" name="username" placeholder="Email" required>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input type="password" class="form-control" id="senha" name="password" placeholder="Senha" required>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-lock"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!--card-body-->
+                    <div class="card-footer">
+                        <div class="row">
+                        <div class="col-8">
+                          <div class="icheck-info">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label class="form-check-label" for="remember-me">Lembrar-me</label>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <button type="submit" class="btn btn-info float-right">Entrar</button>
+                        </div>
+                      </div><!--row-->
+                    </div><!--card-footer-->
+                </form>
+              </div><!--card-card-info-->
+          </div><!--card-->
+    </div><!--row-->
+  </div><!--container-fluid-->
+</main>
+
+<th:block th:fragment="scripts">
+	<!-- <script>
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+	</script> -->
+</th:block>
+</body>
+</html>
