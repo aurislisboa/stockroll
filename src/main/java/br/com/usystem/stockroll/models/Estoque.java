@@ -54,8 +54,8 @@ public class Estoque {
     @Column(name = "qtd_produto")
     private Integer quantidade;
 
-    @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
-    private BigDecimal valorUnitario;
+    @Column(name = "preco", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
+    private BigDecimal preco;
 
     @Column(name = "tipo_mov")
     private String tipoMovimentacao;

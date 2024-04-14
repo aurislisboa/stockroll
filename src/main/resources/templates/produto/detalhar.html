@@ -7,12 +7,12 @@
 <main>
 		<div class="row">
 				<div class="col-sm-12 col-md-8 mx-auto">
-						<div class="card card-cyan">
+						<div class="card card-cyan card-outline">
 									<div class="card-header">
 										<h5 class="card-title">Detalhes do Produto</h5>
 										<div class="card-tools">
-											<a th:href="@{/produto}" class="btn btn-block btn-sm btn-dark">
-													<i class="fas fa-list"></i>&nbsp;&nbsp; Listar Produtos</a>
+											<a th:href="@{/produto}" class="btn btn-block btn-sm btn-info">
+													<i class="fas fa-list"></i>&nbsp;&nbsp; Lista de Produtos</a>
 										</div>
 									</div>
 									<div class="card-body">
@@ -25,6 +25,9 @@
 												</li>
 												<li class="card-text list-group-item">Quantidade em Estoque:
 													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
+												</li>
+												<li class="card-text list-group-item">Valor Unitário:
+													<strong><span th:text="${produto.valorUnitario}"></span></strong>
 												</li>
 												<li class="card-text list-group-item">Quantidade Ideal:
 													<strong><span th:text="${produto.qtdIdealEstoque}"></span></strong>

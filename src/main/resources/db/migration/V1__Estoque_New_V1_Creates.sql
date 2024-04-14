@@ -1,12 +1,12 @@
 
 -- ////////////////////////////////////////// CREATES ///////////////////////////////////////////
  -- USE master;
- -- DROP DATABASE EstoqueV4_prod5;
+ -- DROP DATABASE Estoque_New;
 
--- CREATE DATABASE EstoqueV4_prod5;
+-- CREATE DATABASE Estoque_New;
 
 
--- USE EstoqueV4_prod5;
+-- USE Estoque_New;
 
 
 -- ------------------------ USUÁRIO ----------------------------------
@@ -52,7 +52,8 @@ CREATE TABLE Produto
 	nome_produto VARCHAR(255) NOT NULL,
 	estoque_min INT NOT NULL,
 	estoque_ideal INT NOT NULL,
-	qtd_estoque INT NOT NULL DEFAULT 0
+	qtd_estoque INT NOT NULL DEFAULT 0,
+	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00'
 	-- cod_produto VARCHAR(255),
 	-- valor_unitario DECIMAL(6,2),
 	-- data_vencimento DATE,
@@ -67,8 +68,11 @@ CREATE TABLE Produto
 	-- CONSTRAINT UQ_Produto_cod_barra UNIQUE(cod_barra),
 	-- CONSTRAINT FK_Produto_Categoria FOREIGN KEY(id_categoria) REFERENCES Categoria(id_categoria),
 	-- CONSTRAINT FK_Produto_Unidade FOREIGN KEY(id_unidade) REFERENCES Unidade(id_unidade)
+
 );
 
+	-- o preço do produto precisa ser positivo.
+	ALTER TABLE Produto ADD CONSTRAINT CK_Produto_valor_unitario CHECK(valor_unitario >= 0);
 
 
 
@@ -118,7 +122,8 @@ CREATE TABLE Estoque
 	id_motivo INT NOT NULL,
 	-- caso não preencha uma quantidade, será atribuído '0'
 	qtd_produto INT NOT NULL DEFAULT 0,
-	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+
+	preco DECIMAL(8,2) NOT NULL DEFAULT '0.00',
 
 	 -- caso não preencha o tipo, será atribído 'Entrada' como padrão:
 	tipo_mov VARCHAR(7) NOT NULL DEFAULT 'Entrada'
@@ -139,8 +144,6 @@ CREATE TABLE Estoque
 	-- confere se o valor digitado é maior que '0', não existe entrada negativa no estoque.
 	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_qtd_produto CHECK(qtd_produto > 0);
 
-	-- o preço do produto precisa ser positivo.
-	ALTER TABLE Estoque ADD CONSTRAINT CK_Produto_valor_unitario CHECK(valor_unitario >= 0);
 
 	-- confere se a palavra corresponde exatamente.
 	ALTER TABLE Estoque ADD CONSTRAINT CK_Estoque_tipo_mov CHECK(tipo_mov IN('Entrada','Saida'));

@@ -1,5 +1,6 @@
 package br.com.usystem.stockroll.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -92,6 +93,8 @@ public class EstoqueController {
         Produto produto = produtoRepository.getReferenceById(produtoId);
 
             produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() + estoque.getQuantidade());
+        estoque.setPreco(produto.getValorUnitario());
+
 
         //produtoRepository.save(produto);
 
@@ -107,8 +110,10 @@ public class EstoqueController {
         var modelAndView = new ModelAndView("/estoque/formulario-saida");
 
         Estoque estoque = new Estoque();
+                estoque.setQuantidade(1);
                 estoque.setDataMovimentacao(LocalDate.now());
                 estoque.setTipoMovimentacao("Saida");
+                
 
             modelAndView.addObject("estoque", estoque);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
@@ -122,22 +127,17 @@ public class EstoqueController {
    
 
     @PostMapping("/cadastrar/saida")
-    public String cadastrarSaida(Estoque estoque) {
-                
-        // System.out.println("----------\n\n" + estoque + " \n\n-------------");
-        
-        estoque.setTipoMovimentacao("Saida");
-        Long produtoId = estoque.getProduto().getId();
+    public String cadastrarSaida(Estoque estoqueForm) {
+            
+        estoqueForm.setTipoMovimentacao("Saida");
+        Long produtoId = estoqueForm.getProduto().getId();
         Produto produto = produtoRepository.getReferenceById(produtoId);
+            
+            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - estoqueForm.getQuantidade());
 
-        //Integer qtdAtualEstoque = produto.getQtdAtualEstoque();
-        //Integer qtdDigitadaNoForm = estoque.getQuantidade();
+        estoqueForm.setPreco(produto.getValorUnitario());
 
-            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - estoque.getQuantidade());
-
-        //produtoRepository.save(produto);
-
-        estoqueRepository.save(estoque);
+        estoqueRepository.save(estoqueForm);
         
         return "redirect:/estoque";
     }

@@ -1,5 +1,6 @@
 package br.com.usystem.stockroll.models;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -35,6 +36,9 @@ public class Produto {
     @Column(name = "qtd_estoque", columnDefinition = "default '0'")
     private Integer qtdAtualEstoque;
 
+    
+    @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
+    private BigDecimal valorUnitario;
 
 
     // @OneToMany(mappedBy = "produto")

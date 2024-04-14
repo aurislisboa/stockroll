@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.usystem.stockroll.models.Perfil;
 import br.com.usystem.stockroll.models.Usuario;
 import br.com.usystem.stockroll.repositories.UsuarioRepository;
-import br.com.usystem.stockroll.security.SenhaUtils;
+
 
 @Controller
 @RequestMapping("/usuario")
@@ -24,6 +24,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
 
@@ -69,7 +72,7 @@ public class UsuarioController {
     public ModelAndView cadastrar(Usuario usuario) {
         ModelAndView modelAndView = new ModelAndView("redirect:/usuario");
 
-        String senhaEncriptada = SenhaUtils.encode(usuario.getSenha());
+        String senhaEncriptada =  passwordEncoder.encode(usuario.getSenha());
         
         usuario.setSenha(senhaEncriptada);
         usuario.setCadastro(LocalDateTime.now());
@@ -93,7 +96,7 @@ public class UsuarioController {
     @PostMapping("/{id}/editar")
     public String editar(Usuario usuario) {
 
-        String senhaEncriptada = SenhaUtils.encode(usuario.getSenha());
+        String senhaEncriptada = passwordEncoder.encode(usuario.getSenha());
         
         usuario.setSenha(senhaEncriptada);
         usuario.setCadastro(LocalDateTime.now());

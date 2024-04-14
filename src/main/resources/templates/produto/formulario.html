@@ -7,7 +7,7 @@
 <main>
     <div class="row">
         <div class="col-sm-12 col-md-6 mx-auto">
-					<div class="card card-cyan">
+					<div class="card card-cyan card-outline">
 						<div class="card-header">
 							<h5 class="card-title">[[${produto.id == null ? 'Cadastrar Novo' : 'Editar'}]] Produto</h5>
 						</div>
@@ -25,15 +25,21 @@
 										placeholder="Digite o nome do produto">
 								</div>
 								<div class="mb-3">
+									<label for="valorUnitario" class="form-label">Valor Unitário:</label>
+									<input type="text" class="form-control" id="valorUnitario" th:field="*{valorUnitario}"
+									placeholder="Digite o valor da unidade">
+								</div>
+								<div class="mb-3">
 										<label for="qtdIdealEstoque" class="form-label">Quantidade Ideal:</label>
 										<input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}"
-										placeholder="Digite a quantidade ideal do estoque">
+										placeholder="Digite a quantidade ideal no estoque">
 								</div>
 								<div class="mb-3">
 										<label for="qtdMinEstoque" class="form-label">Quantidade Mínima:</label>
 										<input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}"
-										placeholder="Digite a quantidade mínima do estoque">
+										placeholder="Digite a quantidade mínima no estoque">
 								</div>
+								<input type="hidden" th:field="*{qtdAtualEstoque}">
 								<br>
 							</div><!--card-body-->
 							<div class="card-footer text-right">
