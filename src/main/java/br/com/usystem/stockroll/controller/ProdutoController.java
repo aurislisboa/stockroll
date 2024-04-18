@@ -60,6 +60,8 @@ public class ProdutoController {
     public ModelAndView cadastrar(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
        
+        System.out.printf("\n\n --------\n\n %s \n\n-------- \n\n", produto);
+
         if (produto.getQtdAtualEstoque() == null) {
             produto.setQtdAtualEstoque(0);
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<html lang="pt-br" th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
 <head>
     <title>Formulário de Produto</title>
 </head>
@@ -27,17 +27,17 @@
 								</div>
 								<div class="mb-3">
 									<label for="valorUnitario" class="form-label">Valor Unitário:</label>
-									<input type="text" class="form-control" id="valorUnitario" th:field="*{valorUnitario}"
-									placeholder="Digite o valor da unidade">
+									<input type="text" class="form-control money" id="valorUnitario" th:field="*{valorUnitario}"
+									placeholder="R$ 0,00">
 								</div>
 								<div class="mb-3">
 										<label for="qtdIdealEstoque" class="form-label">Quantidade Ideal:</label>
-										<input type="text" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}"
+										<input type="number" class="form-control" id="qtdIdealEstoque" th:field="*{qtdIdealEstoque}"
 										placeholder="Digite a quantidade ideal no estoque">
 								</div>
 								<div class="mb-3">
 										<label for="qtdMinEstoque" class="form-label">Quantidade Mínima:</label>
-										<input type="text" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}"
+										<input type="number" class="form-control" id="qtdMinEstoque" th:field="*{qtdMinEstoque}"
 										placeholder="Digite a quantidade mínima no estoque">
 								</div>
 							</div><!--card-body-->
@@ -50,6 +50,34 @@
     </div><!--row-->
 </main>
 
-<th:block th:replace="${scripts}"></th:block>
+<th:block th:fragment="scripts">	
+	
+  <!-- <script th:src="@{/webjars/AdminLTE/3.2.0/plugins/jquery-mask-plugin/jquery.mask.min.js}"></script>
+  <script th:src="@{/webjars/AdminLTE/3.2.0/plugins/inputmask/jquery.inputmask.min.js}"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('.money').mask("#.##0,00", {reverse: true});
+		});
+	</script> -->
+
+<script th:src="@{/webjars/AdminLTE/3.2.0/plugins/inputmask/jquery.inputmask.min.js}"></script>
+
+<script>
+	$('.money').inputmask('decimal', {
+		radixPoint:",",
+		groupSeparator: ".",
+		autoGroup: true,
+		digits: 2,
+		digitsOptional: false,
+		placeholder: '0',
+		rightAlign: false,
+		onBeforeMask: function (value, opts) {
+		  return value;
+		}
+  });
+</script>
+
+</th:block>
 </body>
 </html>
