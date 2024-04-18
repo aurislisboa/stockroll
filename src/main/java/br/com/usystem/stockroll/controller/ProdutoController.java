@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.usystem.stockroll.models.Produto;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -54,11 +55,11 @@ public class ProdutoController {
         return modelAndView;
     }
 
+
     @PostMapping("/cadastrar")
     public ModelAndView cadastrar(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
-        //System.out.println("Dados do Cadastro:" + produto.toString());
-
+       
         if (produto.getQtdAtualEstoque() == null) {
             produto.setQtdAtualEstoque(0);
         }

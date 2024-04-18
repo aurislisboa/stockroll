@@ -12,7 +12,6 @@
 					<!-- <div class="card-header"> -->
 						<!-- <h5 class="card-title">Movimentação do Estoque</h5> -->
 						<div class="card-tools">
-
 						</div>
 					</div>
 					<div class="card-body table-responsive">
@@ -30,16 +29,16 @@
 								</tr>
 							</thead>
 							<tbody>
-									<tr th:each="mov : ${movimentacao}">
-										<td th:text="${mov.id}">1</td>
-										<td th:text="${mov.dataMovimentacao}"></td>
-										<td th:text="${mov.usuario.nome}"></td>
-										<td th:text="${mov.produto.nome}"></td>
-										<td th:text="${mov.quantidade}"></td>
-										<td th:text="${mov.preco}"></td>
-										<td th:text="${mov.motivoSaida.descricao}"></td>
-										<td th:text="${mov.tipoMovimentacao}"></td>
-									</tr>
+								<tr th:each="mov : ${movimentacao}">
+									<td th:text="${mov.id}">1</td>
+									<td th:text="${mov.dataMovimentacao}"></td>
+									<td th:text="${mov.usuario.nome}"></td>
+									<td th:text="${mov.produto.nome}"></td>
+									<td th:text="${mov.quantidade}"></td>
+									<td th:text="${mov.preco}"></td>
+									<td th:text="${mov.motivoSaida.descricao}"></td>
+									<td th:text="${mov.tipoMovimentacao}"></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>

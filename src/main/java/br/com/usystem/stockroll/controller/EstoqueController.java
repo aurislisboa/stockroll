@@ -1,6 +1,7 @@
 package br.com.usystem.stockroll.controller;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.usystem.stockroll.models.Estoque;
 import br.com.usystem.stockroll.models.MotivoSaida;
 import br.com.usystem.stockroll.models.Produto;
+import br.com.usystem.stockroll.models.Usuario;
 import br.com.usystem.stockroll.repositories.EstoqueRepository;
 import br.com.usystem.stockroll.repositories.MotivoSaidaRepository;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
@@ -81,11 +83,11 @@ public class EstoqueController {
 
 
     @PostMapping("/cadastrar/entrada")
-    public String cadastrarEntrada(Estoque estoque) {
+    public String cadastrarEntrada(Estoque estoque, Principal principal) {
 
-        // System.out.println("----------\n\n" + estoque + " \n\n-------------");
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
 
-                
+        estoque.setUsuario(usuario);
         estoque.setTipoMovimentacao("Entrada");
         estoque.setMotivoSaida(new MotivoSaida(1, "-"));
 
@@ -97,7 +99,6 @@ public class EstoqueController {
 
 
         //produtoRepository.save(produto);
-
         estoqueRepository.save(estoque);
         
         return "redirect:/estoque";
@@ -127,17 +128,20 @@ public class EstoqueController {
    
 
     @PostMapping("/cadastrar/saida")
-    public String cadastrarSaida(Estoque estoqueForm) {
+    public String cadastrarSaida(Estoque estoque, Principal principal) {
             
-        estoqueForm.setTipoMovimentacao("Saida");
-        Long produtoId = estoqueForm.getProduto().getId();
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
+
+        estoque.setUsuario(usuario);
+        estoque.setTipoMovimentacao("Saida");
+        Long produtoId = estoque.getProduto().getId();
         Produto produto = produtoRepository.getReferenceById(produtoId);
             
-            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - estoqueForm.getQuantidade());
+            produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - estoque.getQuantidade());
 
-        estoqueForm.setPreco(produto.getValorUnitario());
+        estoque.setPreco(produto.getValorUnitario());
 
-        estoqueRepository.save(estoqueForm);
+        estoqueRepository.save(estoque);
         
         return "redirect:/estoque";
     }

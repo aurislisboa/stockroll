@@ -12,27 +12,27 @@
 										<h5 class="card-title">Detalhes do Produto</h5>
 										<div class="card-tools">
 											<a th:href="@{/produto}" class="btn btn-block btn-sm btn-info">
-													<i class="fas fa-list"></i>&nbsp;&nbsp; Lista de Produtos</a>
+													<i class="fas fa-list"></i>&nbsp;&nbsp;Lista de Produtos</a>
 										</div>
 									</div>
 									<div class="card-body">
 										<ul class="list-group list-group-flush">
-												<li class="card-text list-group-item">Nome do Produto:
+												<li class="card-text list-group-item">Nome do Produto:&nbsp;&nbsp;
 													<strong><span th:text="${produto.nome}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Código de Barras:
+												<li class="card-text list-group-item">Código de Barras:&nbsp;&nbsp;
 													<strong><span th:text="${produto.codigoBarra}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Quantidade em Estoque:
+												<li class="card-text list-group-item">Quantidade em Estoque:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Valor Unitário:
+												<li class="card-text list-group-item">Valor Unitário:&nbsp;&nbsp;
 													<strong><span th:text="${produto.valorUnitario}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Quantidade Ideal:
+												<li class="card-text list-group-item">Quantidade Ideal:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdIdealEstoque}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Quantidade Mínima:
+												<li class="card-text list-group-item">Quantidade Mínima:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdMinEstoque}"></span></strong>
 												</li>
 												<br>

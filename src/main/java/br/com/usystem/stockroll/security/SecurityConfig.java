@@ -22,25 +22,25 @@ public class SecurityConfig {
         private UserDetailsServiceImpl userDetailsServiceImpl;
 
 
-        // @Bean
-        // SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        @Bean
+        SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             
-        //     http.authorizeHttpRequests(authorize -> authorize
-        //         .anyRequest().authenticated()
-        //     )
-        //     .formLogin(login -> login
-        //         .loginPage("/login")
-        //         .defaultSuccessUrl("/estoque")
-        //         .permitAll()
-        //     )
-        //     .logout(logout -> logout
-        //     .logoutSuccessUrl("/"));
+            http.authorizeHttpRequests(authorize -> authorize
+                .anyRequest().authenticated()
+            )
+            .formLogin(login -> login
+                .loginPage("/login")
+                .defaultSuccessUrl("/estoque")
+                .permitAll()
+            )
+            .logout(logout -> logout
+            .logoutSuccessUrl("/"));
             
-        //     // .anyRequest().permitAll() 
-        //     // .anyRequest().authenticated() 
+            // .anyRequest().permitAll() 
+            // .anyRequest().authenticated() 
 
-        //     return http.build();
-        // }
+            return http.build();
+        }
 
 
 
