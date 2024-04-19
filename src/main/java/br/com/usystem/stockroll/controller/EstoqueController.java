@@ -70,7 +70,7 @@ public class EstoqueController {
             Estoque estoque = new Estoque();
                     estoque.setDataMovimentacao(LocalDate.now());
                     estoque.setTipoMovimentacao("Entrada");
-                    estoque.setQuantidade(1);
+                    // estoque.setQuantidade(1);
                     // estoque.setMotivoSaida(new MotivoSaida(1, "-"));
                     
                     // var motivo = new MotivoSaida();
@@ -116,7 +116,7 @@ public class EstoqueController {
         var modelAndView = new ModelAndView("/estoque/formulario-saida");
 
         Estoque estoque = new Estoque();
-                estoque.setQuantidade(1);
+                // estoque.setQuantidade(1);
                 estoque.setDataMovimentacao(LocalDate.now());
                 estoque.setTipoMovimentacao("Saida");
                 
