@@ -31,7 +31,7 @@
               </thead>
               <tbody>
                 <tr th:each="produto : ${produtos}">
-                  <th scope="row" th:text="${produto.id}"></th>
+                  <td scope="row" th:text="${produto.id}"></td>
                   <td>
                       <a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nome}"></a>
                   </td>
