@@ -1,14 +1,18 @@
 package br.com.usystem.stockroll.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.models.Produto;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
 
-import java.security.Principal;
+
 import java.util.List;
 
 @Controller
@@ -20,20 +24,45 @@ public class ProdutoController {
 
 
 
-    @GetMapping
-    public ModelAndView listar() {
-        ModelAndView modelAndView = new ModelAndView("/produto/listar.html");
+    public Page<Produto> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 
-        List<Produto> produtos = produtoRepository.findAll();
-        modelAndView.addObject("produtos", produtos);
-        return modelAndView;
+        return this.produtoRepository.findAll(pageable);
     }
 
 
-//    @GetMapping
-//    public List<Produto> listar() {
-//        return repository.findAll();
-//    }
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) {
+        int pageSize = 5;   
+        Page<Produto> page = findPaginated(pageNo, pageSize);
+        List<Produto> produtos = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("produtos", produtos);
+
+        return "/produto/listar";
+    }
+
+
+    @GetMapping
+    public String listar(Model model) {
+        
+        return findPaginated(1, model);
+    }
+
+
+    // @GetMapping
+    // public ModelAndView listar() {
+    //     ModelAndView modelAndView = new ModelAndView("/produto/listar.html");
+
+    //     List<Produto> produtos = produtoRepository.findAll();
+    //     modelAndView.addObject("produtos", produtos);
+    //     return modelAndView;
+    // }
+
+
 
 
     @GetMapping("/{id}")
@@ -99,5 +128,7 @@ public class ProdutoController {
 
         return modelAndView;
     }
+
+
 
 }

@@ -39,9 +39,10 @@ public class Produto {
     @Column(name = "qtd_estoque", columnDefinition = "default '0'")
     private Integer qtdAtualEstoque;
 
-    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-    @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
-    private BigDecimal valorUnitario;
+    
+    // @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+    // @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
+    // private BigDecimal valorUnitario;
 
 
     // @OneToMany(mappedBy = "produto")

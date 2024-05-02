@@ -1,5 +1,10 @@
 package br.com.usystem.stockroll.models;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,21 +17,25 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
-//Lombok
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
-// JPA
 @Entity
-@Table(name = "Motivo_Saida")
-public class MotivoSaida {
-
+@Table
+public class Lote {
+    
     @Id
-    @Column(name = "id_motivo")
+    @Column(name = "id_lote")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String descricao;
+    @Column(name = "numero_lote")
+    private String numeroLote;
+
+    @Column(name = "data_vencimento")
+    @DateTimeFormat(iso = ISO.DATE)
+    private LocalDate dataVencimento;
 }

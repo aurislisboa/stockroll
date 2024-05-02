@@ -9,7 +9,4 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
 	@Query(value = "SELECT SUM(qtd_estoque) FROM `produto`", nativeQuery = true)
         Integer selectSumQtdEstoque();
-
-        // @Query("select p from produto SUM(p.qtd_estoque)")
-        // Integer totalEstoque();
 }
