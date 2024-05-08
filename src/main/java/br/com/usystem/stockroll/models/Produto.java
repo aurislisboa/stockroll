@@ -1,50 +1,50 @@
-package br.com.usystem.stockroll.models;
+// package br.com.usystem.stockroll.models;
 
-import java.math.BigDecimal;
-import java.util.List;
+// import java.math.BigDecimal;
+// import java.util.List;
 
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
+// import org.springframework.format.annotation.NumberFormat;
+// import org.springframework.format.annotation.NumberFormat.Style;
 
-import jakarta.persistence.*;
-import lombok.*;
+// import jakarta.persistence.*;
+// import lombok.*;
 
-// Lombok
-@Data
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+// // Lombok
+// @Data
+// @NoArgsConstructor
+// @EqualsAndHashCode(of = "id")
 
-// JPA
-@Table
-@Entity
-public class Produto {
+// // JPA
+// @Table
+// @Entity
+// public class Produto {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_produto")
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     @Column(name = "id_produto")
+//     private Long id;
 
-    @Column(name="cod_barra")
-    private String codigoBarra;
+//     @Column(name="cod_barra")
+//     private String codigoBarra;
 
-    @Column(name = "nome_produto")
-    private String nome;
+//     @Column(name = "nome_produto")
+//     private String nome;
 
-    @Column(name = "estoque_min")
-    private Integer qtdMinEstoque;
+//     @Column(name = "estoque_min")
+//     private Integer qtdMinEstoque;
 
-    @Column(name = "estoque_ideal")
-    private Integer qtdIdealEstoque;
+//     @Column(name = "estoque_ideal")
+//     private Integer qtdIdealEstoque;
 
-    @Column(name = "qtd_estoque", columnDefinition = "default '0'")
-    private Integer qtdAtualEstoque;
+//     @Column(name = "qtd_estoque", columnDefinition = "default '0'")
+//     private Integer qtdAtualEstoque;
 
     
-    // @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-    // @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
-    // private BigDecimal valorUnitario;
+//     // @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+//     // @Column(name = "valor_unitario", nullable = false,  columnDefinition = "decimal(8,2) default '0.00'")
+//     // private BigDecimal valorUnitario;
 
 
-    // @OneToMany(mappedBy = "produto")
-    // private List<Estoque> estoque;
-}
+//     // @OneToMany(mappedBy = "produto")
+//     // private List<Estoque> estoque;
+// }

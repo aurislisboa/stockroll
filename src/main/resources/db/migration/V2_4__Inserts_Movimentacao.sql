@@ -1,1 +1,0 @@
-INSERT INTO `mov_estoque` (`id_mov`, `data_mov`, `id_usuario`, `id_produto`, `qtd_produto`, `valor_unitario`, `tipo_mov`, `id_motivo`, `id_lote`) VALUES (NULL, '2024-02-29', '1', '1', '40', '2.5', 'Entrada', '1', NULL);

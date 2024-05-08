@@ -77,8 +77,6 @@ public class UsuarioController {
         usuario.setSenha(senhaEncriptada);
         usuario.setCadastro(LocalDateTime.now());
 
-         //System.out.println(usuario);
-
         usuarioRepository.save(usuario);
         return modelAndView;
     }
@@ -111,6 +109,10 @@ public class UsuarioController {
     public String excluir(@PathVariable Integer id) {
 
         usuarioRepository.deleteById(id);
+
+        // Usuario usuario = usuarioRepository.getReferenceById(id);
+        // usuario.setAtivo = false;
+        // usuarioRepository.save(usuario);
 
         return "redirect:/usuario";
     }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<head>
+	<title>Detalhe do Motivo</title>
+</head>
+<body>
+<main>
+	<div class="row">
+		<div class="col-sm-12 col-md-8 mx-auto">
+			<div class="card card-cyan card-outline">
+				<div class="card-header">
+					<h5 class="card-title">Detalhe do Motivo</h5>
+					<div class="card-tools">
+						<a th:href="@{/motivo}" class="btn btn-block btn-sm btn-info">
+							<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Motivos</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="card-text list-group-item">Nome:
+							<strong><span th:text="${motivo.nome}"></span></strong>
+						</li>
+						<br>
+						<li class="list-group-item text-center">
+							<a th:href="@{/motivo/editar/{id} (id=${motivo.id})}" 
+								class="btn btn-warning">Editar</a>
+							<a th:href="@{/motivo/excluir/{id} (id=${motivo.id})}"
+							onclick="return confirm('Deseja realmente excluir esse motivo de saída?');"
+							class="btn btn-danger">Excluir</a>
+						</li>
+					</ul>
+				</div><!--card-body-->
+			</div><!--card-->
+		</div><!--col-->
+	</div><!--row-->
+</main><!--container-->
+</body>
+</html>

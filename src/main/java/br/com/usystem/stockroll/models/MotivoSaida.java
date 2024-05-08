@@ -28,5 +28,6 @@ public class MotivoSaida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String descricao;
+    @Column(name = "nome_motivo")
+    private String nome;
 }
