@@ -37,8 +37,8 @@
 												</li> -->
 												<br>
 												<li class="list-group-item text-center">
-														<a th:href="@{/produto/{id}/editar (id=${produto.id})}" class="btn btn-warning btn-sm">Editar</a>
-														<a th:href="@{/produto/{id}/excluir (id=${produto.id})}"
+														<a th:href="@{/produto/editar/{id} (id=${produto.id})}" class="btn btn-warning btn-sm">Editar</a>
+														<a th:href="@{/produto/excluir/{id} (id=${produto.id})}"
 															onclick="return confirm('Deseja realmente excluir esse produto?');"
 															class="btn btn-danger btn-sm">Excluir</a>
 												</li>

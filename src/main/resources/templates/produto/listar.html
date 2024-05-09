@@ -19,7 +19,7 @@
                      <div class="card-tools">
                         <a th:href="@{/produto/cadastrar}"
                            class="btn btn-sm btn-info">
-                           <i class="fas fa-barcode"></i>&nbsp;Novo Produto</a>
+                           <i class="fas fa-barcode"></i>&emsp;Novo Produto</a>
                      </div>
                   </div>
                   <div class="card-body table-responsive">
@@ -40,10 +40,7 @@
                               <tbody>
                                 <tr th:each="produto : ${produtos}">
                                     <td scope="row" th:text="${produto.id}"></td>
-                                    <td>
-                                      <a th:href="@{/produto/{id} (id=${produto.id}) }"
-                                          th:text="${produto.nome}"></a>
-                                    </td>
+                                    <td><a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nome}"></a></td>
                                     <td th:text="${produto.codigoBarra}"></td>
                                     <!-- <td th:text="${#numbers.formatCurrency(produto.valorUnitario)}"></td> -->
                                     <!-- <td th:text="${produto.qtdAtualEstoque}" class="text-center"></td> -->

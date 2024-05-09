@@ -102,7 +102,7 @@ public class ProdutoController {
 
 
 
-    @GetMapping("/{id}/editar")
+    @GetMapping("/editar/{id}")
     public ModelAndView editar(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("produto/formulario");
 
@@ -111,7 +111,7 @@ public class ProdutoController {
         return modelAndView;
     }
 
-    @PostMapping("/{id}/editar")
+    @PostMapping("/editar/{id}")
     public ModelAndView editar(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
         //System.out.println(produto);
@@ -121,7 +121,7 @@ public class ProdutoController {
 
 
 
-    @GetMapping("/{id}/excluir")
+    @GetMapping("/excluir/{id}")
     public ModelAndView exluir(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
 

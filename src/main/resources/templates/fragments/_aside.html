@@ -20,7 +20,7 @@
       <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
       <!-- <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false"> -->
       <!-- <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false"> -->
-      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
         <br>
         
         <!-- -------- Produtos ---------- -->
@@ -33,13 +33,13 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a th:href="@{/produto/cadastrar}" class="nav-link">
-                &emsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
               </a>
             </li> 
             <li class="nav-item">
               <a th:href="@{/produto}" class="nav-link">
-                &emsp;<i class="fas fa-list nav-icon"></i>
+                &nbsp;<i class="fas fa-list nav-icon"></i>
                 <p>Listar</p>
               </a>
             </li>
@@ -62,19 +62,19 @@
               <!-- <a th:href="@{/estoque/cadastrar/entrada}" class="nav-link active"> -->
               <a th:href="@{/estoque/cadastrar/entrada}" class="nav-link">
                 <!-- <i class="nav-icon fas fa-edit"></i> -->
-                &emsp;<i class="nav-icon fas fa-solid fa-download"></i>
+                &nbsp;<i class="nav-icon fas fa-solid fa-download"></i>
                 <p>Registrar Entrada</p>
               </a>
             </li>
             <li class="nav-item">
               <a th:href="@{/estoque/cadastrar/saida}" class="nav-link">
-                &emsp;<i class="nav-icon fas fa-solid fa-upload"></i>
+                &nbsp;<i class="nav-icon fas fa-solid fa-upload"></i>
                 <p>Registrar Saída</p>
               </a>
             </li>
             <li class="nav-item">
               <a th:href="@{/estoque}" class="nav-link">
-                &emsp;<i class="fas fa-list nav-icon"></i>
+                &nbsp;<i class="fas fa-exchange-alt nav-icon"></i>
                 <p>Movimentação</p>
               </a>
             </li>
@@ -83,6 +83,7 @@
         <br>
         <span class="sidebar-custom"></span>
         <br>
+
         <!-- -------- Usuários ---------- -->
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -96,13 +97,13 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a th:href="@{/usuario/cadastrar}" class="nav-link">
-                &emsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
               </a>
             </li>
             <li class="nav-item">
               <a th:href="@{/usuario}" class="nav-link">
-                &emsp;<i class="fas fa-list nav-icon"></i>
+                &nbsp;<i class="fas fa-list nav-icon"></i>
                 <p>Listar</p>
               </a>
             </li>
@@ -131,19 +132,43 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a th:href="@{/motivo/cadastrar}" class="nav-link">
-                &emsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
               </a>
             </li>
             <li class="nav-item">
               <a th:href="@{/motivo}" class="nav-link">
-                &emsp;<i class="fas fa-list nav-icon"></i>
+                &nbsp;<i class="fas fa-list nav-icon"></i>
                 <p>Listar</p>
               </a>
             </li>
           </ul>
         </li> 
 
+        <!-- -------- Lotes ---------- -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cubes"></i>
+            <p>
+              Lotes
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/lote/cadastrar}" class="nav-link">
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/lote}" class="nav-link">
+                &nbsp;<i class="fas fa-list nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li> 
         <!-- -------- Quantidade ---------- -->
 <!--        
         <li class="nav-item">

@@ -39,9 +39,9 @@ public class Lote {
     private Produto produto;
 
     @Column(name = "nome_lote")
-    private String numeroLote;
+    private String nome;
 
     @Column(name = "data_vencimento")
     @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate dataVencimento;
+    private LocalDate vencimento;
 }

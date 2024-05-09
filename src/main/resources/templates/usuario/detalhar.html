@@ -17,19 +17,19 @@
 				</div>
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
-						<li class="card-text list-group-item">Nome:
+						<li class="card-text list-group-item">Nome:&nbsp;
 							<strong><span th:text="${usuario.nome}"></span></strong>
 						</li>
-						<li class="card-text list-group-item">Email:
+						<li class="card-text list-group-item">Email:&nbsp;
 							<strong><span th:text="${usuario.email}"></span></strong>
 						</li>
-						<li class="card-text list-group-item">Perfil:
+						<li class="card-text list-group-item">Perfil:&nbsp;
 							<strong><span th:text="${usuario.perfil}"></span></strong>
 						</li>
-						<li class="card-text list-group-item">Cadastro:
+						<li class="card-text list-group-item">Cadastro:&nbsp;
 							<strong><span th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}">10/10/2024</span></strong>
 						</li>
-						<li class="card-text list-group-item">Senha:
+						<li class="card-text list-group-item">Senha:&nbsp;
 							<strong><span th:text="${usuario.senha}"></span></strong>
 						</li>
 						<br>
