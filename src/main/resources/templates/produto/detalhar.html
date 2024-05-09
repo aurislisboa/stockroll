@@ -23,7 +23,7 @@
 												<li class="card-text list-group-item">Código de Barras:&nbsp;&nbsp;
 													<strong><span th:text="${produto.codigoBarra}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Quantidade em Estoque:&nbsp;&nbsp;
+												<!-- <li class="card-text list-group-item">Quantidade em Estoque:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
 												</li>
 												<li class="card-text list-group-item">Valor Unitário:&nbsp;&nbsp;
@@ -34,7 +34,7 @@
 												</li>
 												<li class="card-text list-group-item">Quantidade Mínima:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdMinEstoque}"></span></strong>
-												</li>
+												</li> -->
 												<br>
 												<li class="list-group-item text-center">
 														<a th:href="@{/produto/{id}/editar (id=${produto.id})}" class="btn btn-warning btn-sm">Editar</a>

@@ -80,7 +80,6 @@ public class MotivoSaidaController {
     public String excluir(@PathVariable Integer id) {
 
         motivoSaidaRepository.deleteById(id);
-
         return "redirect:/usuario";
     }
     
