@@ -84,32 +84,6 @@
         <span class="sidebar-custom"></span>
         <br>
 
-        <!-- -------- Usuários ---------- -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <!-- <i class="nav-icon fas fa-user-tie"></i> -->
-            <i class="nav-icon fas fa-user"></i>
-            <p>
-              Usuários
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a th:href="@{/usuario/cadastrar}" class="nav-link">
-                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
-                <p>Cadastrar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/usuario}" class="nav-link">
-                &nbsp;<i class="fas fa-list nav-icon"></i>
-                <p>Listar</p>
-              </a>
-            </li>
-          </ul>
-        </li> 
-
         <!-- -------- Motivos ---------- -->
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -169,6 +143,62 @@
             </li>
           </ul>
         </li> 
+        
+        <!-- -------- Local ---------- -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+            <p>
+              Local de Armaze..
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/local/cadastrar}" class="nav-link">
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/local}" class="nav-link">
+                &nbsp;<i class="fas fa-list nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li> 
+
+        <br>
+        <span class="sidebar-custom"></span>
+        <br>
+
+        <!-- -------- Usuários ---------- -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <!-- <i class="nav-icon fas fa-user-tie"></i> -->
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Usuários
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/usuario/cadastrar}" class="nav-link">
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/usuario}" class="nav-link">
+                &nbsp;<i class="fas fa-list nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li> 
+
         <!-- -------- Quantidade ---------- -->
 <!--        
         <li class="nav-item">

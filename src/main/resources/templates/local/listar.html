@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html th:replace="~{template_base :: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-    <title>Listagem de Motivos de Saída</title>
+    <title>Local de Armazenagem</title>
 </head>
 <body>
     <main>
@@ -9,10 +9,10 @@
 			<div class="col-sm-12 col-md-8 mx-auto">
 					<div class="card card-cyan card-outline">
 						<div class="card-header">
-							<h5 class="card-title">Motivos de Saída</h5>
+							<h5 class="card-title">Local de Armazenagem</h5>
 							<div class="card-tools">
-								<a th:href="@{/motivo/cadastrar}" class="btn btn-block btn-sm btn-info">
-										<i class="fas fa-sign-out-alt"></i>&emsp;Novo Motivo</a>
+								<a th:href="@{/local/cadastrar}" class="btn btn-block btn-sm btn-info">
+										<i class="fas fa-archive"></i>&emsp;Novo Local</a>
 							</div>
 						</div>
 						<div class="card-body table-responsive">
@@ -24,9 +24,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="motivo : ${motivos}">
-										<th scope="row" th:text="${motivo.id}"></th>
-										<td><a th:href="@{/motivo/{id} (id=${motivo.id})}" th:text="${motivo.nome}"></a></td>
+									<tr th:each="local : ${locais}">
+										<th scope="row" th:text="${local.id}"></th>
+										<td><a th:href="@{/local/{id} (id=${local.id})}" th:text="${local.nome}"></a></td>
 									</tr>
 								</tbody>
 							</table>
