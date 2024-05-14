@@ -38,8 +38,8 @@ public class Lote {
     @JoinColumn(name = "id_produto")
     private Produto produto;
 
-    @Column(name = "nome_lote")
-    private String nome;
+    // @Column(name = "nome_lote")
+    // private String nome;
 
     @Column(name = "data_vencimento")
     @DateTimeFormat(iso = ISO.DATE)

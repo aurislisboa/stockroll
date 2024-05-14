@@ -1,5 +1,8 @@
 
 -- ////////////////////////////////////////// CREATES ///////////////////////////////////////////
+
+-- ///////// VERSÃO 4_ /////////////
+
 -- DROP DATABASE Estoque_New_V4;
 -- CREATE DATABASE Estoque_New_V4;
 -- USE Estoque_New_V4;
@@ -48,7 +51,7 @@ CREATE TABLE Produto
 	id_produto INT AUTO_INCREMENT PRIMARY KEY,
 	cod_barra VARCHAR(100),
 	nome_produto VARCHAR(255) NOT NULL,
-    ativo	BIT NOT NULL DEFAULT 1 
+  ativo	BIT NOT NULL DEFAULT 1 
 	-- descricao VARCHAR(255) DEFAULT '',
 	-- id_categoria INT NOT NULL,
 	-- imagem_produto IMAGE, 
@@ -65,9 +68,10 @@ ALTER TABLE Produto ADD CONSTRAINT UQ_Produto_nome_produto UNIQUE(nome_produto);
 
 CREATE TABLE Qtd_Por_Local
 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_local INT NOT NULL,
 	id_produto INT NOT NULL,
-    qtd_min INT NOT NULL,
+  qtd_min INT NOT NULL,
 	qtd_ideal INT NOT NULL
 );
 
@@ -92,9 +96,9 @@ CREATE TABLE Lote
 (
 	id_lote INT AUTO_INCREMENT PRIMARY KEY,
 	id_produto INT NOT NULL,
-	nome_lote VARCHAR(20) NOT NULL,
+	-- nome_lote VARCHAR(20) NOT NULL,
 	data_vencimento	DATE NOT NULL,
-	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	-- valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
 	ativo	BIT NOT NULL DEFAULT 1 
 );
 
@@ -102,7 +106,7 @@ CREATE TABLE Lote
 ALTER TABLE Lote ADD CONSTRAINT FK_Lote_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
 -- nome_lote não se repete:
-ALTER TABLE Lote ADD CONSTRAINT UQ_Lote_nome_lote UNIQUE(nome_lote);
+-- ALTER TABLE Lote ADD CONSTRAINT UQ_Lote_nome_lote UNIQUE(nome_lote);
 
 
 -- ------------------------- MOTIVO SAIDA -----------------------------
@@ -126,11 +130,11 @@ CREATE TABLE Movimentacao
 	id_local INT NOT NULL,
 	id_usuario INT NOT NULL,
 	id_lote INT NOT NULL,
-	id_produto INT NOT NULL,
+	-- id_produto INT NOT NULL,
 	id_motivo INT NOT NULL,
 	data_mov DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	qtd_produto INT NOT NULL DEFAULT 1,
-	valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	valor_unitario DECIMAL(8,2),
 	tipo_mov VARCHAR(7) NOT NULL DEFAULT 'Entrada'
 );
 
@@ -144,7 +148,7 @@ ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_LocalEstoque FOREIGN KEY
 ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Lote FOREIGN KEY(id_lote) REFERENCES Lote(id_lote);
 
 -- relacionamento com a tabela Produto:
-ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
+-- ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
 -- relacionamento com a tabela Motivo_Saida:
 ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_MotivoSaida FOREIGN KEY(id_motivo) REFERENCES Motivo_Saida(id_motivo);
@@ -153,7 +157,7 @@ ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_MotivoSaida FOREIGN KEY(
 ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_qtd_produto CHECK(qtd_produto > 0);
 
 -- o preço do produto deve ser positivo.
-ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_valor_unitario CHECK(valor_unitario >= 0);
+-- ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_valor_unitario CHECK(valor_unitario >= 0);
 
 -- confere se a palavra corresponde exatamente.
 ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_tipo_mov CHECK(tipo_mov IN('Entrada','Saida'));
@@ -173,14 +177,15 @@ ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_tipo_mov CHECK(tipo_mov 
 
 CREATE TABLE Estoque_Tracking
 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_local INT NOT NULL,
 	id_lote INT NOT NULL,
-	id_produto INT NOT NULL,
+	-- id_produto INT NOT NULL,
 	qtd_estoque INT DEFAULT 0,
 	data_vencimento	DATE NOT NULL,
 	
     CONSTRAINT FK_EstoqueTracking_LocalEstoque FOREIGN KEY(id_local) REFERENCES Local_Estoque(id_local),
-	CONSTRAINT FK_EstoqueTracking_Lote FOREIGN KEY(id_lote) REFERENCES Lote(id_lote),
-    CONSTRAINT FK_EstoqueTracking_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
+		CONSTRAINT FK_EstoqueTracking_Lote FOREIGN KEY(id_lote) REFERENCES Lote(id_lote),
+    -- CONSTRAINT FK_EstoqueTracking_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
     CONSTRAINT UQ_EstoqueTracking UNIQUE(id_lote, id_local)
 );

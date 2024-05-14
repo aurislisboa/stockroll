@@ -59,14 +59,16 @@
     <div class="content-wrapper">
 
       <!-- Content Header (Page header) -->
-      <div th:replace="~{fragments/_header :: content-header (${title})}"></div>
-      <!-- <br> -->
+      <!-- <div th:replace="~{fragments/_header :: content-header (${title})}"></div> -->
+      <br>
       <!-- /.content-header -->
 
         <!-- Main content -->    
         <section class="content">
             <!-- <div class="container-fluid" th:include="${content}"></div> -->
-            <div class="container-fluid" th:replace="${content}"></div>
+            <div class="container-fluid">
+                <div th:replace="${content}"></div>
+            </div>
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->

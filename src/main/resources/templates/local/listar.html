@@ -16,17 +16,23 @@
 							</div>
 						</div>
 						<div class="card-body table-responsive">
-							<table class="table">
+							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th scope="col">#</th>
 										<th scope="col">Nome</th>
+										<th scope="col" class="text-center">Detalhes</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="local : ${locais}">
 										<th scope="row" th:text="${local.id}"></th>
-										<td><a th:href="@{/local/{id} (id=${local.id})}" th:text="${local.nome}"></a></td>
+										<td th:text="${local.nome}"></td>
+										<td class="text-center py-0 align-middle">
+											<div class="btn-group btn-group-sm">
+												<a th:href="@{/local/{id} (id=${local.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+											</div>
+										</td>
 									</tr>
 								</tbody>
 							</table>

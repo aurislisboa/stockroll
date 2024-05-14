@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<head>
+	<title>Detalhe da Movimentação</title>
+</head>
+<body>
+<main>
+	<div class="row">
+		<div class="col-sm-12 col-md-8 mx-auto">
+			<div class="card card-cyan card-outline">
+				<div class="card-header">
+					<h5 class="card-title">Detalhe da Movimentação</h5>
+					<div class="card-tools">
+						<a th:href="@{/movimentacao}" class="btn btn-block btn-sm btn-info">
+							<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Movimentações</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="card-text list-group-item">Tipo:
+							<strong><span th:text="${movimentacao.tipoMovimentacao}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Data:
+							<strong><span th:text="${#temporals.format(movimentacao.dataMovimentacao, 'dd-MM-yyyy')}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Local:
+							<strong><span th:text="${movimentacao.local.nome}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Lote:
+							<strong><span th:text="${#temporals.format(movimentacao.lote.vencimento, 'dd-MM-yyyy')}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Produto:
+							<strong><span th:text="${movimentacao.lote.produto.nome}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Quantidade:
+							<strong><span th:text="${movimentacao.quantidade}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Valor:
+							<strong><span th:text="${#numbers.formatCurrency(movimentacao.valorUnitario)}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Total:
+							<strong><span th:text="${#numbers.formatCurrency( {#aggregates.sum({movimentacao.quantidade * movimentacao.valorUnitario})} )}"></span></strong>
+						</li>
+						<!-- <li class="card-text list-group-item">Motivo:
+							<strong><span th:text="${movimentacao.motivoSaida.nome}"></span></strong>
+						</li> -->
+						<li class="card-text list-group-item">Usuário:
+							<strong><span th:text="${movimentacao.usuario.nome}"></span></strong>
+						</li>
+						<br>
+					</ul>
+				</div><!--card-body-->
+			</div><!--card-->
+		</div><!--col-->
+	</div><!--row-->
+</main><!--container-->
+</body>
+</html>

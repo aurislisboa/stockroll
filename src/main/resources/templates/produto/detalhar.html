@@ -5,16 +5,22 @@
 </head>
 <body>
 <main>
+		<div class="col-sm-12">				
+			<h3 class="m-0"><i class="nav-icon fas fa-barcode"></i>&ensp;Detalhes do Produto</h3>
+			<br>
+		</div><!-- /.col -->			
 		<div class="row">
 				<div class="col-sm-12 col-md-8 mx-auto">
+						<div class="card-tools text-right">
+							<!-- <a th:href="@{/produto}" class="btn btn-block btn-sm btn-info"> -->
+								<a th:href="@{/produto}" class="btn btn-sm btn-info">
+								<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Produtos</a>
+						</div>
+						<br>
 						<div class="card card-cyan card-outline">
-									<div class="card-header">
-										<h5 class="card-title">Detalhes do Produto</h5>
-										<div class="card-tools">
-											<a th:href="@{/produto}" class="btn btn-block btn-sm btn-info">
-													<i class="fas fa-list"></i>&nbsp;&nbsp;Lista de Produtos</a>
-										</div>
-									</div>
+									<!-- <div class="card-header">
+										<h5 class="card-title">Detalhes do Produto</h5>										
+									</div> -->
 									<div class="card-body">
 										<ul class="list-group list-group-flush">
 												<li class="card-text list-group-item">Nome do Produto:&nbsp;&nbsp;

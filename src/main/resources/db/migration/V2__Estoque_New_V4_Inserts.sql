@@ -1,14 +1,14 @@
 -- -------------------------- LOCAL_ESTOQUE ------------------------------
-INSERT INTO `Local_Estoque` (`nome_local`, `ativo`) VALUES ('Principal', b'1');
+INSERT INTO `Local_Estoque` (`nome_local`, `ativo`) VALUES ('CD.Principal', b'1');
 INSERT INTO `Local_Estoque` (`nome_local`, `ativo`) VALUES ('Tatuapé', b'1');
 INSERT INTO `Local_Estoque` (`nome_local`, `ativo`) VALUES ('Aricanduva', b'1');
 INSERT INTO `Local_Estoque` (`nome_local`, `ativo`) VALUES ('Center Norte', b'1');
 
 -- -------------------------- USUARIO ------------------------------
 
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Renato Henrique Fernão', 'renato@gmail.com', '123456', 'GESTOR', '2024-02-25 02:18:17', b'1');
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('João Ribeiro de Souza',  'jose@gmail.com', '123456', 'USUARIO', '2024-02-25 02:18:32', b'1');
-INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Maria da Silva', 'maria@gmail.com', '123456', 'USUARIO', '2024-02-25 02:18:53', b'1');
+INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Renato Henrique Fernão', 'renato@gmail.com', '$2a$10$vaAXbvt4UZZ7ZbtB279nyeJemnFeDkbbBuC5HZl2fadI3wbOo9wQe', 'GESTOR', '2024-02-25 02:18:17', b'1');
+INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('João Ribeiro de Souza',  'jose@gmail.com', '$2a$10$vaAXbvt4UZZ7ZbtB279nyeJemnFeDkbbBuC5HZl2fadI3wbOo9wQe', 'USUARIO', '2024-02-25 02:18:32', b'1');
+INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('Maria da Silva', 'maria@gmail.com', '$2a$10$vaAXbvt4UZZ7ZbtB279nyeJemnFeDkbbBuC5HZl2fadI3wbOo9wQe', 'USUARIO', '2024-02-25 02:18:53', b'1');
 INSERT INTO `usuario` (`nome`, `email`, `senha`, `perfil`, `cadastro`, `ativo`) VALUES ('admin', 'admin@gmail.com', '$2a$10$QkPjr9.Jj8KPL6cTF2PzA.nsBKfqiCC1PCGtC/k9pZPavjjY9zUTq', 'GESTOR', '2024-04-10 10:28:12', b'1');
 
 -- -------------------------- PRODUTO ------------------------------
@@ -57,22 +57,22 @@ INSERT INTO `Qtd_Por_Local` (`id_local`, `id_produto`, `qtd_min`, `qtd_ideal`) V
 
 -- --------------------------- LOTE ------------------------------
     
-INSERT INTO `Lote` (`id_produto`, `nome_lote`, `data_vencimento`, `valor_unitario`, `ativo`) VALUES ('1', 'Nutela-Dez-2024', '2024-12-01', '25.00', b'1');
-INSERT INTO `Lote` (`id_produto`, `nome_lote`, `data_vencimento`, `valor_unitario`, `ativo`) VALUES ('2', 'Chocol-Jan-2025', '2025-01-01', '15.00', b'1');    
-INSERT INTO `Lote` (`id_produto`, `nome_lote`, `data_vencimento`, `valor_unitario`, `ativo`) VALUES ('3', 'LeiteC-Fev-2025', '2025-02-01', '5.00', b'1'); 
+INSERT INTO `Lote` (`id_produto`, `data_vencimento`, `ativo`) VALUES ('1', '2024-12-01', b'1');
+INSERT INTO `Lote` (`id_produto`, `data_vencimento`, `ativo`) VALUES ('2', '2025-01-01', b'1');    
+INSERT INTO `Lote` (`id_produto`, `data_vencimento`, `ativo`) VALUES ('3', '2025-02-01', b'1'); 
 
 -- ----------------------- MOTIVO SAÍDA --------------------------
 
 INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('-');
-INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Quiosque');
 INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Empréstimo');
 INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Descarte');
 INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Perda');
 
 -- ---------------------- MOVIMENTACAO ----------------------------
 
-INSERT INTO `Movimentacao` (`id_mov`, `id_local`, `id_usuario`, `id_lote`, `id_produto`, `id_motivo`,  `data_mov`, `qtd_produto`, `valor_unitario`, `tipo_mov`) VALUES (NULL, '1', '1', '1', '1', '1','2024-05-29', '40', '25.00',  'Entrada');
+INSERT INTO `Movimentacao` (`id_mov`, `id_local`, `id_usuario`, `id_lote`, `id_motivo`,  `data_mov`, `qtd_produto`, `valor_unitario`, `tipo_mov`) 
+                     VALUES (NULL, '1', '1', '1', '1','2024-05-29', '40', '25.00',  'Entrada');
 
 -- ------------------- ESTOQUE TRACKING ----------------------------
 
-INSERT INTO `Estoque_Tracking` (`id_local`, `id_lote`, `id_produto`, `qtd_estoque`,  `data_vencimento`) VALUES ('1', '1', '1', '40', '2024-12-01');
+INSERT INTO `Estoque_Tracking` (`id_local`, `id_lote`, `qtd_estoque`,  `data_vencimento`) VALUES ('1', '1', '40', '2024-12-01');

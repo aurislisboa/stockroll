@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
+<head>
+	<title>Quantidade Por Local</title>
+</head>
+<body>
+	<main>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 mx-auto">
+				<div class="card card-cyan card-outline">
+					<div>
+					<!-- <div class="card-header"> -->
+						<!-- <h5 class="card-title">Quantidade Por Local</h5> -->
+						<div class="card-tools">
+						</div>
+					</div>
+					<!-- <div class="card-body table-responsive"> -->
+					<div class="card-body table-responsive text-sm">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Local</th>
+									<th scope="col">Produto</th>
+									<th scope="col">Qtd. Mínima</th>
+									<th scope="col">Qtd. Ideal</th>
+									<th scope="col" class="text-center">Detalhes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="qtd : ${quantidades}">
+									<td th:text="${qtd.id}">1</td>
+									<td th:text="${qtd.local.nome}"></td>
+									<td th:text="${qtd.produto.nome}"></td>
+									<td th:text="${qtd.minimo}"></td>
+									<td th:text="${qtd.ideal}"></td>
+                  <td class="text-center py-0 align-middle">
+										<div class="btn-group btn-group-sm">
+											<a th:href="@{/quantidade/{id} (id=${qtd.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+											<!-- <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div><!--card-->
+			</div><!--col-->
+		</div><!--row-->
+	</main>
+</body>
+</html>

@@ -16,11 +16,11 @@
 							</div>
 						</div>
 						<div class="card-body table-responsive">
-							<table class="table">
+							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Lote</th>
+										<!-- <th scope="col">Lote</th> -->
 										<th scope="col">Produto</th>
 										<th scope="col">Vencimento</th>
 									</tr>
@@ -28,8 +28,9 @@
 								<tbody>
 									<tr th:each="lote : ${lotes}">
 										<th scope="row" th:text="${lote.id}"></th>
-										<td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.nome}"></a></td>
-										<td th:text="${lote.produto.nome}"></td>
+										<!-- <td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.nome}"></a></td> -->
+										<!-- <td th:text="${lote.produto.nome}"></td> -->
+										<td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.produto.nome}"></a></td>
 										<td th:text="${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}"></td>
 									</tr>
 								</tbody>

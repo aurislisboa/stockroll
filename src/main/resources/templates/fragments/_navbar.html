@@ -23,25 +23,36 @@
           <span class="dropdown-item dropdown-header"><b>Opções</b></span> 
           <div class="dropdown-divider"></div>
 					<span class="dropdown-item">
-            <a href="#"  sec:authentication="name"></a>
+            <i class="far fa-user mr-2"></i>
+            <a th:href="@{/usuario/editar/email}" sec:authentication="name">User</a>
           </span>
           
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt mr-2"></i>Tela Cheia
-          </a>
+          <button class="dropdown-item" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt mr-2"></i>Tela Cheia</button>
+
+          <div class="dropdown-divider"></div> 
+          <a type="button" class="dropdown-item">
+            <i class="far fa-address-card mr-2"></i>Sobre</a>
+
           <!-- <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item"><i class="fas fa-envelope mr-2"></i>4 new messages
+          <a href="" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i>4 new messages
             <span class="float-right text-muted text-sm">3 mins</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item"><i class="fas fa-user mr-2"></i>8 friends requests
+          <a href="" class="dropdown-item">
+            <i class="fas fa-user mr-2"></i>8 friends requests
             <span class="float-right text-muted text-sm">12 hours</span>
           </a> -->
+          
           <div class="dropdown-divider"></div>
-          <!-- <a th:href="@{/logout}" class="dropdown-item"><i class="fas fa-times mr-2"></i>Sair</a> -->
+          <!-- <a th:href="@{/logout}" class="dropdown-item">
+            <i class="fas fa-times mr-2"></i>Sair</a> -->
+          
           <form method="post" th:action="@{/logout}">
-            <button type="submit" class="dropdown-item"><i class="fas fa-times mr-2"></i>Sair</button>
+            <!-- <button type="submit" class="dropdown-item"><i class="fas fa-times mr-2"></i>Sair</button> -->
+            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Sair</button>
           </form>
 
       </div><!--dropdown-menu-->

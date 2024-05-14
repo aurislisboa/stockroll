@@ -7,6 +7,10 @@
 </head>
 <body>
 	<main>
+		<div class="col-sm-6">				
+			<h3 class="m-0"><i class="nav-icon fas fa-upload"></i>&ensp;Saída do Estoque</h3>
+			<br><br>
+		</div><!-- /.col -->			
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
 				<div class="card card-cyan card-outline">
@@ -14,16 +18,39 @@
 					<!-- <div class="card-header">
 						<h5 class="card-title">Saída de Estoque</h5> -->
 					</div>
-					<form method="post" th:object="${estoque}">
+					<form method="post" th:object="${movimentacao}">
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						<div class="card-body">
+							<div class="form-group">
+								<label for="local">Local:</label>
+								<select class="form-control custom-select" th:field="*{local}" title="Local de Armazenagem">
+									<option th:each="local : ${locais}" th:text="${local.nome}" th:value="${local.id}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="lote">Produto | Lote:</label>
+								<select class="form-control custom-select" th:field="*{lote}" title="Lote do Produto">
+									<!-- <option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${lote.vencimento}" th:value="${lote.id}"></option> -->
+									<option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}" th:value="${lote.id}"></option>
+								</select>
+							</div>	
+							<div class="form-group">
+								<label for="quantidade">Quantidade:</label>
+								<input type="number" class="form-control" th:field="*{quantidade}" min="1" required title="Quantidade" placeholder="Digite a quantidade de produtos">
+							</div>
+							<div class="form-group">
+								<label for="motivoSaida">Motivo</label>
+								<select class="form-control custom-select" th:field="*{motivoSaida}" title="Selecione uma motivo de saída">
+									<option th:each="mot : ${motivos}" th:text="${mot.nome}" th:value="${mot.id}"></option>
+								</select>
+							</div>
 							<!-- <div class="form-group mb-3">
 								<label for="usuario" class="form-label">Usuário:</label>
 								<select class="form-control custom-select rounded-0" th:field="*{usuario}" title="Selecione um usuário">
 									<option th:each="user : ${usuarios}" th:text="${user.nome}" th:value="${user.id}"></option>
 								</select>
 							</div> -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="codigoBarra">Código de Barras:</label>
 								<div class="input-group">
 									<input type="text" class="form-control" th:field="*{produto.codigoBarra}" autofocus="true" title="Código de Barras">
@@ -31,37 +58,27 @@
 										<button class="input-group-text btn btn-sidebar" title="Pesquisar"><i class="fas fa-search"></i></button>
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
+							</div> -->
+							<!-- <div class="form-group">
 								<label for="produto">Produto:</label>
 								<select class="form-control custom-select" th:field="*{produto}" title="Selecione um produto">
 									<option th:each="prod : ${produtos}" th:text="${prod.nome}" th:value="${prod.id}"></option>
 								</select>
-							</div>
-							<div class="form-group">
+							</div> -->
+							<!-- <div class="form-group">
 								<label for="dataMovimentacao">Data:</label>
 								<input type="date" class="form-control" th:field="*{dataMovimentacao}" title="Data da Movimentação">
-							</div>
-							<div class="form-group">
-								<label for="quantidade">Quantidade:</label>
-								<input type="number" class="form-control" th:field="*{quantidade}" min="1" required title="Quantidade">
-							</div>
-							<!-- <div class="form-group">
-								<label for="valorUnitario">Preço:</label>
-								<input type="number" class="form-control" th:field="*{preco}" step="0.01" required>
-							</div>  -->
-							<div class="form-group">
-								<label for="motivoSaida">Motivo</label>
-								<select class="form-control custom-select" th:field="*{motivoSaida}" title="Selecione uma motivo de saída">
-									<option th:each="mot : ${motivos}" th:text="${mot.descricao}" th:value="${mot.id}"></option>
-								</select>
-							</div>
+							</div> -->
 							<!-- <div class="form-group">
 								<label for="tipoMovimentacao">Movimentação</label>
 								<select class="form-control custom-select" th:field="*{tipoMovimentacao}" disabled>
 									<option selected th:text="${'Saida'}" th:value="${'Saida'}"></option>
 								</select>
 							</div> -->
+							<!-- <div class="form-group">
+							<label for="valorUnitario">Preço:</label>
+							<input type="number" class="form-control" th:field="*{preco}" step="0.01" required>
+						</div>  -->
 						</div><!--card-body-->
 						<div class="card-footer text-right">
 							<button type="submit" class="btn btn-success">Salvar</button>
