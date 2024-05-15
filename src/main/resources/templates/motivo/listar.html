@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html th:replace="~{template_base :: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-    <title>Listagem de Motivos de Saída</title>
+    <title>Motivos de Saída</title>
 </head>
 <body>
-    <main>
+  <main>
+	  <header class="col-sm-6">				
+			<h3 class="m-0"><i class="nav-icon fas fa-arrow-alt-circle-right"></i>&ensp;Motivos de Saída</h3><br>
+	 	</header>				
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
+					<div class="card-tools text-right">
+						<a th:href="@{/motivo/cadastrar}" class="btn btn-sm btn-info">
+								<i class="fas fa-sign-out-alt"></i>&emsp;Novo Motivo</a>
+					</div>
+					<br>
 					<div class="card card-cyan card-outline">
-						<div class="card-header">
+						<!-- <div class="card-header">
 							<h5 class="card-title">Motivos de Saída</h5>
-							<div class="card-tools">
-								<a th:href="@{/motivo/cadastrar}" class="btn btn-block btn-sm btn-info">
-										<i class="fas fa-sign-out-alt"></i>&emsp;Novo Motivo</a>
-							</div>
-						</div>
+						</div> -->
 						<div class="card-body table-responsive">
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th scope="col">#</th>
 										<th scope="col">Nome</th>
+										<th scope="col" class="text-center">Detalhes</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="motivo : ${motivos}">
 										<th scope="row" th:text="${motivo.id}"></th>
-										<td><a th:href="@{/motivo/{id} (id=${motivo.id})}" th:text="${motivo.nome}"></a></td>
+										<td th:text="${motivo.nome}"></td>
+										<td class="text-center py-0 align-middle">
+											<div class="btn-group btn-group-sm">
+												<a th:href="@{/motivo/{id} (id=${motivo.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+											</div>
+										</td>
 									</tr>
 								</tbody>
 							</table>

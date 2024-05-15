@@ -42,7 +42,7 @@
 							<strong><span th:text="${#numbers.formatCurrency( {#aggregates.sum({movimentacao.quantidade * movimentacao.valorUnitario})} )}"></span></strong>
 						</li>
 						<!-- <li class="card-text list-group-item">Motivo:
-							<strong><span th:text="${movimentacao.motivoSaida.nome}"></span></strong>
+							<strong><span th:text="${movimentacao.motivo.nome}"></span></strong>
 						</li> -->
 						<li class="card-text list-group-item">Usuário:
 							<strong><span th:text="${movimentacao.usuario.nome}"></span></strong>

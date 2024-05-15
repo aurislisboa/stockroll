@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 
 // JPA
 @Entity
-@Table(name = "Motivo_Saida")
-public class MotivoSaida {
+@Table(name = "Motivo")
+public class Motivo {
 
     @Id
     @Column(name = "id_motivo")

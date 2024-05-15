@@ -1,6 +1,7 @@
 package br.com.usystem.stockroll.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,9 @@ public class LocalController {
     public ModelAndView listar() {
         var modelAndView = new ModelAndView("local/listar");
 
-        modelAndView.addObject("locais", localRepository.findAll());
+        var locais = localRepository.findAll(Sort.by("id"));
+            locais.remove(0);
+        modelAndView.addObject("locais", locais);
         return modelAndView;
     }
 
@@ -50,6 +53,8 @@ public class LocalController {
         return "redirect:/local";
     }
 
+
+    
     @GetMapping("/editar/{id}")
     public ModelAndView editar(@PathVariable Integer id) {
         var modelAndView = new ModelAndView("local/formulario");

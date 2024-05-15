@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-	<title>Movimentação de Estoque</title>
+	<title>Movimentação do Estoque</title>
 </head>
 <body>
 	<main>
+		<header class="col-sm-6">				
+			<h3 class="m-0"><i class="nav-icon fas fa-warehouse"></i>&ensp;Movimentação do Estoque</h3><br>
+	 	</header>			
 		<div class="row">
 			<div class="col-sm-12 col-md-12 mx-auto">
 				<div class="card card-cyan card-outline">
@@ -43,7 +46,7 @@
 									<td th:text="${#numbers.formatCurrency(mov.valorUnitario)}"></td>
 									<!-- <td th:text="${'R$ ' + #aggregates.sum({mov.quantidade * mov.valorUnitario})}"></td> -->
 									<!-- <td th:text="${#numbers.formatCurrency( {#aggregates.sum({mov.quantidade * mov.valorUnitario})} )}"></td> -->
-									<!-- <td th:text="${mov.motivoSaida.nome}"></td> -->
+									<!-- <td th:text="${mov.motivo.nome}"></td> -->
 									<!-- <td th:text="${#strings.abbreviate(mov.usuario.nome, 12)}"></td> -->
 									<td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">

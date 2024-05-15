@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.MotivoSaida;
+import br.com.usystem.stockroll.models.Motivo;
 import br.com.usystem.stockroll.models.Usuario;
-import br.com.usystem.stockroll.repositories.MotivoSaidaRepository;
+import br.com.usystem.stockroll.repositories.MotivoRepository;
 
 
 @Controller
 @RequestMapping("/motivo") 
-public class MotivoSaidaController {
+public class MotivoController {
 
     @Autowired
-    private MotivoSaidaRepository motivoSaidaRepository;
+    private MotivoRepository motivoRepository;
 
 
     @GetMapping
     public ModelAndView listar() {
         var modelAndView = new ModelAndView("motivo/listar");
         
-        modelAndView.addObject("motivos", motivoSaidaRepository.findAll(Sort.by("id")));
+        modelAndView.addObject("motivos", motivoRepository.findAll(Sort.by("id")));
         return modelAndView;
     }
 
@@ -39,7 +39,7 @@ public class MotivoSaidaController {
     public ModelAndView detalhar(@PathVariable Integer id) {
         var modelAndView = new ModelAndView("motivo/detalhar");
 
-        modelAndView.addObject("motivo", motivoSaidaRepository.getReferenceById(id));
+        modelAndView.addObject("motivo", motivoRepository.getReferenceById(id));
         return modelAndView;
     }
 
@@ -48,14 +48,14 @@ public class MotivoSaidaController {
     public ModelAndView editar(@PathVariable Integer id) {
         var modelAndView = new ModelAndView("motivo/formulario");
 
-        modelAndView.addObject("motivo", motivoSaidaRepository.getReferenceById(id));
+        modelAndView.addObject("motivo", motivoRepository.getReferenceById(id));
         return modelAndView;
     }
 
     @PostMapping("/editar/{id}")
-    public String editar(MotivoSaida motivo) {
+    public String editar(Motivo motivo) {
 
-        motivoSaidaRepository.save(motivo);
+        motivoRepository.save(motivo);
         return "redirect:/motivo";
     }
 
@@ -64,14 +64,14 @@ public class MotivoSaidaController {
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("motivo/formulario");
 
-        modelAndView.addObject("motivo", new MotivoSaida());
+        modelAndView.addObject("motivo", new Motivo());
         return modelAndView;
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(MotivoSaida motivo) {
+    public String cadastrar(Motivo motivo) {
 
-        motivoSaidaRepository.save(motivo);
+        motivoRepository.save(motivo);
         return "redirect:/motivo";
     }
 
@@ -79,7 +79,7 @@ public class MotivoSaidaController {
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable Integer id) {
 
-        motivoSaidaRepository.deleteById(id);
+        motivoRepository.deleteById(id);
         return "redirect:/usuario";
     }
     

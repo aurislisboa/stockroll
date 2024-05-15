@@ -52,7 +52,7 @@ public class Movimentacao {
 
     @ManyToOne
     @JoinColumn(name = "id_motivo")
-    private MotivoSaida motivoSaida;
+    private Motivo motivo;
 
 
     // @ManyToOne

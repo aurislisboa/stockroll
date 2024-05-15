@@ -63,10 +63,10 @@ INSERT INTO `Lote` (`id_produto`, `data_vencimento`, `ativo`) VALUES ('3', '2025
 
 -- ----------------------- MOTIVO SAÍDA --------------------------
 
-INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('-');
-INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Empréstimo');
-INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Descarte');
-INSERT INTO `motivo_saida` (`nome_motivo`) VALUES ('Perda');
+INSERT INTO `motivo` (`nome_motivo`) VALUES ('-');
+INSERT INTO `motivo` (`nome_motivo`) VALUES ('Empréstimo');
+INSERT INTO `motivo` (`nome_motivo`) VALUES ('Descarte');
+INSERT INTO `motivo` (`nome_motivo`) VALUES ('Perda');
 
 -- ---------------------- MOVIMENTACAO ----------------------------
 

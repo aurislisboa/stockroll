@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.models.Movimentacao;
 import br.com.usystem.stockroll.models.Local;
-import br.com.usystem.stockroll.models.MotivoSaida;
+import br.com.usystem.stockroll.models.Motivo;
 import br.com.usystem.stockroll.models.Produto;
 import br.com.usystem.stockroll.models.Usuario;
 import br.com.usystem.stockroll.repositories.MovimentacaoRepository;
 import br.com.usystem.stockroll.repositories.LocalRepository;
 import br.com.usystem.stockroll.repositories.LoteRepository;
-import br.com.usystem.stockroll.repositories.MotivoSaidaRepository;
+import br.com.usystem.stockroll.repositories.MotivoRepository;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
 import br.com.usystem.stockroll.repositories.UsuarioRepository;
 
@@ -38,7 +39,7 @@ public class MovimentacaoController {
     private final MovimentacaoRepository movimentacaoRepository;
     private final UsuarioRepository usuarioRepository;
     private final ProdutoRepository produtoRepository;
-    private final MotivoSaidaRepository motivoSaidaRepository;
+    private final MotivoRepository motivoRepository;
     private final LocalRepository localRepository;
     private final LoteRepository loteRepository;
 
@@ -47,14 +48,14 @@ public class MovimentacaoController {
     public MovimentacaoController(MovimentacaoRepository movimentacaoRepository, 
                     UsuarioRepository usuarioRepository, 
                     ProdutoRepository produtoRepository,
-                    MotivoSaidaRepository motivoSaidaRepository,
+                    MotivoRepository motivoRepository,
                     LocalRepository localRepository,
                     LoteRepository loteRepository) {
 
         this.movimentacaoRepository = movimentacaoRepository;
         this.usuarioRepository = usuarioRepository;
         this.produtoRepository = produtoRepository;
-        this.motivoSaidaRepository = motivoSaidaRepository;
+        this.motivoRepository = motivoRepository;
         this.localRepository = localRepository;
         this.loteRepository = loteRepository;
     }
@@ -94,13 +95,15 @@ public class MovimentacaoController {
 
             Movimentacao movimentacao = new Movimentacao();                    
                     movimentacao.setTipoMovimentacao("Entrada");
-                    // movimentacao.setMotivoSaida(new MotivoSaida(1, "-"));
+                    // movimentacao.setMotivo(new Motivo(1, "-"));
 
             modelAndView.addObject("movimentacao", movimentacao);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
-            modelAndView.addObject("locais", localRepository.findAll());
-            modelAndView.addObject("lotes", loteRepository.findAll(Sort.by("produto.nome")));
-            // modelAndView.addObject("produtos", produtoRepository.findAll()); // O lote já contém o nome do produto.
+            var locais = localRepository.findAll(Sort.by("id"));
+                locais.remove(0);               
+            modelAndView.addObject("locais", locais);                       //  O Centro de Distribuição não é listado.
+            modelAndView.addObject("lotes", loteRepository.findAll());
+            // modelAndView.addObject("produtos", produtoRepository.findAll());     // O lote já contém o nome do produto.
 
         return modelAndView;
     }
@@ -115,7 +118,7 @@ public class MovimentacaoController {
         movimentacao.setUsuario(usuario);
         movimentacao.setDataMovimentacao(LocalDate.now());
         movimentacao.setTipoMovimentacao("Entrada");
-        movimentacao.setMotivoSaida(new MotivoSaida(1, "-"));
+        movimentacao.setMotivo(new Motivo(1, "-"));
         // movimentacao.setProduto(movimentacao.getLote().getProduto());  // captura o produto com base no Lote excolhido.
 
         /* Atualizar a quantidade de Produto no Estoque */
@@ -139,7 +142,7 @@ public class MovimentacaoController {
             local=Local(id=1, nome=Principal), 
             usuario=Usuario(id=4, nome=admin, email=admin@gmail.com, senha=$2a$10$QkPjr9.Jj8KPL6cTF2PzA.nsBKfqiCC1PCGtC/k9pZPavjjY9zUTq, perfil=GESTOR, cadastro=2024-04-10T10:28:12), 
             lote=Lote(id=2, produto=Produto(id=2, codigoBarra=3045140105502, nome=Chocolate Milka), nome=Chocol-Jan-2025, vencimento=2025-01-01), 
-            motivoSaida=MotivoSaida(id=1, nome=-), 
+            motivo=Motivo(id=1, nome=-), 
             produto=Produto(id=2, codigoBarra=3045140105502, nome=Chocolate Milka), 
             dataMovimentacao=2024-05-09, 
             quantidade=10, 
@@ -163,9 +166,11 @@ public class MovimentacaoController {
 
             modelAndView.addObject("movimentacao", movimentacao);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
-            modelAndView.addObject("locais", localRepository.findAll());
             modelAndView.addObject("lotes", loteRepository.findAll(Sort.by("produto.nome")));
-            modelAndView.addObject("motivos", motivoSaidaRepository.findAll());
+            modelAndView.addObject("motivos", motivoRepository.findAll());
+            var locais = localRepository.findAll(Sort.by("id"));
+                locais.remove(0);               
+            modelAndView.addObject("locais", locais);                       //  O Centro de Distribuição não é listado.
 
         return modelAndView;
     }
@@ -228,7 +233,7 @@ public class MovimentacaoController {
         movimentacao.setUsuario(usuario);
         movimentacao.setDataMovimentacao(LocalDate.now());
         movimentacao.setTipoMovimentacao("Entrada");
-        movimentacao.setMotivoSaida(new MotivoSaida(1, "-"));        
+        movimentacao.setMotivo(new Motivo(1, "-"));        
         movimentacao.setLocal(new Local(1, "CD.Principal"));
         
         movimentacaoRepository.save(movimentacao);

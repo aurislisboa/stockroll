@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html th:replace="~{template_base :: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-	<title>Listagem de Lotes</title>
+	<title>Lotes</title>
 </head>
 <body>
 	<main>
-		<div class="row">
+		<header class="col-sm-6">         				
+			<h3 class="m-0"><i class="nav-icon fas fa-cubes"></i>&ensp;Lotes</h3><br>
+		</header>			
+		<div class="row">			
 			<div class="col-sm-12 col-md-8 mx-auto">
+					<div class="card-tools text-right">
+						<a th:href="@{/lote/cadastrar}" class="btn btn-sm btn-info">
+								<i class="fas fa-cube"></i>&emsp;Novo Lote</a>
+					</div>
+					<br/>
 					<div class="card card-cyan card-outline">
-						<div class="card-header">
+						<!-- <div class="card-header">
 							<h5 class="card-title">Listagem de Lotes</h5>
-							<div class="card-tools">
-								<a th:href="@{/lote/cadastrar}" class="btn btn-block btn-sm btn-info">
-										<i class="fas fa-cube"></i>&emsp;Novo Lote</a>
-							</div>
-						</div>
+						</div> -->
 						<div class="card-body table-responsive">
 							<table class="table table-hover">
 								<thead>
@@ -23,6 +27,7 @@
 										<!-- <th scope="col">Lote</th> -->
 										<th scope="col">Produto</th>
 										<th scope="col">Vencimento</th>
+										<th scope="col" class="text-center">Detalhes</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -30,8 +35,13 @@
 										<th scope="row" th:text="${lote.id}"></th>
 										<!-- <td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.nome}"></a></td> -->
 										<!-- <td th:text="${lote.produto.nome}"></td> -->
-										<td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.produto.nome}"></a></td>
+										<td th:text="${lote.produto.nome}"></td>
 										<td th:text="${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}"></td>
+										<td class="text-center py-0 align-middle">
+											<div class="btn-group btn-group-sm">
+												 <a th:href="@{/lote/{id} (id=${lote.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+											</div>
+									 </td>
 									</tr>
 								</tbody>
 							</table>

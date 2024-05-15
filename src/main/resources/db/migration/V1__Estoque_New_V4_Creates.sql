@@ -109,16 +109,16 @@ ALTER TABLE Lote ADD CONSTRAINT FK_Lote_Produto FOREIGN KEY(id_produto) REFERENC
 -- ALTER TABLE Lote ADD CONSTRAINT UQ_Lote_nome_lote UNIQUE(nome_lote);
 
 
--- ------------------------- MOTIVO SAIDA -----------------------------
+-- ------------------------- MOTIVO -----------------------------
 
-CREATE TABLE Motivo_Saida
+CREATE TABLE Motivo
 (
 	id_motivo INT AUTO_INCREMENT PRIMARY KEY,
 	nome_motivo VARCHAR(100) NOT NULL,
 	ativo	BIT NOT NULL DEFAULT 1 
 );
 
-ALTER TABLE Motivo_Saida ADD CONSTRAINT UQ_MotivoSaida_descricao UNIQUE(nome_motivo);
+ALTER TABLE Motivo ADD CONSTRAINT UQ_Motivo_descricao UNIQUE(nome_motivo);
 
 
 
@@ -150,8 +150,8 @@ ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Lote FOREIGN KEY(id_lote
 -- relacionamento com a tabela Produto:
 -- ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
--- relacionamento com a tabela Motivo_Saida:
-ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_MotivoSaida FOREIGN KEY(id_motivo) REFERENCES Motivo_Saida(id_motivo);
+-- relacionamento com a tabela Motivo:
+ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Motivo FOREIGN KEY(id_motivo) REFERENCES Motivo(id_motivo);
 
 -- confere se o valor digitado é maior que '0', não existe entrada negativa no estoque.
 ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_qtd_produto CHECK(qtd_produto > 0);

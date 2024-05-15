@@ -7,11 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
   <!-- <title>
-    Stock Roll | <th:block th:include="${title}">Dashboard</th:block>
+    Stock Roll | <th:block th:insert="${title}">Dashboard</th:block>
   </title> -->
-  <title th:replace="${title}">StockRoll</title>
-  
-
+  <!-- descomentar o código acima e incluir esse trecho abaixo na página que irá enviar o 'title' -->
+  <!-- <th:block th:fragment="title">Listagem de Produtos</th:block> -->
+  <title th:replace="${title}">Dashboard</title>
 
 
   <!-- Google Font: Source Sans Pro -->
@@ -34,9 +34,9 @@
   <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/daterangepicker/daterangepicker.css}">
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/summernote/summernote-bs4.min.css}">
-
+  
+  <!-- ------------------------------------ More Styles ------------------------------------ -->
   <th:block th:replace="${styles}"></th:block>
-
 
 </head>
 <!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
@@ -54,15 +54,16 @@
     <aside th:replace="~{fragments/_aside :: aside}"></aside>
 
 
-    <!-- ------------------------------------ Main ------------------------------------ -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
+      <!-- ---------------------------------- Page Header ---------------------------------- -->
       <!-- Content Header (Page header) -->
       <!-- <div th:replace="~{fragments/_header :: content-header (${title})}"></div> -->
       <br>
       <!-- /.content-header -->
 
+      <!-- ------------------------------------ Main ------------------------------------ -->
         <!-- Main content -->    
         <section class="content">
             <!-- <div class="container-fluid" th:include="${content}"></div> -->
@@ -119,6 +120,7 @@
     });
   </script> -->
 
+  <!-- ------------------------------------ More Scripts ------------------------------------ -->
   <th:block th:replace="${scripts}"></th:block>
 </body>
 </html>
