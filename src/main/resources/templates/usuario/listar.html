@@ -5,10 +5,10 @@
 </head>
 <body>
 	<main>
-		<div class="container-fluid">
 		<header class="col-sm-6">				
 			<h3 class="m-0"><i class="nav-icon fas fa-user"></i>&ensp;Usuários</h3><br>
-	 	</header>			
+	 	</header>
+		<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
 					<div class="card-tools text-right">
@@ -41,7 +41,7 @@
 										<td th:text="${#temporals.format(usuario.cadastro, 'dd-MM-yyyy HH:mm')}"></td>
 										<td class="text-center py-0 align-middle">
 											<div class="btn-group btn-group-sm">
-												<a th:href="@{/usuario/{id} (id=${usuario.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+												<a th:href="@{/usuario/{id} (id=${usuario.id})}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
 												<!-- <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
 											</div>
 										</td>

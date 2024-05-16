@@ -5,32 +5,38 @@
 </head>
 <body>
 <main>
+	<header class="col-sm-6">				
+		<h3 class="m-0"><i class="nav-icon fas fa-warehouse"></i>&ensp;Detalhe da Movimentação</h3><br>
+	</header>
 	<div class="row">
 		<div class="col-sm-12 col-md-8 mx-auto">
+			<div class="card-tools text-right">
+				<a th:href="@{/movimentacao}" class="btn btn-sm btn-info">
+					<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Movimentações</a>
+			</div><br>
 			<div class="card card-cyan card-outline">
-				<div class="card-header">
-					<h5 class="card-title">Detalhe da Movimentação</h5>
-					<div class="card-tools">
-						<a th:href="@{/movimentacao}" class="btn btn-block btn-sm btn-info">
-							<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Movimentações</a>
-					</div>
-				</div>
+				<!-- <div class="card-header">
+					<h5 class="card-title">Detalhe da Movimentação</h5>					
+				</div> -->
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
-						<li class="card-text list-group-item">Tipo:
+						<li class="card-text list-group-item">Status:
 							<strong><span th:text="${movimentacao.tipoMovimentacao}"></span></strong>
-						</li>
-						<li class="card-text list-group-item">Data:
-							<strong><span th:text="${#temporals.format(movimentacao.dataMovimentacao, 'dd-MM-yyyy')}"></span></strong>
 						</li>
 						<li class="card-text list-group-item">Local:
 							<strong><span th:text="${movimentacao.local.nome}"></span></strong>
 						</li>
-						<li class="card-text list-group-item">Lote:
-							<strong><span th:text="${#temporals.format(movimentacao.lote.vencimento, 'dd-MM-yyyy')}"></span></strong>
+						<li class="card-text list-group-item">Data:
+							<strong><span th:text="${#temporals.format(movimentacao.dataMovimentacao, 'dd-MM-yyyy HH:mm:ss')}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Motivo:
+							<strong><span th:text="${movimentacao.motivo.nome}"></span></strong>
 						</li>
 						<li class="card-text list-group-item">Produto:
 							<strong><span th:text="${movimentacao.lote.produto.nome}"></span></strong>
+						</li>
+						<li class="card-text list-group-item">Lote:
+							<strong><span th:text="${#temporals.format(movimentacao.lote.vencimento, 'dd-MM-yyyy')}"></span></strong>
 						</li>
 						<li class="card-text list-group-item">Quantidade:
 							<strong><span th:text="${movimentacao.quantidade}"></span></strong>

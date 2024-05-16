@@ -9,6 +9,6 @@ import br.com.usystem.stockroll.models.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	
-	@Query(value = "SELECT SUM(qtd_estoque) FROM `produto`", nativeQuery = true)
-        Integer selectSumQtdEstoque();
+	// @Query(value = "SELECT SUM(qtd_estoque) FROM `produto`", nativeQuery = true)
+        // Integer selectSumQtdEstoque();
 }

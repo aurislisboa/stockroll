@@ -98,15 +98,21 @@ CREATE TABLE Lote
 	id_produto INT NOT NULL,
 	-- nome_lote VARCHAR(20) NOT NULL,
 	data_vencimento	DATE NOT NULL,
-	-- valor_unitario DECIMAL(8,2) NOT NULL DEFAULT '0.00',
+	qtd_produto INT NOT NULL DEFAULT 1,
+	valor_unitario DECIMAL(8,2) DEFAULT '0.00',
 	ativo	BIT NOT NULL DEFAULT 1 
 );
 
 -- relacionamento com a tabela Produto:
 ALTER TABLE Lote ADD CONSTRAINT FK_Lote_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
+-- confere se o valor digitado é maior que '0', não existe entrada negativa.
+ALTER TABLE Lote ADD CONSTRAINT CK_Lote_qtd_produto CHECK(qtd_produto > 0);
+
 -- nome_lote não se repete:
 -- ALTER TABLE Lote ADD CONSTRAINT UQ_Lote_nome_lote UNIQUE(nome_lote);
+
+
 
 
 -- ------------------------- MOTIVO -----------------------------
@@ -134,7 +140,7 @@ CREATE TABLE Movimentacao
 	id_motivo INT NOT NULL,
 	data_mov DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	qtd_produto INT NOT NULL DEFAULT 1,
-	valor_unitario DECIMAL(8,2),
+	valor_unitario DECIMAL(8,2) DEFAULT '0.00',
 	tipo_mov VARCHAR(7) NOT NULL DEFAULT 'Entrada'
 );
 
@@ -182,7 +188,7 @@ CREATE TABLE Estoque_Tracking
 	id_lote INT NOT NULL,
 	-- id_produto INT NOT NULL,
 	qtd_estoque INT DEFAULT 0,
-	data_vencimento	DATE NOT NULL,
+	-- data_vencimento	DATE NOT NULL,
 	
     CONSTRAINT FK_EstoqueTracking_LocalEstoque FOREIGN KEY(id_local) REFERENCES Local_Estoque(id_local),
 		CONSTRAINT FK_EstoqueTracking_Lote FOREIGN KEY(id_lote) REFERENCES Lote(id_lote),

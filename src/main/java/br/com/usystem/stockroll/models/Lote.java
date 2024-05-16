@@ -1,8 +1,11 @@
 package br.com.usystem.stockroll.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Column;
@@ -44,4 +47,13 @@ public class Lote {
     @Column(name = "data_vencimento")
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate vencimento;
+
+    
+    @Column(name = "qtd_produto", nullable = false)
+    private Integer quantidade;
+
+
+    @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+    @Column(name = "valor_unitario", nullable = true,  columnDefinition = "decimal(8,2) default '0.00'")
+    private BigDecimal valorUnitario;
 }

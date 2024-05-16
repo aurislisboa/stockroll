@@ -5,16 +5,20 @@
 </head>
 <body>
 <main>
+	<header class="col-sm-6">				
+    <h3 class="m-0"><i class="nav-icon fas fa-exclamation-circle"></i>&ensp;Detalhe do Motivo</h3><br>
+  </header>
 	<div class="row">
 		<div class="col-sm-12 col-md-8 mx-auto">
+			<div class="card-tools text-right">
+				<a th:href="@{/motivo}" class="btn btn-sm btn-info">
+					<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Motivos</a>
+			</div>
+			<br>
 			<div class="card card-cyan card-outline">
-				<div class="card-header">
-					<h5 class="card-title">Detalhe do Motivo</h5>
-					<div class="card-tools">
-						<a th:href="@{/motivo}" class="btn btn-block btn-sm btn-info">
-							<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Motivos</a>
-					</div>
-				</div>
+				<!-- <div class="card-header">
+					<h5 class="card-title">Detalhe do Motivo</h5>					
+				</div> -->
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						<li class="card-text list-group-item">Nome:

@@ -3,6 +3,7 @@ package br.com.usystem.stockroll.controller;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,13 +15,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.models.Movimentacao;
+import br.com.usystem.stockroll.models.Perfil;
 import br.com.usystem.stockroll.models.Local;
+import br.com.usystem.stockroll.models.Lote;
 import br.com.usystem.stockroll.models.Motivo;
 import br.com.usystem.stockroll.models.Produto;
 import br.com.usystem.stockroll.models.Usuario;
@@ -30,6 +35,7 @@ import br.com.usystem.stockroll.repositories.LoteRepository;
 import br.com.usystem.stockroll.repositories.MotivoRepository;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
 import br.com.usystem.stockroll.repositories.UsuarioRepository;
+import jakarta.websocket.server.PathParam;
 
 @Controller
 @RequestMapping("/movimentacao")
@@ -62,11 +68,39 @@ public class MovimentacaoController {
 
 
 
-    @GetMapping()
-    public ModelAndView listar() {
+    @ModelAttribute("locais")
+    public List<Local> getLocal() {
+        return localRepository.findAll();
+    }
+
+
+
+    // @GetMapping()
+    // public ModelAndView listar() {
+    //     var modelAndView = new ModelAndView("movimentacao/listar");
+
+    //     List<Movimentacao> movimentacao = movimentacaoRepository.findAll();
+    //     Collections.reverse(movimentacao);
+    //     modelAndView.addObject("movimentacao", movimentacao);
+        
+    //     return modelAndView;
+    // }
+
+
+
+
+    @GetMapping
+    public ModelAndView listar(@RequestParam(required = false) Integer local) {
         var modelAndView = new ModelAndView("movimentacao/listar");
 
-        List<Movimentacao> movimentacao = movimentacaoRepository.findAll();
+        List<Movimentacao> movimentacao;
+
+        if(local != null) {
+            movimentacao = movimentacaoRepository.findByLocalId(local);
+        } else {
+            movimentacao = movimentacaoRepository.findAll();
+        }
+        
         Collections.reverse(movimentacao);
         modelAndView.addObject("movimentacao", movimentacao);
         
@@ -85,7 +119,13 @@ public class MovimentacaoController {
 
 
     /*
+     * 
+     * 
+     * 
      * CONTROLLER PARA OS QUIOSQUES
+     * 
+     * 
+     * 
     */
 
 
@@ -100,10 +140,10 @@ public class MovimentacaoController {
             modelAndView.addObject("movimentacao", movimentacao);
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
             var locais = localRepository.findAll(Sort.by("id"));
-                locais.remove(0);               
-            modelAndView.addObject("locais", locais);                       //  O Centro de Distribuição não é listado.
+                locais.remove(0);               //  O CD Principal não é exibido para o Usuário.
+            modelAndView.addObject("locais", locais);                       
             modelAndView.addObject("lotes", loteRepository.findAll());
-            // modelAndView.addObject("produtos", produtoRepository.findAll());     // O lote já contém o nome do produto.
+            // modelAndView.addObject("produtos", produtoRepository.findAll());     // O lote já possui o nome do produto.
 
         return modelAndView;
     }
@@ -114,11 +154,14 @@ public class MovimentacaoController {
     public String cadastrarEntrada(Movimentacao movimentacao, Principal principal) {
 
         Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
+        Lote lote = movimentacao.getLote();     // Provavelmente dê problema.
 
         movimentacao.setUsuario(usuario);
-        movimentacao.setDataMovimentacao(LocalDate.now());
+        movimentacao.setDataMovimentacao(LocalDateTime.now());
         movimentacao.setTipoMovimentacao("Entrada");
         movimentacao.setMotivo(new Motivo(1, "-"));
+        movimentacao.setValorUnitario(lote.getValorUnitario());
+        
         // movimentacao.setProduto(movimentacao.getLote().getProduto());  // captura o produto com base no Lote excolhido.
 
         /* Atualizar a quantidade de Produto no Estoque */
@@ -160,7 +203,7 @@ public class MovimentacaoController {
         var modelAndView = new ModelAndView("/movimentacao/formulario-saida");
 
         Movimentacao movimentacao = new Movimentacao();
-                movimentacao.setDataMovimentacao(LocalDate.now());
+                movimentacao.setDataMovimentacao(LocalDateTime.now());
                 movimentacao.setTipoMovimentacao("Saida");
                 
 
@@ -184,7 +227,7 @@ public class MovimentacaoController {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
 
         movimentacao.setUsuario(usuario);
-        movimentacao.setDataMovimentacao(LocalDate.now());
+        movimentacao.setDataMovimentacao(LocalDateTime.now());
         movimentacao.setTipoMovimentacao("Saida");
 
         // Long produtoId = movimentacao.getProduto().getId();
@@ -204,7 +247,11 @@ public class MovimentacaoController {
 
 
     /*
+     * 
+     * 
      * CONTROLLER EXCLUSIVA PARA O CENTRO DE DISTRIBUIÇÃO
+     * 
+     * 
     */
 
 
@@ -231,7 +278,7 @@ public class MovimentacaoController {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
 
         movimentacao.setUsuario(usuario);
-        movimentacao.setDataMovimentacao(LocalDate.now());
+        movimentacao.setDataMovimentacao(LocalDateTime.now());
         movimentacao.setTipoMovimentacao("Entrada");
         movimentacao.setMotivo(new Motivo(1, "-"));        
         movimentacao.setLocal(new Local(1, "CD.Principal"));

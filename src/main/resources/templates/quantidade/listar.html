@@ -25,9 +25,9 @@
 									<th scope="col">#</th>
 									<th scope="col">Local</th>
 									<th scope="col">Produto</th>
-									<th scope="col">Qtd. Mínima</th>
-									<th scope="col">Qtd. Ideal</th>
-									<th scope="col" class="text-center">Detalhes</th>
+									<th scope="col" class="text-center">Qtd. Mínima</th>
+									<th scope="col" class="text-center">Qtd. Ideal</th>
+									<th scope="col" class="text-center">Editar</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -35,12 +35,11 @@
 									<td th:text="${qtd.id}">1</td>
 									<td th:text="${qtd.local.nome}"></td>
 									<td th:text="${qtd.produto.nome}"></td>
-									<td th:text="${qtd.minimo}"></td>
-									<td th:text="${qtd.ideal}"></td>
+									<td th:text="${qtd.minimo}" class="text-center"></td>
+									<td th:text="${qtd.ideal}" class="text-center"></td>
                   <td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">
-											<a th:href="@{/quantidade/{id} (id=${qtd.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
-											<!-- <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
+											<a th:href="@{/quantidade/{id} (id=${qtd.id})}" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
 										</div>
 									</td>
 								</tr>

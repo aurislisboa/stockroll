@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-	<title>Movimentação do Estoque</title>
+	<title>Movimentações</title>
 </head>
 <body>
 	<main>
 		<header class="col-sm-6">				
-			<h3 class="m-0"><i class="nav-icon fas fa-warehouse"></i>&ensp;Movimentação do Estoque</h3><br>
-	 	</header>			
+			<h3 class="m-0"><i class="nav-icon fas fa-warehouse"></i>&ensp;Movimentações</h3>
+	 	</header>
 		<div class="row">
 			<div class="col-sm-12 col-md-12 mx-auto">
-				<div class="card card-cyan card-outline">
-					<div>
-					<!-- <div class="card-header"> -->
-						<!-- <h5 class="card-title">Movimentação de Estoque</h5> -->
-						<div class="card-tools">
-						</div>
-					</div>
+				<div class="card-tools text-right">
+						<form th:action="@{/movimentacao}" method="get">
+							<div class="form-group mb-3 btn-group btn-xs">			
+								<select class="custom-select rounded-0" name="local" title="Local de Armazenagem">
+									<option th:each="local : ${locais}" th:text="${local.nome}" th:value="${local.id}"></option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-info btn-flat" type="submit">OK</button>
+								</div>
+							</div>
+						</form>
+				</div>
+				<div class="card card-cyan card-outline">				
 					<!-- <div class="card-body table-responsive"> -->
 					<div class="card-body table-responsive text-sm">
 						<table class="table table-hover">
@@ -38,7 +44,7 @@
 							<tbody>
 								<tr th:each="mov : ${movimentacao}">
 									<td th:text="${mov.id}">1</td>
-									<td th:text="${#temporals.format(mov.dataMovimentacao, 'dd-MM-yyyy')}"></td>
+									<td th:text="${#temporals.format(mov.dataMovimentacao, 'dd-MM-yyyy HH:mm')}"></td>
 									<td th:text="${mov.tipoMovimentacao}"></td>
 									<td th:text="${mov.local.nome}"></td>
 									<td th:text="${mov.lote.produto.nome}"></td>
@@ -50,7 +56,8 @@
 									<!-- <td th:text="${#strings.abbreviate(mov.usuario.nome, 12)}"></td> -->
 									<td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">
-											<a th:href="@{/movimentacao/{id} (id=${mov.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+											<a th:href="@{/movimentacao/{id} (id=${mov.id})}" class="btn btn-outline-info" 
+												 title="Ver detalhes desta Movimentação"><i class="fas fa-eye"></i></a>
 											<!-- <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
 										</div>
 									</td>

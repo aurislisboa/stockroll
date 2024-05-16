@@ -40,21 +40,29 @@
 											</div>
 										</div>
 									</div> -->
-									<div class="form-group">
+									<!-- <option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${lote.vencimento}" th:value="${lote.id}"></option> -->
+									<!-- <div class="form-group">
 										<label for="lote">Produto | Lote:</label>
 										<select class="form-control custom-select" th:field="*{lote}" title="Lote do Produto">
-												<!-- <option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${lote.vencimento}" th:value="${lote.id}"></option> -->
 												<option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}" th:value="${lote.id}"></option>
 										</select>
+									</div> -->
+									<div class="form-group">
+										<label for="lote">Produto | Lote | Quantidade:</label>
+											<select class="form-control custom-select" th:field="*{lote}" title="Lote do Produto">
+												<option th:each="lote : ${lotes}" 
+												th:text="${lote.produto.nome} +'&nbsp; | &nbsp;'+ ${#temporals.format(lote.vencimento, 'dd-MM-yyyy')} +'&nbsp; | &nbsp;'+ ${lote.quantidade}" 
+												th:value="${lote.id}"></option>
+											</select>
 									</div>
 									<div class="form-group">
 										<label for="quantidade">Quantidade:</label>
 										<input type="number" class="form-control" th:field="*{quantidade}" min="1" required title="Quantidade" placeholder="Digite a quantidade de produtos"/>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="valorUnitario" class="form-label">Valor Unitário:</label>
 										<input type="text" class="form-control money" id="valorUnitario" th:field="*{valorUnitario}" placeholder="R$ 0,00" min="0" required/>
-									</div>
+									</div> -->
 									<!-- <div class="form-group">
 											<label for="produto">Produto:</label>
 											<select class="form-control custom-select" th:field="*{produto}" title="Nome do Produto">

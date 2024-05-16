@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html th:replace="~{template_base :: layout(~{::title}, ~{::main}, _, _)}">
 <head>
-    <title>Motivos de Saída</title>
+    <title>Motivos de Lançamento</title>
 </head>
 <body>
   <main>
 	  <header class="col-sm-6">				
-			<h3 class="m-0"><i class="nav-icon fas fa-arrow-alt-circle-right"></i>&ensp;Motivos de Saída</h3><br>
-	 	</header>				
+			<h3 class="m-0"><i class="nav-icon fas fa-exclamation-circle"></i>&ensp;Motivos de Lançamento</h3><br>
+		</header>
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
 					<div class="card-tools text-right">
@@ -17,7 +17,7 @@
 					<br>
 					<div class="card card-cyan card-outline">
 						<!-- <div class="card-header">
-							<h5 class="card-title">Motivos de Saída</h5>
+							<h5 class="card-title">Motivos de Lançamento</h5>
 						</div> -->
 						<div class="card-body table-responsive">
 							<table class="table table-hover">
@@ -34,7 +34,7 @@
 										<td th:text="${motivo.nome}"></td>
 										<td class="text-center py-0 align-middle">
 											<div class="btn-group btn-group-sm">
-												<a th:href="@{/motivo/{id} (id=${motivo.id})}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+												<a th:href="@{/motivo/{id} (id=${motivo.id})}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
 											</div>
 										</td>
 									</tr>

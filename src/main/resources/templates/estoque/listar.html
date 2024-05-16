@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
+<head>
+	<title>Estoque</title>
+</head>
+<body>
+	<main>
+		<header class="col-sm-6">				
+			<h3 class="m-0"><i class="nav-icon fas fa-database"></i>&ensp;Estoque</h3><br>
+	 	</header>				
+		<div class="row">
+			<div class="col-sm-12 col-md-10 mx-auto">
+				<div class="card card-cyan card-outline">
+					<div class="card-body table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Local</th>
+									<th scope="col">Produto</th>
+									<th scope="col">Total</th>
+									<!-- <th scope="col" class="text-center">Detalhes</th> -->
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="estoque : ${estoques}">
+									<td th:text="${estoque.id}">1</td>
+									<td th:text="${estoque.local.nome}"></td>
+									<td th:text="${estoque.lote.produto.nome}"></td>
+									<td th:text="${estoque.quantidade}"></td>
+                  <!-- <td class="text-center py-0 align-middle">
+										<div class="btn-group btn-group-sm">
+											<a th:href="@{/estoque/{id} (id=${estoque.id})}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+										</div>
+									</td> -->
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div><!--card-->
+			</div><!--col-->
+		</div><!--row-->
+	</main>
+</body>
+</html>

@@ -2,6 +2,8 @@ package br.com.usystem.stockroll.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -62,7 +64,7 @@ public class Movimentacao {
 
     @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "data_mov")
-    private LocalDate dataMovimentacao;
+    private LocalDateTime dataMovimentacao;
 
 
     @Column(name = "qtd_produto")

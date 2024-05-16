@@ -10,4 +10,8 @@ import br.com.usystem.stockroll.models.Movimentacao;
 @Repository
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long> {
 
+  List<Movimentacao> findByLocalId(Integer id);
+
+  
+
 }

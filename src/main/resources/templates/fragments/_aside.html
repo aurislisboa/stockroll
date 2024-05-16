@@ -25,37 +25,36 @@
         
         <!-- -------- Produtos ---------- -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a th:href="@{/produto}" class="nav-link">
             <i class="nav-icon fas fa-barcode"></i>
-            <p>Produtos<i class="fas fa-angle-left right"></i></p>
+            <!-- <p>Produtos<i class="fas fa-angle-left right"></i></p> -->
+            <p>Produtos</p>
           </a>
           <!-- <ul class="nav nav-treeview text-sm"> -->
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
+          <!-- <ul class="nav nav-treeview"> -->
+            <!-- <li class="nav-item">
               <a th:href="@{/produto/cadastrar}" class="nav-link">
                 &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
               </a>
-            </li> 
-            <li class="nav-item">
+            </li>  -->
+            <!-- <li class="nav-item">
               <a th:href="@{/produto}" class="nav-link">
                 &nbsp;<i class="fas fa-bars nav-icon"></i>
                 <p>Listar</p>
               </a>
-            </li>
-          </ul>
+            </li> -->
+          <!-- </ul> -->
         </li>
          
         <!-- -------- Lotes ---------- -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a th:href="@{/lote}" class="nav-link">
             <i class="nav-icon fas fa-cubes"></i>
-            <p>
-              Lotes
-              <i class="fas fa-angle-left right"></i>
-            </p>
+            <p>Lotes</p>
+              <!-- <i class="fas fa-angle-left right"></i> -->
           </a>
-          <ul class="nav nav-treeview">
+          <!-- <ul class="nav nav-treeview">
             <li class="nav-item">
               <a th:href="@{/lote/cadastrar}" class="nav-link">
                 &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
@@ -68,7 +67,7 @@
                 <p>Listar</p>
               </a>
             </li>
-          </ul>
+          </ul> -->
         </li> 
         
         <!-- -------- Centro de Distribuição ---------- -->
@@ -151,10 +150,35 @@
           <span class="sidebar-custom"></span>
           <br>
         
+        <!-- -------- Estoque ---------- -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+              Estoque
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <!-- <li class="nav-item">
+              <a th:href="@{/estoque/cadastrar}" class="nav-link">
+                &nbsp;<i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a th:href="@{/estoque}" class="nav-link">
+                &nbsp;<i class="fas fa-bars nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li> 
         
         <!-- -------- Motivos ---------- -->
         <li class="nav-item">
           <a href="#" class="nav-link">
+            <!-- <i class="nav-icon fas fa-barcode"></i> -->
             <!-- <i class="nav-icon fas fa-list"></i> -->
             <!-- <i class="nav-icon fas fa-briefcase"></i> -->
             <!-- <i class="nav-icon fas fa-cog"></i> -->
@@ -172,9 +196,10 @@
             <!-- <i class="nav-icon fas fa-sign-out-alt"></i> -->
             <!-- <i class="nav-icon fas fa-sliders-h"></i> -->
             <!-- <i class="nav-icon fas fa-door-open"></i> -->
-            <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+            <!-- <i class="nav-icon fas fa-arrow-alt-circle-right"></i> -->
+            <i class="nav-icon fas fa-exclamation-circle"></i>
             <p>
-              Motivos de Saída
+              Motivos
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -257,12 +282,12 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a th:href="@{/quantidade/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a th:href="@{/quantidade}" class="nav-link">
                 <!-- <i class="fas fa-table nav-icon"></i> -->
