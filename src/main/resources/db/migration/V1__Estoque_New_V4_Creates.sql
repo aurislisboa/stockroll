@@ -57,8 +57,8 @@ CREATE TABLE Produto
 	-- imagem_produto IMAGE, 
 );
 
--- cod_barra não se repete.
-ALTER TABLE Produto ADD CONSTRAINT UQ_Produto_cod_barra UNIQUE(cod_barra);
+-- cod_barra não se repete. O problema que dois campos vazios gera problema.
+-- ALTER TABLE Produto ADD CONSTRAINT UQ_Produto_cod_barra UNIQUE(cod_barra);
 
 -- nome_produto não se repete.
 ALTER TABLE Produto ADD CONSTRAINT UQ_Produto_nome_produto UNIQUE(nome_produto);
@@ -106,8 +106,8 @@ CREATE TABLE Lote
 -- relacionamento com a tabela Produto:
 ALTER TABLE Lote ADD CONSTRAINT FK_Lote_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto);
 
--- confere se o valor digitado é maior que '0', não existe entrada negativa.
-ALTER TABLE Lote ADD CONSTRAINT CK_Lote_qtd_produto CHECK(qtd_produto > 0);
+-- confere se a quantidade é positiva não existe Lote com quantidade negativa.
+ALTER TABLE Lote ADD CONSTRAINT CK_Lote_qtd_produto CHECK(qtd_produto >= 0);
 
 -- nome_lote não se repete:
 -- ALTER TABLE Lote ADD CONSTRAINT UQ_Lote_nome_lote UNIQUE(nome_lote);
@@ -159,8 +159,8 @@ ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Lote FOREIGN KEY(id_lote
 -- relacionamento com a tabela Motivo:
 ALTER TABLE Movimentacao ADD CONSTRAINT FK_Movimentacao_Motivo FOREIGN KEY(id_motivo) REFERENCES Motivo(id_motivo);
 
--- confere se o valor digitado é maior que '0', não existe entrada negativa no estoque.
-ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_qtd_produto CHECK(qtd_produto > 0);
+-- confere se a quantidade é positiva não existe Movimentação com quantidade negativa.
+ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_qtd_produto CHECK(qtd_produto >= 0);
 
 -- o preço do produto deve ser positivo.
 -- ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_valor_unitario CHECK(valor_unitario >= 0);
@@ -195,3 +195,5 @@ CREATE TABLE Estoque_Tracking
     -- CONSTRAINT FK_EstoqueTracking_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
     CONSTRAINT UQ_EstoqueTracking UNIQUE(id_lote, id_local)
 );
+
+

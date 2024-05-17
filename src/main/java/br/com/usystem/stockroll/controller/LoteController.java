@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.usystem.stockroll.models.Estoque;
 import br.com.usystem.stockroll.models.Local;
 import br.com.usystem.stockroll.models.Lote;
 import br.com.usystem.stockroll.models.Motivo;
 import br.com.usystem.stockroll.models.Movimentacao;
 import br.com.usystem.stockroll.models.Usuario;
+import br.com.usystem.stockroll.repositories.EstoqueRepository;
 import br.com.usystem.stockroll.repositories.LoteRepository;
 import br.com.usystem.stockroll.repositories.MovimentacaoRepository;
 import br.com.usystem.stockroll.repositories.ProdutoRepository;
@@ -40,6 +42,11 @@ public class LoteController {
 
     @Autowired
     private MovimentacaoRepository movimentacaoRepository;
+
+
+    // deu erro, porque a movimentação guardou a informação da transação anterior.
+    @Autowired 
+    private EstoqueRepository estoqueRepository;     
 
 
 
@@ -87,6 +94,9 @@ public class LoteController {
     // }
 
 
+
+
+
     /*
      * 
      *  Controller para Cadastrar um Produto no Lote
@@ -96,7 +106,7 @@ public class LoteController {
 
 
     @PostMapping("cadastrar")
-    public String cadastrar(Lote lote, Principal principal) {
+    public String cadastrar(Lote lote, Principal principal) {   // Recebe os dados do lote e o Usuário ativo
 
         /*
          * Primeiro é salvo o Lote
@@ -105,8 +115,9 @@ public class LoteController {
         loteRepository.save(lote);
         
         /*
-         *  Depois é definido os campos pora inserir uma Entrada na Movimentação.
-         *  O código abaixo É uma cópia descarada da Action cadastrar de MovimentacaoController
+         *  Depois é definido os campos pora inserir uma Movimentação de Entrada no CD - Principal.
+         *  O código abaixo é uma cópia descarada da Action cadastrar de MovimentacaoController
+         *  'movimentacao/cadastrar/entrada'
          */
 
         Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
@@ -122,6 +133,18 @@ public class LoteController {
                 movimentacao.setValorUnitario(lote.getValorUnitario());
 
         movimentacaoRepository.save(movimentacao);
+
+        /*
+         * Cadastrar Lote no Estoque
+        */
+        Estoque estoque = new Estoque();
+                estoque.setLocal(new Local(1, "CD - Pricipal"));
+                estoque.setLote(lote);
+                estoque.setQuantidade(lote.getQuantidade());
+
+        estoqueRepository.save(estoque);
+
+        
         
         return "redirect:/lote";
     }
