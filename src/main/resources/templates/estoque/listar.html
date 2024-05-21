@@ -15,20 +15,20 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
+									<!-- <th scope="col">#</th> -->
 									<th scope="col">Local</th>
 									<th scope="col">Produto</th>
-									<th scope="col">Lote</th>
+									<th scope="col">Vencimento</th>
 									<th scope="col">Total</th>
 									<!-- <th scope="col" class="text-center">Detalhes</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="estoque : ${estoques}">
-									<td th:text="${estoque.id}">1</td>
-									<td th:text="${estoque.local.nome}"></td>
-									<td th:text="${estoque.lote.produto.nome}"></td>
-									<td th:text="${estoque.lote.vencimento}"></td>
+									<!-- <td th:text="${estoque.id}">1</td> -->
+									<td th:text="${estoque.id.local.nome}"></td>
+									<td th:text="${estoque.id.lote.produto.nome}"></td>
+									<td th:text="${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy')}"></td>
 									<td th:text="${estoque.quantidade}"></td>
                   <!-- <td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">

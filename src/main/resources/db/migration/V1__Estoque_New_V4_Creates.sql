@@ -183,17 +183,16 @@ ALTER TABLE Movimentacao ADD CONSTRAINT CK_Movimentacao_tipo_mov CHECK(tipo_mov 
 
 CREATE TABLE Estoque_Tracking
 (
-	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_local INT NOT NULL,
 	id_lote INT NOT NULL,
-	-- id_produto INT NOT NULL,
 	qtd_estoque INT DEFAULT 0,
-	-- data_vencimento	DATE NOT NULL,
 	
     CONSTRAINT FK_EstoqueTracking_LocalEstoque FOREIGN KEY(id_local) REFERENCES Local_Estoque(id_local),
 		CONSTRAINT FK_EstoqueTracking_Lote FOREIGN KEY(id_lote) REFERENCES Lote(id_lote),
     -- CONSTRAINT FK_EstoqueTracking_Produto FOREIGN KEY(id_produto) REFERENCES Produto(id_produto),
     CONSTRAINT UQ_EstoqueTracking UNIQUE(id_lote, id_local)
 );
+
+ALTER TABLE Estoque_Tracking ADD PRIMARY KEY (id_local, id_lote);
 
 

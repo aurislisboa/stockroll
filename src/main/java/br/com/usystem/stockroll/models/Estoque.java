@@ -2,6 +2,7 @@ package br.com.usystem.stockroll.models;
 
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,18 +23,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "Estoque_Tracking") 
 public class Estoque {
+
   
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  @EmbeddedId
+  private EstoqueId id;
 
-  @ManyToOne
-  @JoinColumn(name = "id_local")
-  private Local local;
+  // @Id
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // private Integer id;
 
-  @ManyToOne
-  @JoinColumn(name = "id_lote")
-  private Lote lote;
+  // @ManyToOne
+  // @JoinColumn(name = "id_local")
+  // private Local local;
+
+  // @ManyToOne
+  // @JoinColumn(name = "id_lote")
+  // private Lote lote;
 
   @Column(name = "qtd_estoque")
   private Integer quantidade;
