@@ -9,9 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.Produto;
-import br.com.usystem.stockroll.repositories.ProdutoRepository;
-
+import br.com.usystem.stockroll.model.Produto;
+import br.com.usystem.stockroll.repository.ProdutoRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.models;
+package br.com.usystem.stockroll.model;
 
 import java.io.Serializable;
 
@@ -16,7 +16,6 @@ import lombok.Setter;
 @EqualsAndHashCode //acho que seria preciso definir o 'id'?????
 @NoArgsConstructor
 @AllArgsConstructor
-
 
 
 @Embeddable

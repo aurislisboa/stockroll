@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.models;
+package br.com.usystem.stockroll.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

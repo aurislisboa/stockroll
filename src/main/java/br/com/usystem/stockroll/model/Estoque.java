@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.models;
+package br.com.usystem.stockroll.model;
 
 
 import jakarta.persistence.Column;
@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 
 
+/* Chave composta usando @Embeddable e @EmbeddedId */
+
 @Entity
 @Table(name = "Estoque_Tracking") 
 public class Estoque {
@@ -27,10 +29,6 @@ public class Estoque {
   
   @EmbeddedId
   private EstoqueId id;
-
-  // @Id
-  // @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // private Integer id;
 
   // @ManyToOne
   // @JoinColumn(name = "id_local")

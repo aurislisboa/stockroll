@@ -23,22 +23,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.Movimentacao;
-import br.com.usystem.stockroll.models.Perfil;
-import br.com.usystem.stockroll.models.Estoque;
-import br.com.usystem.stockroll.models.EstoqueId;
-import br.com.usystem.stockroll.models.Local;
-import br.com.usystem.stockroll.models.Lote;
-import br.com.usystem.stockroll.models.Motivo;
-import br.com.usystem.stockroll.models.Produto;
-import br.com.usystem.stockroll.models.Usuario;
-import br.com.usystem.stockroll.repositories.MovimentacaoRepository;
-import br.com.usystem.stockroll.repositories.EstoqueRepository;
-import br.com.usystem.stockroll.repositories.LocalRepository;
-import br.com.usystem.stockroll.repositories.LoteRepository;
-import br.com.usystem.stockroll.repositories.MotivoRepository;
-import br.com.usystem.stockroll.repositories.ProdutoRepository;
-import br.com.usystem.stockroll.repositories.UsuarioRepository;
+import br.com.usystem.stockroll.model.Estoque;
+import br.com.usystem.stockroll.model.EstoqueId;
+import br.com.usystem.stockroll.model.Local;
+import br.com.usystem.stockroll.model.Lote;
+import br.com.usystem.stockroll.model.Motivo;
+import br.com.usystem.stockroll.model.Movimentacao;
+import br.com.usystem.stockroll.model.Perfil;
+import br.com.usystem.stockroll.model.Produto;
+import br.com.usystem.stockroll.model.Usuario;
+import br.com.usystem.stockroll.repository.EstoqueRepository;
+import br.com.usystem.stockroll.repository.LocalRepository;
+import br.com.usystem.stockroll.repository.LoteRepository;
+import br.com.usystem.stockroll.repository.MotivoRepository;
+import br.com.usystem.stockroll.repository.MovimentacaoRepository;
+import br.com.usystem.stockroll.repository.ProdutoRepository;
+import br.com.usystem.stockroll.repository.UsuarioRepository;
 import jakarta.websocket.server.PathParam;
 
 

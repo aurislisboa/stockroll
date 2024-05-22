@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.repositories;
+package br.com.usystem.stockroll.repository;
 
 
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.com.usystem.stockroll.models.Estoque;
-import br.com.usystem.stockroll.models.EstoqueId;
+import br.com.usystem.stockroll.model.Estoque;
+import br.com.usystem.stockroll.model.EstoqueId;
 
 @Repository
 public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId> {

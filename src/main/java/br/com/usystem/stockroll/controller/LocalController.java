@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.Local;
-import br.com.usystem.stockroll.repositories.LocalRepository;
+import br.com.usystem.stockroll.model.Local;
+import br.com.usystem.stockroll.repository.LocalRepository;
 
 @Controller
 @RequestMapping("/local")

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.repositories.LoteRepository;
-import br.com.usystem.stockroll.repositories.ProdutoRepository;
+import br.com.usystem.stockroll.repository.LoteRepository;
+import br.com.usystem.stockroll.repository.ProdutoRepository;
 
 @Controller
 @RequestMapping

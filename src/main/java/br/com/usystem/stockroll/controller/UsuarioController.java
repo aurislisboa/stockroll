@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.Perfil;
-import br.com.usystem.stockroll.models.Usuario;
-import br.com.usystem.stockroll.repositories.UsuarioRepository;
+import br.com.usystem.stockroll.model.Perfil;
+import br.com.usystem.stockroll.model.Usuario;
+import br.com.usystem.stockroll.repository.UsuarioRepository;
 
 
 @Controller

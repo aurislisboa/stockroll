@@ -1,4 +1,4 @@
-package br.com.usystem.stockroll.models;
+package br.com.usystem.stockroll.model;
 
 import java.math.BigDecimal;
 import java.util.List;

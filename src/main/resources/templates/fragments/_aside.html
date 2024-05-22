@@ -23,11 +23,11 @@
       <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
         <br>
         
-        <!-- -------- Produtos ---------- -->
+        <!-- -------- Produto ---------- -->
         <li class="nav-item">
           <a th:href="@{/produto}" class="nav-link">
             <i class="nav-icon fas fa-barcode"></i>
-            <p>Produtos</p>
+            <p>Produto</p>
             <!-- <p>Produtos<i class="fas fa-angle-left right"></i></p> -->
           </a>
           <!-- <ul class="nav nav-treeview text-sm"> -->
@@ -47,11 +47,11 @@
           <!-- </ul> -->
         </li>
          
-        <!-- -------- Lotes ---------- -->
+        <!-- -------- Lote ---------- -->
         <li class="nav-item">
           <a th:href="@{/lote}" class="nav-link">
-            <i class="nav-icon fas fa-cubes"></i>
-            <p>Lotes</p>
+            <i class="nav-icon fas fa-cube"></i>
+            <p>Lote</p>
               <!-- <i class="fas fa-angle-left right"></i> -->
           </a>
           <!-- <ul class="nav nav-treeview">
@@ -171,12 +171,36 @@
             </li> 
           </ul> -->
         </li> 
+
+        <!-- -------- Quantidade Por Local ---------- -->
+        <li class="nav-item mb-1">
+          <a th:href="@{/quantidade}" class="nav-link">
+            <i class="nav-icon fas fa-balance-scale"></i>
+            <p>Quantidade</p>
+          </a>
+          <!-- <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/quantidade/cadastrar}" class="nav-link">
+                <i class="nav-icon fas fa-edit nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/quantidade}" class="nav-link">
+                <i class="fas fa-table nav-icon"></i>
+                <i class="fas fa-bars nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul> -->
+        </li>  
         
         <!-- -------- Motivos ---------- -->
         <li class="nav-item mb-1">
           <a th:href="@{/motivo}" class="nav-link">
             <!-- <i class="fas fa-table nav-icon"></i> -->
             <!-- <i class="fas fa-list nav-icon"></i> -->
+            <!-- <i class="fas fa-sign-out-alt"></i> -->
             <!-- <i class="nav-icon fas fa-barcode"></i> -->
             <!-- <i class="nav-icon fas fa-list"></i> -->
             <!-- <i class="nav-icon fas fa-briefcase"></i> -->
@@ -261,29 +285,7 @@
           </ul> -->
         </li> 
 
-        <!-- -------- Quantidade Por Local ---------- -->
-        <li class="nav-item mb-1">
-          <a th:href="@{/quantidade}" class="nav-link">
-            <i class="nav-icon fas fa-balance-scale"></i>
-            <p>Quantidade</p>
-          </a>
-          <!-- <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a th:href="@{/quantidade/cadastrar}" class="nav-link">
-                <i class="nav-icon fas fa-edit nav-icon"></i>
-                <p>Cadastrar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/quantidade}" class="nav-link">
-                <i class="fas fa-table nav-icon"></i>
-                <i class="fas fa-bars nav-icon"></i>
-                <p>Listar</p>
-              </a>
-            </li>
-          </ul> -->
-        </li>
-
+     
         <!-- -------- Quantidade Por Local ---------- -->
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">

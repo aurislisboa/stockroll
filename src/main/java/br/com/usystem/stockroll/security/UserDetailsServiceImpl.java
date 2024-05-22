@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.usystem.stockroll.models.Usuario;
-import br.com.usystem.stockroll.repositories.UsuarioRepository;
+import br.com.usystem.stockroll.model.Usuario;
+import br.com.usystem.stockroll.repository.UsuarioRepository;
 
 
 @Service

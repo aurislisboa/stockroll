@@ -22,24 +22,30 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
+									<!-- <th scope="col">#</th> -->
 									<th scope="col">Local</th>
 									<th scope="col">Produto</th>
-									<th scope="col" class="text-center">Qtd. Mínima</th>
-									<th scope="col" class="text-center">Qtd. Ideal</th>
+									<th scope="col" class="text-center">Mínimo</th>
+									<th scope="col" class="text-center">Ideal</th>
 									<th scope="col" class="text-center">Editar</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="qtd : ${quantidades}">
-									<td th:text="${qtd.id}">1</td>
+								<tr th:each="qtd : ${quantidades}"> 
+									<!-- <td th:text="${qtd.id}">1</td> -->
 									<td th:text="${qtd.local.nome}"></td>
 									<td th:text="${qtd.produto.nome}"></td>
 									<td th:text="${qtd.minimo}" class="text-center"></td>
 									<td th:text="${qtd.ideal}" class="text-center"></td>
-                  <td class="text-center py-0 align-middle">
+                  <!-- <td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">
 											<a th:href="@{/quantidade/{id} (id=${qtd.id})}" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
+										</div>
+									</td> -->
+									<td class="text-center py-0 align-middle">
+										<div class="btn-group btn-group-sm">
+												<a th:href="@{/quantidade/{localId}/{produtoId} (localId=${qtd.local.id}, produtoId=${qtd.produto.id})}" 
+														class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
 										</div>
 									</td>
 								</tr>

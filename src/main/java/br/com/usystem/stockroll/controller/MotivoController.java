@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.usystem.stockroll.models.Motivo;
-import br.com.usystem.stockroll.models.Usuario;
-import br.com.usystem.stockroll.repositories.MotivoRepository;
+import br.com.usystem.stockroll.model.Motivo;
+import br.com.usystem.stockroll.model.Usuario;
+import br.com.usystem.stockroll.repository.MotivoRepository;
 
 
 @Controller
