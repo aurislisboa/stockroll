@@ -22,12 +22,13 @@
 									</div> -->
 									<div class="card-body">
 										<ul class="list-group list-group-flush">
+												<li class="card-text list-group-item">Código de Barras:&nbsp;&nbsp;
+													<strong><span th:text="${produto.codigoBarra}"></span></strong>
+												</li>	
 												<li class="card-text list-group-item">Nome:&nbsp;&nbsp;
 													<strong><span th:text="${produto.nome}"></span></strong>
 												</li>
-												<li class="card-text list-group-item">Código de Barras:&nbsp;&nbsp;
-													<strong><span th:text="${produto.codigoBarra}"></span></strong>
-												</li>
+												
 												<!-- <li class="card-text list-group-item">Quantidade em Estoque:&nbsp;&nbsp;
 													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
 												</li>

@@ -30,4 +30,12 @@ public class Motivo {
 
     @Column(name = "nome_motivo")
     private String nome;
+
+    private Boolean tipo;
+
+    
+    public Motivo(Integer id) {
+        this.id = id;
+    }
+
 }

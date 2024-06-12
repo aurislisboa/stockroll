@@ -30,8 +30,10 @@
                   <!-- <tr th:each="qtd : ${quantidades}">  -->
                   <tr>
                     <!-- <td th:text="${qtd.id}">1</td> -->
-                    <td th:text="*{local.nome}"></td>
-                    <td th:text="*{produto.nome}"></td>
+                    <td th:text="*{id.local.nome}"></td>
+                    <td th:text="*{id.produto.nome}"></td>
+                    <input type="hidden" th:field="*{id.local}">
+                    <input type="hidden" th:field="*{id.produto}">
                     <td class="text-center"><input type="number" th:field="*{minimo}" class="text-center" placeholder="Digite a quantidade mínima para o Estoque" autofocus="true"></td>
                     <td class="text-center"><input type="number" th:field="*{ideal}" class="text-center" placeholder="Digite a quantidade ideal para o Estoque"></td>
                     <td class="text-center py-0 align-middle">

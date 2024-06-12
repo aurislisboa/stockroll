@@ -2,12 +2,11 @@ package br.com.usystem.stockroll.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -51,14 +49,13 @@ public class Lote {
     private LocalDate vencimento;
 
     
-    @Column(name = "qtd_produto", nullable = false)
-    private Integer quantidade;
+    // @Column(name = "qtd_produto", nullable = false)
+    private Integer quantidade;     // trocar esse atributo por um DTO, posteriormente.
 
 
     @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     @Column(name = "valor_unitario", nullable = true,  columnDefinition = "decimal(8,2) default '0.00'")
     private BigDecimal valorUnitario;
-
 
     
     // @OneToMany(mappedBy = "id")      // Não funcionou! Deveria listar os Estoques à partir da tabela Lote.

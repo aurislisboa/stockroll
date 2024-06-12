@@ -23,19 +23,28 @@ public class SecurityConfig {
         @Bean
         SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             
-            http.authorizeHttpRequests(authorize -> authorize
-                .anyRequest().authenticated()
-            )
-            .formLogin(login -> login
-                .loginPage("/login")
-                .defaultSuccessUrl("/estoque")
-                .permitAll()
-            )
-            .logout(logout -> logout
-            .logoutSuccessUrl("/"));
+
+            // Habilitar esse atributo para conseguir fazer o login.
+            // você deve alterar o método o getUsuarioLogadoNoSistema(Principal principal) em UsuarioService.
+    
+
+            // http.authorizeHttpRequests(authorize -> authorize
+            //     .anyRequest().authenticated()
+            // )
+            // .formLogin(login -> login
+            //     .loginPage("/login")
+            //     .defaultSuccessUrl("/estoque")
+            //     .permitAll()
+            // )
+            // .logout(logout -> logout
+            // .logoutSuccessUrl("/"));
             
+
+
+
             // .anyRequest().permitAll() 
             // .anyRequest().authenticated() 
+
 
             return http.build();
         }

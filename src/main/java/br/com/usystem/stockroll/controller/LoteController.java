@@ -2,7 +2,6 @@ package br.com.usystem.stockroll.controller;
 
 import java.security.Principal;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,31 +11,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.model.Lote;
+import br.com.usystem.stockroll.model.Movimentacao;
 import br.com.usystem.stockroll.repository.ProdutoRepository;
+import br.com.usystem.stockroll.service.EstoqueService;
 import br.com.usystem.stockroll.service.LoteService;
 import br.com.usystem.stockroll.service.MovimentacaoService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Controller
 @RequestMapping("/lote")
 public class LoteController {
     
     
-    @Autowired
     private ProdutoRepository produtoRepository;
-
-    @Autowired
     private MovimentacaoService movimentacaoService;
-    
-    @Autowired
     private LoteService loteService;
-
-
+    private EstoqueService estoqueService;
+    // private EstoqueMapper mapper;
+    
 
     @GetMapping
     public ModelAndView listar() {
         var modelAndView = new ModelAndView("lote/listar");
-            modelAndView.addObject("lotes", loteService.buscarTodosLotes());
-
+            modelAndView.addObject("estoques", estoqueService.listaLotesDoCdPrincipal());
         return modelAndView;
     }
 
@@ -45,7 +43,7 @@ public class LoteController {
     @GetMapping("/{id}")
     public ModelAndView detalhar(@PathVariable Integer id) {
         var modelAndView = new ModelAndView("lote/detalhar");
-
+        //modelAndView.addObject("estoque", estoqueService.buscarLoteDoCdPrincipalPorId(id));   //(remover)
         modelAndView.addObject("lote", loteService.buscarLotePorId(id));
         return modelAndView;
     }
@@ -58,12 +56,12 @@ public class LoteController {
         
         modelAndView.addObject("lote", new Lote());
         modelAndView.addObject("produtos", produtoRepository.findAll(Sort.by("nome")));
+        modelAndView.addObject("movimentacao", new Movimentacao());
+
         return modelAndView;
     }
 
     
-    /* Action Original para Cadastrar um Produto no Lote */
-
     // @PostMapping("cadastrar")
     // public String cadastrar(Lote lote) {
 
@@ -75,26 +73,34 @@ public class LoteController {
 
     @PostMapping("cadastrar")
     public String cadastrar(Lote lote, Principal principal) {   // Recebe os dados do lote e o Usuário logado
-
-            movimentacaoService.salvarMovimentacao(lote, principal);    
-        
+        Lote loteNovo = loteService.salvarLote(lote);           // salva o Lote e devolve o objeto cadastrado.
+        movimentacaoService.cadastrarMovimentacao(loteNovo, principal);    
         return "redirect:/lote";
     }
 
 
     
-    @GetMapping("/editar/{id}")
-    public ModelAndView editar(@PathVariable Integer id) {
-        var modelAndView = new ModelAndView("lote/formulario");
-        
-        modelAndView.addObject("lote", loteService.buscarLotePorId(id));
-        modelAndView.addObject("produtos", produtoRepository.findAll(Sort.by("nome")));
+  @GetMapping("editar/{id}")
+  public ModelAndView editar(@PathVariable Integer id) {
+    var modelAndView = new ModelAndView("/lote/editar");
+        //modelAndView.addObject("estoque", estoqueRepository.findByLocalAndLoteId(localId, loteId));
+        modelAndView.addObject("produtos", produtoRepository.findAll());        
+        modelAndView.addObject("lote", loteService.buscarLotePorId(id));        
+ 
         return modelAndView;
     }
 
-    @PostMapping("/editar/{id}")
-    public String editar(Lote lote) {
+
+    @PostMapping("editar/{id}")
+    public String editar(Lote lote) { 
+
         loteService.salvarLote(lote);
+        
+        // System.out.println("\n\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n\n"+ estoque);
+        // EstoqueId estoqueId = new EstoqueId(local, lote);
+        // Estoque estoque = new Estoque(estoqueId, 300);
+        // estoqueService.salvarEstoque(estoque);
+        //movimentacaoService.editarQuantidadeCdPrincipal(estoque);
         
         return "redirect:/lote";
     }

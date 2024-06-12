@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" lang="pt-br">
+<head>
+	<title>Relatórios</title>
+</head>
+<body>
+	<main>
+		<header class="col-sm-6">				
+			<h3 class="m-0"><i class="nav-icon fas fa-scroll"></i>&ensp;Relatórios</h3><br>
+	 	</header>				
+		<div class="row">
+			<div class="col-sm-12 col-md-10 mx-auto">
+				<div class="card card-cyan card-outline">
+					<div>
+						<div class="card-tools">
+						</div>
+					</div>
+					<div class="card-body table-responsive">
+						<table class="table table-hover">
+							<!-- <thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Produtos</th>
+								</tr>
+							</thead> -->
+							<tbody>
+								<tr> 
+									<td class="text-center"><strong>Relação de Produtos</strong></td>
+									<td class="text-center">
+										<!-- <a th:href="@{/relatorio/pdf/jr1}" target="_blank">Abrir</a>  -->
+										<!-- <a th:href="@{/relatorio/pdf/jr1(code='01', acao='d')}">Download</a> -->
+									</td>
+									<td class="text-center py-0 align-middle">
+										<div class="btn-group btn-group-sm">
+											<a th:href="@{/relatorio/produto}" class="btn btn-outline-info" target="_blank" title="Ver relatório">
+												<i class="fas fa-file-pdf"></i>
+											</a> 
+										</div>
+									</td>
+								</tr>
+								<tr> 
+									<td class="text-center"><strong>Produtos</strong></td>
+									<td class="text-center">
+										<!-- <a th:href="@{/relatorio/pdf/jr1}" target="_blank">Abrir</a>  -->
+										<!-- <a th:href="@{/relatorio/pdf/jr1(code='01', acao='d')}">Download</a> -->
+									</td>
+									<td class="text-center py-0 align-middle">
+										<div class="btn-group btn-group-sm">
+											<a th:href="@{/relatorio/produto}" class="btn btn-outline-info" target="_blank" title="Ver relatório">
+												<i class="fas fa-file-pdf"></i>
+											</a> 
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div><!--card-->
+			</div><!--col-->
+		</div><!--row-->
+	</main>
+	<th:block th:fragment="scripts">		
+	</th:block>
+</body>
+</html>

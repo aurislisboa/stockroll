@@ -4,11 +4,6 @@ package br.com.usystem.stockroll.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,14 +24,6 @@ public class Estoque {
   
   @EmbeddedId
   private EstoqueId id;
-
-  // @ManyToOne
-  // @JoinColumn(name = "id_local")
-  // private Local local;
-
-  // @ManyToOne
-  // @JoinColumn(name = "id_lote")
-  // private Lote lote;
 
   @Column(name = "qtd_estoque")
   private Integer quantidade;

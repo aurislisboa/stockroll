@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, _)}">
+<html lang="pt-br" th:replace = "~{template_base:: layout(~{::title}, ~{::main}, _, ~{::scripts})}">
 <head>
 	<title>Movimentações</title>
 </head>
@@ -11,16 +11,26 @@
 		<div class="row">
 			<div class="col-sm-12 col-md-12 mx-auto">
 				<div class="card-tools text-right">
-						<form th:action="@{/movimentacao}" method="get">
+						<!-- <form th:action="@{/movimentacao}" method="get">
 							<div class="form-group mb-3 btn-group btn-xs">			
-								<select class="custom-select rounded-0" name="local" title="Local de Armazenagem">
+								<select class="custom-select rounded-0" name="local" id="local" title="Local de Armazenagem">
 									<option th:each="local : ${locais}" th:text="${local.nome}" th:value="${local.id}"></option>
 								</select>
 								<div class="input-group-append">
 									<button class="btn btn-info btn-flat" type="submit">OK</button>
 								</div>
 							</div>
-						</form>
+						</form> -->
+						<div class="form-group mb-3 btn-group btn-xs text-sm">			
+							<select class="custom-select rounded-0" name="local" id="local" title="Local de Armazenagem">
+								<option th:each="local : ${locais}" th:text="${local.nome}" 
+												th:value="@{/movimentacao?local={id} (id=${local.id})}"  
+												th:attr="selected=${msg == local.id} ? 'selected'"></option>
+							</select>
+							<div class="input-group-append">
+								<button class="btn btn-info btn-flat" type="submit">OK</button>
+							</div>
+						</div>
 				</div>
 				<div class="card card-cyan card-outline">				
 					<!-- <div class="card-body table-responsive text-sm"> -->
@@ -30,26 +40,28 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Data</th>
+									<!-- <th></th> -->
 									<th scope="col">Movimentação</th>
 									<th scope="col">Local</th>
 									<th scope="col">Produto</th>
-									<th scope="col">Quantidade</th>
-									<th scope="col">Preço Unit.</th>
+									<th scope="col" class="text-center">Quantidade</th>
+									<!-- <th scope="col">Preço Unit.</th> -->
 									<!-- <th scope="col">Total</th> -->
 									<!-- <th scope="col">Motivo</th> -->
 									<!-- <th scope="col">Usuário</th> -->
 									<th scope="col" class="text-center">Detalhe</th>
 								</tr>
-							</thead>
+							</thead>							
 							<tbody>
 								<tr th:each="mov : ${movimentacao}">
 									<td th:text="${mov.id}">1</td>
 									<td th:text="${#temporals.format(mov.dataMovimentacao, 'dd-MM-yyyy HH:mm')}"></td>
+									<!-- <td><i class="fas fa-dollar-sign fa-chevron-up" th:if="${mov.tipoMovimentacao == 'Saida'}"></i></td> -->
 									<td th:text="${mov.tipoMovimentacao}"></td>
 									<td th:text="${mov.local.nome}"></td>
 									<td th:text="${mov.lote.produto.nome}"></td>
-									<td th:text="${mov.quantidade}"></td>
-									<td th:text="${#numbers.formatCurrency(mov.valorUnitario)}"></td>
+									<td th:text="${mov.quantidade}" class="text-center"></td>
+									<!-- <td th:text="${#numbers.formatCurrency(mov.valorUnitario)}"></td> -->
 									<!-- <td th:text="${'R$ ' + #aggregates.sum({mov.quantidade * mov.valorUnitario})}"></td> -->
 									<!-- <td th:text="${#numbers.formatCurrency( {#aggregates.sum({mov.quantidade * mov.valorUnitario})} )}"></td> -->
 									<!-- <td th:text="${mov.motivo.nome}"></td> -->
@@ -61,13 +73,27 @@
 											<!-- <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
 										</div>
 									</td>
-								</tr>
-							</tbody>
+								</tr>								
+							</tbody>							
 						</table>
+						<div th:if="${#arrays.isEmpty(movimentacao)}">
+							<h5 class="text-center mt-4">Sem Movimentação!</h5>
+						</div><!--if-->
 					</div>
 				</div><!--card-->
 			</div><!--col-->
 		</div><!--row-->
 	</main>
+	<th:block th:fragment="scripts">
+		<script>
+				const selectEl = document.getElementById('local');
+				selectEl.addEventListener('change', function() {
+						const selectedUrl = this.value;
+						if (selectedUrl) {
+								window.location.href = selectedUrl;
+						}
+				});
+		</script>
+	</th:block>
 </body>
 </html>

@@ -1,82 +1,51 @@
 package br.com.usystem.stockroll.controller;
 
-import java.math.BigDecimal;
 import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.model.Estoque;
 import br.com.usystem.stockroll.model.EstoqueId;
 import br.com.usystem.stockroll.model.Local;
 import br.com.usystem.stockroll.model.Lote;
-import br.com.usystem.stockroll.model.Motivo;
 import br.com.usystem.stockroll.model.Movimentacao;
-import br.com.usystem.stockroll.model.Perfil;
-import br.com.usystem.stockroll.model.Produto;
 import br.com.usystem.stockroll.model.Usuario;
 import br.com.usystem.stockroll.repository.EstoqueRepository;
 import br.com.usystem.stockroll.repository.LocalRepository;
 import br.com.usystem.stockroll.repository.LoteRepository;
 import br.com.usystem.stockroll.repository.MotivoRepository;
 import br.com.usystem.stockroll.repository.MovimentacaoRepository;
-import br.com.usystem.stockroll.repository.ProdutoRepository;
 import br.com.usystem.stockroll.repository.UsuarioRepository;
-import jakarta.websocket.server.PathParam;
+import br.com.usystem.stockroll.service.MovimentacaoService;
+import br.com.usystem.stockroll.service.UsuarioService;
+import lombok.AllArgsConstructor;
 
-
+@AllArgsConstructor
 @Controller
 @RequestMapping("/movimentacao")
 public class MovimentacaoController {
     
-    private final MovimentacaoRepository movimentacaoRepository;    
-    private final UsuarioRepository usuarioRepository;
-    private final ProdutoRepository produtoRepository;
-    private final MotivoRepository motivoRepository;
-    private final LocalRepository localRepository;
-    private final LoteRepository loteRepository;
-    private final EstoqueRepository estoqueRepository;
+    private MovimentacaoRepository movimentacaoRepository;    
+    private UsuarioRepository usuarioRepository;
+    private MotivoRepository motivoRepository;
+    private LocalRepository localRepository;
+    private LoteRepository loteRepository;
+    private EstoqueRepository estoqueRepository;
 
-
-    @Autowired
-    public MovimentacaoController(
-                    MovimentacaoRepository movimentacaoRepository,
-                    UsuarioRepository usuarioRepository, 
-                    ProdutoRepository produtoRepository,
-                    MotivoRepository motivoRepository,
-                    LocalRepository localRepository,
-                    LoteRepository loteRepository,
-                    EstoqueRepository estoqueRepository) {
-
-        this.movimentacaoRepository = movimentacaoRepository;                         
-        this.usuarioRepository = usuarioRepository;
-        this.produtoRepository = produtoRepository;
-        this.motivoRepository = motivoRepository;
-        this.localRepository = localRepository;
-        this.loteRepository = loteRepository;
-        this.estoqueRepository = estoqueRepository;
-    }
-
-    
-    
-
+    private MovimentacaoService movimentacaoService;   
+    private UsuarioService usuarioService;
 
 
     @ModelAttribute("locais")
@@ -89,36 +58,30 @@ public class MovimentacaoController {
     // @GetMapping()
     // public ModelAndView listar() {
     //     var modelAndView = new ModelAndView("movimentacao/listar");
-
     //     List<Movimentacao> movimentacao = movimentacaoRepository.findAll();
     //     Collections.reverse(movimentacao);
     //     modelAndView.addObject("movimentacao", movimentacao);
-        
     //     return modelAndView;
     // }
 
 
-    /*
-     * Recebe uma variável 'local' enviada como 
-     * parâmetro para filtrar o local do Estoque
-     * 
-    */
+    /* Recebe uma variável 'local' enviada como parâmetro para filtrar o local do Estoque */
 
     @GetMapping
     public ModelAndView listar(@RequestParam(required = false) Integer local) {
         var modelAndView = new ModelAndView("movimentacao/listar");
 
-        List<Movimentacao> movimentacao;
+            List<Movimentacao> movimentacao;
 
-        if(local != null) {
-            movimentacao = movimentacaoRepository.findByLocalId(local);
-        } else {
-            movimentacao = movimentacaoRepository.findAll();
-        }
+            if(local != null) {
+                movimentacao = movimentacaoService.buscarLocalPorId(local);    // filtra somente pelo local esclhido.
+            } else { 
+                movimentacao = movimentacaoService.buscarTodos(); 
+            }
         
-        Collections.reverse(movimentacao);
-        modelAndView.addObject("movimentacao", movimentacao);
-        
+            modelAndView.addObject("movimentacao", movimentacao);
+            modelAndView.addObject("msg", local);
+
         return modelAndView;
     }
 
@@ -128,7 +91,7 @@ public class MovimentacaoController {
     @GetMapping("/{id}")
     public ModelAndView detalhar(@PathVariable Long id) {
         var modelAndView = new ModelAndView("movimentacao/detalhar");
-            modelAndView.addObject("movimentacao", movimentacaoRepository.getReferenceById(id));        
+            modelAndView.addObject("movimentacao", movimentacaoService.buscarPorId(id));        
         
         return modelAndView;
     }
@@ -142,14 +105,14 @@ public class MovimentacaoController {
      * 
      * ACTIONS PARA OS QUIOSQUES
      * 
-     * Por curiosidade descobri que essas actions 
-     * não estão mais sendo usadas.
+     * Essas actions não estão mais sendo usadas.
      * Por causa que 'lote/cadastrar' faz o mesmo que elas.
      * 
      * 
     */
 
 
+/*
     // @GetMapping("/cadastrar/entrada")
     // public ModelAndView cadastrarEntrada() {
     //     var modelAndView = new ModelAndView("/movimentacao/formulario-entrada");
@@ -168,9 +131,9 @@ public class MovimentacaoController {
 
     //     return modelAndView;
     // }
+ */    
 
-
-
+/*
     // @PostMapping("/cadastrar/entrada")
     // public String cadastrarEntrada(Movimentacao movimentacao, Principal principal) {
 
@@ -185,7 +148,7 @@ public class MovimentacaoController {
         
     //     // movimentacao.setProduto(movimentacao.getLote().getProduto());  // captura o produto com base no Lote excolhido.
 
-    //     /* Atualizar a quantidade de Produto no Estoque */
+    //     // **** Atualizar a quantidade de Produto no Estoque **** //
     //     // Long produtoId = movimentacao.getProduto().getId();
     //     // Produto produto = produtoRepository.getReferenceById(produtoId);
 
@@ -198,21 +161,8 @@ public class MovimentacaoController {
         
     //     return "redirect:/movimentacao";
     // }
+*/
 
-
-    /*
-        Movimentacao(
-            id=null, 
-            local=Local(id=1, nome=Principal), 
-            usuario=Usuario(id=4, nome=admin, email=admin@gmail.com, senha=$2a$10$QkPjr9.Jj8KPL6cTF2PzA.nsBKfqiCC1PCGtC/k9pZPavjjY9zUTq, perfil=GESTOR, cadastro=2024-04-10T10:28:12), 
-            lote=Lote(id=2, produto=Produto(id=2, codigoBarra=3045140105502, nome=Chocolate Milka), nome=Chocol-Jan-2025, vencimento=2025-01-01), 
-            motivo=Motivo(id=1, nome=-), 
-            produto=Produto(id=2, codigoBarra=3045140105502, nome=Chocolate Milka), 
-            dataMovimentacao=2024-05-09, 
-            quantidade=10, 
-            valorUnitario=8.00, 
-            tipoMovimentacao=Entrada)
-    */
 
 
 /*
@@ -226,229 +176,101 @@ public class MovimentacaoController {
  * 
 */
 
+    /* Cadastra uma ENTRADA no ESTOQUE via GET. --- ID do LOTE */
 
     @GetMapping("/cadastrar/entrada/{id}")
-    public ModelAndView cadastrarEntradaViaTransferencia(@PathVariable Integer id) {
+    public ModelAndView cadastrarEntradaPorLote(@PathVariable Integer id) {    // id do LOTE. 
         var modelAndView = new ModelAndView("/movimentacao/formulario-entrada");
 
-            Movimentacao movimentacao = new Movimentacao();                    
-                         movimentacao.setTipoMovimentacao("Entrada");  // (remover) trava como uma Entrada
-                      // movimentacao.setMotivo(new Motivo(1, "-"));
+        Movimentacao movimentacao = new Movimentacao();                    
+                        //  movimentacao.setDataMovimentacao(LocalDateTime.now());
+                        //  movimentacao.setTipoMovimentacao("Entrada");  // (remover) trava como uma Entrada
+                      // movimentacao.setMotivo(new Motivo(1, "-")); 
 
             modelAndView.addObject("movimentacao", movimentacao);                       // campos necessários para realizar uma movimentação.
-            modelAndView.addObject("usuarios", usuarioRepository.findAll());            // (remover) este objeto, pois o Security que devolve o nome.
+            // modelAndView.addObject("usuarios", usuarioRepository.findAll());            // (remover) este objeto, pois o Security que devolve o nome.
             var locais = localRepository.findAll(Sort.by("id"));                        // recupera sempre ordenado pelo 'id'
                 locais.remove(0);                                                 // o CD-Principal não é exibido para o Usuário.
             modelAndView.addObject("locais", locais);                       
-            modelAndView.addObject("lotes", loteRepository.getReferenceById(id));       // recupera o lote que o usuário enviou no parâmetro.
+            // modelAndView.addObject("lotes", loteRepository.getReferenceById(id));       // recupera o lote que o usuário enviou no parâmetro.
+            Lote lote = loteRepository.getReferenceById(id);
+            EstoqueId estoqueId = new EstoqueId(new Local(1, "CD-Principal"), lote);
+            modelAndView.addObject("estoques", estoqueRepository.getReferenceById(estoqueId));       // recupera o lote que o usuário enviou no parâmetro.
             // modelAndView.addObject("produtos", produtoRepository.findAll());         // O lote já possui o nome do produto.
+            // modelAndView.addObject("msg", id);                                          // ajuda o JavaScript escolher
 
         return modelAndView;
     }
 
 
+    /* Cadastra uma ENTRADA no ESTOQUE via POST. --- ID do LOTE */
 
     @PostMapping("/cadastrar/entrada/{id}")
-    public String cadastrarEntradaViaTransferencia(Movimentacao movimentacao, Principal principal, @PathVariable Integer id) { // fui obrigado a incluir o 'id', o VSCode não estava aceitando.
+    public String cadastrarEntradaPorLote(Movimentacao movimentacao, Principal principal, @PathVariable Integer id) { // id do LOTE.  // fui obrigado a incluir o 'id', o VSCode reclamou.
 
-        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow(); // retorna o usuário logado no sistema.
-        
-        movimentacao.setId(null);                                            // Cria sempre um novo registro e não permite atualização do 'id'.
-        movimentacao.setUsuario(usuario);                                       // usuário que fez a movimentação.
-        movimentacao.setDataMovimentacao(LocalDateTime.now());                  // data que foi feita a movimentação.
-        movimentacao.setTipoMovimentacao("Entrada");           // trava como uma Entrada.
-        movimentacao.setMotivo(new Motivo(1, "-"));                     // trava como '-' porque não é uma 'devolução' ou 'descarte'
-        
-        Lote lote = movimentacao.getLote();                                     // Captura informações do Lote desta Movimentação.
-        movimentacao.setValorUnitario(lote.getValorUnitario());                 // (remover) retorna o preço desse produto e copia para preço na Movimentação. 
-        
-        // movimentacao.setQuantidade();                                        // foi informado pelo usuário.
-        // movimentacao.setValorUnitario();                                     // foi informado pelo usuário.
-
-        // movimentacao.setProduto(movimentacao.getLote().getProduto());        // (remover) captura o produto com base no Lote excolhido.
-
-        /* Atualizar a quantidade de Produto no Estoque */
-        // Long produtoId = movimentacao.getProduto().getId();
-        // Produto produto = produtoRepository.getReferenceById(produtoId);
-
-        //     produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() + movimentacao.getQuantidade());
-        // movimentacao.setPreco(produto.getValorUnitario());
-
-        // System.out.printf("\n\n --------\n\n %s \n\n-------- \n\n", movimentacao);
-        // produtoRepository.save(produto);
-       
-
-        /* Diminui a quantidade de produtos na tabela 'Lote' */
-
-        Integer diferenca = lote.getQuantidade() - movimentacao.getQuantidade();  // subtrai da quantidade do 'Lote' o total informado pelo usuário nessa 'transferência'.
-        lote.setQuantidade(diferenca);                                            // define o novo total de produtos no 'Lote'.
-
-        
-        /* ------------------------------------------------------------------------ */
-
-
-        /* Diminui a quantidade de produtos no Estoque: 'CD - Principal' */
-        
-       EstoqueId estoqueId2 = new EstoqueId();                                  // inicializa um novo Id composto por (id_local, id_lote)
-                 estoqueId2.setLocal(new Local(1, "CD - Principal"));   // acessa somente o CD-Principal
-                 estoqueId2.setLote(lote);                                      // que tenha esse lote
-       
-       Estoque estoqueCdPrincipal = estoqueRepository.getReferenceById(estoqueId2); // recupera os dados desse 'lote' no 'Cd-Principal'
-       Integer qtdCdPrincipal = estoqueCdPrincipal.getQuantidade();                 // recupera a quantidade em estoque.
-       Integer novaQtdCdPrincipal = qtdCdPrincipal - movimentacao.getQuantidade();  // subtrai a quantidade do Estoque. 
-
-               estoqueCdPrincipal.setQuantidade(novaQtdCdPrincipal);            // atualiza o Estoque com a nova quantidade.
-
-
-        /* ------------------------------------------------------------------------ */
-
-
-        /* Adiciona uma nova quantidade de produtos na tabela Estoque: 'Quiosque' */
-
-        EstoqueId estoqueId = new EstoqueId();                                   // inicializa o Id composto de duas chaves estrangeiras (id_local, id_lote)
-                  estoqueId.setLocal(movimentacao.getLocal());                   // define o local da movimentação atual.
-                  estoqueId.setLote(lote);                                       // define o lote  da movimentação atual.
-
-        
-
-        if(!estoqueRepository.existsById(estoqueId)) {
-
-            /* Cadastra um novo campo na tabela Estoque com a quantidade do Quiosque Atual */
-
-            Estoque estoque = new Estoque();
-                    estoque.setId(estoqueId);                                       // recebe a chave estrangeira (id_local, id_lote)
-                    estoque.setQuantidade(movimentacao.getQuantidade());   // <---- meio estranho     // define a quantidade para o Quiosque. 
-            estoqueRepository.save(estoque);
-
-        } else {
-        
-            /* Atualiza a quantidade do Quiosque Atual caso ele já exista. */
-                
-            Estoque estoqueQuiosque = estoqueRepository.getReferenceById(estoqueId); // recupera os dados deste 'lote' no 'Quiosque' escolhido
-            Integer qtdQuiosque = estoqueQuiosque.getQuantidade();                   // recupera a quantidade em estoque.
-            Integer novaQtdQuiosque = qtdQuiosque + movimentacao.getQuantidade();    // soma (+) a quantidade do Estoque. 
-
-                    estoqueQuiosque.setQuantidade(novaQtdQuiosque);     // <---- meio estranho     // atualiza o Quiosque com a nova quantidade.
-                    //estoqueRepository.save(estoqueQuiosque); <---- provavelmente esteja faltando o save.
+        if (id == null) {
+            return "redirect:/lote";                // Criar uma mensagem de erro, ou devolver um page: 404
         }
 
-        /* ------------------------------------------------------------------------ */
-
-        
-
-                movimentacaoRepository.save(movimentacao);
+        movimentacaoService.cadastrarEntradaNoQuiosqueViaTransferencia(movimentacao, principal);
         
         return "redirect:/lote";
     }
 
 
-    /*
-        
-        Estoque (
-             id = EstoqueId(local=Local(id=1, nome=CD - Principal), 
-             lote = Lote(id=4, produto=Produto(id=1, codigoBarra=0000000000001, nome=Leite Jussara), vencimento=2024-06-10, quantidade=50, valorUnitario=1.00)), 
-             quantidade=100
-             )
 
-    */
+    /* Cadastra uma Saída do Quiosque via GET. --- ID do Local */
 
-    /*
-     
-        Movimentacao (
-            id=1,      <---- ONDE ESTÁ O ERRO!!!! (por isso que sempre atualizava ao invés de cadastrar novo)
-            local=Local(id=2, nome=Tatuapé), 
-            usuario=Usuario(id=4, nome=admin, email=admin@gmail.com, senha=$2a$10$QkPjr9.Jj8KPL6cTF2PzA.nsBKfqiCC1PCGtC/k9pZPavjjY9zUTq, 
-            perfil=GESTOR, 
-            cadastro=2024-04-10T10:28:12), 
-            lote=Lote(
-                        id=1, 
-                        produto=Produto(id=1, codigoBarra=0000000000001, nome=Leite Jussara), 
-                        vencimento=2024-07-20, 
-                        quantidade=100, 
-                        valorUnitario=1.00
-                      ), 
-            motivo=Motivo(id=1, nome=-), 
-            dataMovimentacao=2024-05-17T07:13:46.731512500, 
-            quantidade=50, 
-            valorUnitario=1.00, 
-            tipoMovimentacao=Entrada
-          )
-
-    */
-
-
-
-
-
-
-    @GetMapping("/cadastrar/saida")
-    public ModelAndView cadastrarSaida() {
+    @GetMapping("/cadastrar/saida/{id}")        
+    public ModelAndView cadastrarSaida(@PathVariable(required = false) Integer id) {     // id do LOCAL do Quiosque. 
         var modelAndView = new ModelAndView("/movimentacao/formulario-saida");
+         
+        if(id == 1 || id == null) {                               // restringe o acesso ao id=1 (estoque principal)
+            throw new ResourceAccessException("Página não encontrada!");
+        }
 
         Movimentacao movimentacao = new Movimentacao();
-                movimentacao.setDataMovimentacao(LocalDateTime.now());
+                movimentacao.setDataMovimentacao(LocalDateTime.now());                  
                 movimentacao.setTipoMovimentacao("Saida");
                 
 
             modelAndView.addObject("movimentacao", movimentacao);
-            modelAndView.addObject("usuarios", usuarioRepository.findAll());
+            modelAndView.addObject("usuarios", usuarioRepository.findAll());                // (remover) o spring security já devolve o usuário logado.
             // modelAndView.addObject("lotes", loteRepository.findAll(Sort.by("produto.nome")));
-            modelAndView.addObject("lotes", loteRepository.findAll());
+            modelAndView.addObject("lotes", loteRepository.findAll());                      // (remover) acho que não está sendo mais usado.
             modelAndView.addObject("motivos", motivoRepository.findAll());
             // modelAndView.addObject("estoques", estoqueRepository.findAll(Sort.by("id.lote.produto.nome")));
             // List<Estoque> estoques = estoqueRepository.findByQuantidadeGreaterThan(0);
-            List<Estoque> estoques = estoqueRepository.findAllEstoqueMaiorQueZeroAndOrderByProduto();
+            // List<Estoque> estoques = estoqueRepository.findAllEstoqueMaiorQueZeroAndOrderByProduto();
+            List<Estoque> estoques = estoqueRepository
+                  .procuraPeloLocalComQuantidadeMaiorQueZeroEOrdenaPeloNomeDoProduto(id);   // Procura por esse Local específico no Estoque.
             modelAndView.addObject("estoques", estoques);
-            var locais = localRepository.findAll(Sort.by("id"));
-                locais.remove(0);                           //  O Centro de Distribuição não é listado.
-            modelAndView.addObject("locais", locais);                       
+            
+            var locais = localRepository.findAll(Sort.by("id"));                            // para usar esse bloco é preciso habilitar o JavaScript.
+                locais.remove(0);                                                     //  O Centro de Distribuição não pode ser listado.
+            modelAndView.addObject("locais", locais);   
+            
+            // modelAndView.addObject("locais", localRepository.getReferenceById(id));      // caso o acesso seja feito por um botão único.
+            modelAndView.addObject("msg", id);                                              // usado no <option> para comparar se está 'selected'.
 
         return modelAndView;
     }
 
 
-   
-/*
- 
-    [
-        Estoque(
-            id=EstoqueId(
-                local=Local(id=1, nome=CD - Principal), 
-                lote=Lote(id=1, produto=Produto(id=1, codigoBarra=0000000000001, nome=Leite Jussara), vencimento=2024-10-10, quantidade=0, valorUnitario=1.00)), 
-                quantidade=0),             
-        Estoque(
-            id=EstoqueId(local=Local(id=1, nome=CD - Principal), 
-                lote=Lote(id=5, produto=Produto(id=2, codigoBarra=0303939390, nome=Pão de Queijo), vencimento=2024-10-10, quantidade=1000, valorUnitario=2.00)), 
-                quantidade=1000),  
-        Estoque(
-            id=EstoqueId(local=Local(id=3, nome=Aricanduva), 
-                lote=Lote(id=3, produto=Produto(id=2, codigoBarra=0303939390, nome=Pão de Queijo), vencimento=2020-02-20, quantidade=0, valorUnitario=4.00)), 
-                quantidade=100)
-     ]
-
- */
 
 
 
-    @PostMapping("/cadastrar/saida")
-    public String cadastrarSaida(Movimentacao movimentacao, Principal principal) {
+    /* Cadastra uma Saída do Quiosque via POST. --- ID do Local */
+
+    @PostMapping("/cadastrar/saida/{id}")
+    public String cadastrarSaida(Movimentacao movimentacao, Principal principal, @PathVariable(required = false) Integer id) {   // id do LOCAL do Estoque
             
-        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
+            if(id == 1) throw new DataIntegrityViolationException("Você não tem acesso a essa página!");  // id do CD-Principal
 
-        movimentacao.setUsuario(usuario);
-        movimentacao.setDataMovimentacao(LocalDateTime.now());
-        movimentacao.setTipoMovimentacao("Saida");
-
-        // Long produtoId = movimentacao.getProduto().getId();
-        // Produto produto = produtoRepository.getReferenceById(produtoId);
-            // produto.setQtdAtualEstoque(produto.getQtdAtualEstoque() - movimentacao.getQuantidade());
-        // movimentacao.setPreco(produto.getValorUnitario());
+            movimentacaoService.cadastrarSaidaDoQuiosque(movimentacao, principal);
         
-        movimentacaoRepository.save(movimentacao);
-        
-        return "redirect:/movimentacao";
+        return "redirect:/movimentacao/cadastrar/saida/"+id;              // retorna para a tela o id do local do quiosque.
     }
-
 
 
 
@@ -458,6 +280,8 @@ public class MovimentacaoController {
      * 
      * ACTIONS EXCLUSIVAS PARA O CENTRO DE DISTRIBUIÇÃO
      * 
+     * A Action LOTE já faz tudo isso!
+     * Provavelmente não serão mais usada essas Actions.
      * 
     */
 
@@ -473,21 +297,24 @@ public class MovimentacaoController {
             modelAndView.addObject("usuarios", usuarioRepository.findAll());
             modelAndView.addObject("locais", localRepository.findAll());
             modelAndView.addObject("lotes", loteRepository.findAll(Sort.by("produto.nome")));
+            modelAndView.addObject("motivos", motivoRepository.findAll());
 
         return modelAndView;
     }
 
 
 
+    /* Não está salvando no banco. Essa action não será mais usada */
+
     @PostMapping("/cadastrar/entrada-cd")
     public String cadastrarEntradaCentroDistribuicao(Movimentacao movimentacao, Principal principal) {
 
-        Usuario usuario = usuarioRepository.findByEmail(principal.getName()).orElseThrow();
+        Usuario usuario = usuarioService.getUsuarioLogadoNoSistema(principal);
 
         movimentacao.setUsuario(usuario);
         movimentacao.setDataMovimentacao(LocalDateTime.now());
         movimentacao.setTipoMovimentacao("Entrada");
-        movimentacao.setMotivo(new Motivo(1, "-"));        
+        // movimentacao.setMotivo(new Motivo(1, "-"));        
         movimentacao.setLocal(new Local(1, "CD.Principal"));
         
         movimentacaoRepository.save(movimentacao);

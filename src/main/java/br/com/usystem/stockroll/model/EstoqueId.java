@@ -8,15 +8,15 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
-@EqualsAndHashCode //acho que seria preciso definir o 'id'?????
+@EqualsAndHashCode        //conferir se preciso definir o 'id'?????
 @NoArgsConstructor
 @AllArgsConstructor
 
+
+/* Chave composta usando @Embeddable e @EmbeddedId */
 
 @Embeddable
 public class EstoqueId implements Serializable {
@@ -27,8 +27,6 @@ public class EstoqueId implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "id_lote")
-  private Lote lote;
-
-  
+  private Lote lote; 
 
 }

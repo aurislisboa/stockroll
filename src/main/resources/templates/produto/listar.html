@@ -12,6 +12,7 @@
 <body>
    <!-- <main class="container"> -->
    <main>
+      
       <header class="col-sm-6">				
          <h3 class="m-0"><i class="nav-icon fas fa-barcode"></i>&ensp;Produtos</h3><br>
       </header>			
@@ -36,7 +37,7 @@
                               <tr>
                                  <th scope="col">#</th>
                                  <th scope="col">Nome</th>
-                                 <th scope="col">Cód. de Barra</th>
+                                 <th scope="col">Cód. de Barras</th>
                                  <th scope="col" class="text-center">Detalhe</th>
                                  <!-- <th scope="col">Valor</th> -->
                                  <!-- <th scope="col">Estoque</th> -->
@@ -67,7 +68,7 @@
                   <br>
                   <div class="row col-sm-10 col-md-10">
                      <div class="col-sm-2 col-md-2">
-                        Total de produtos: [[${totalItems}]]
+                        <span>Total:&ensp;<strong>[[${totalItems}]]</strong></span>
                      </div>
                      <div class="col-sm-1 col-md-1">
                         <!-- <a th:if="${currentPage != i}" th:href="@{'/produto/page/' + ${i}}">[[${i}]]</a> -->

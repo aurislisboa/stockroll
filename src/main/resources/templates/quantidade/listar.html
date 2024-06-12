@@ -33,8 +33,10 @@
 							<tbody>
 								<tr th:each="qtd : ${quantidades}"> 
 									<!-- <td th:text="${qtd.id}">1</td> -->
-									<td th:text="${qtd.local.nome}"></td>
-									<td th:text="${qtd.produto.nome}"></td>
+									<!-- <td th:text="${qtd.local.nome}"></td> -->
+									<!-- <td th:text="${qtd.produto.nome}"></td> -->
+									<td th:text="${qtd.id.local.nome}"></td>
+									<td th:text="${qtd.id.produto.nome}"></td>
 									<td th:text="${qtd.minimo}" class="text-center"></td>
 									<td th:text="${qtd.ideal}" class="text-center"></td>
                   <!-- <td class="text-center py-0 align-middle">
@@ -44,7 +46,7 @@
 									</td> -->
 									<td class="text-center py-0 align-middle">
 										<div class="btn-group btn-group-sm">
-												<a th:href="@{/quantidade/{localId}/{produtoId} (localId=${qtd.local.id}, produtoId=${qtd.produto.id})}" 
+												<a th:href="@{/quantidade/{localId}/{produtoId} (localId=${qtd.id.local.id}, produtoId=${qtd.id.produto.id})}" 
 														class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
 										</div>
 									</td>

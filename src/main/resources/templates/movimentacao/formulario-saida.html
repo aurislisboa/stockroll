@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, _)}">
+<html lang="pt-br" th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +7,90 @@
 </head>
 <body>
 	<main>
-		<div class="col-sm-6">				
-			<h3 class="m-0"><i class="nav-icon fas fa-upload"></i>&ensp;Registrar Saída do Quiosque</h3>
+		<div class="col-sm-6">
+			<h3 class="m-0"><i class="nav-icon fas fa-upload"></i>&ensp;Registrar Saída do Quiosque  
+				<strong th:each="item : ${locais}" th:text="${item.nome}" th:if="${item.id == msg}"></strong>
+			</h3>
 			<br><br>
 		</div><!-- /.col -->			
 		<div class="row">
 			<div class="col-sm-12 col-md-8 mx-auto">
 				<div class="card card-cyan card-outline">
-					<div>
-					<!-- <div class="card-header">
-						<h5 class="card-title">Saída de Quiosque</h5> -->
-					</div>
 					<form method="post" th:object="${movimentacao}">
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						<div class="card-body">
+
 							<div class="form-group">
+								<label for="local">Local:</label>
+								<select class="form-control custom-select" th:field="*{local}" title="Local de Armazenagem">
+									<option th:each="local : ${locais}" th:text="${local.nome}" th:value="${local.id}"
+													th:classappend="${local.id == msg} ? 'selected'"
+													th:attrappend="selected=${local.id == msg} ? 'selected'"></option></span>
+								</select>
+							</div>
+							<div th:if="${#arrays.isEmpty(estoques)}">
+								<h5 class="text-center mt-4">Estoque vazio!</h5>
+							</div><!--if-->
+							<div th:unless="${#arrays.isEmpty(estoques)}" class="mt-3">
+									<div class="form-group">
+									<label for="lote">Produto &emsp;|&emsp; Lote &emsp;|&emsp; Estoque:</label>
+									<select class="form-control custom-select" th:field="*{lote}" title="Estoque do Produto">
+										<!-- <option th:each="estoque : ${estoques}"  th:text="${estoque.id.lote.produto.nome} +' | '+ ${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy') +' | '+ ${estoque.quantidade}}" th:value="${estoque.id.lote.id}"></option> -->
+										<option th:each="estoque : ${estoques}" 
+													th:text="${estoque.id.lote.produto.nome} +'&ensp; | &ensp;'+ 
+															${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy')} +'&ensp; | &ensp;'+ 
+															${estoque.quantidade}" th:value="${estoque.id.lote.id}"></option>
+										<!-- <option th:each="estoque : ${estoques}" th:text="${estoque.quantidade}" th:value="${estoque.id.lote.id}"></option> -->
+									</select>	
+									</div>	
+									
+									<div class="form-group">
+										<label for="quantidade">Quantidade:</label>
+										<input type="number" class="form-control" th:field="*{quantidade}" min="1" required title="Quantidade" placeholder="Digite a quantidade de produtos">
+									</div>
+
+									<div class="form-group">
+										<label for="motivo">Motivo:</label>
+										<select class="form-control custom-select" th:field="*{motivo}" title="Selecione uma motivo de saída">
+											<option th:each="mot : ${motivos}" th:text="${mot.nome}" th:value="${mot.id}"></option>
+										</select>
+									</div>
+							</div><!--unless-->
+							
+<div th:remove="all">
+
+								<!-- essa é a tag original funciona normalmente -->
+							<!-- <div class="form-group">
 								<label for="local">Local:</label>
 								<select class="form-control custom-select" th:field="*{local}" title="Local de Armazenagem">
 									<option th:each="local : ${locais}" th:text="${local.nome}" th:value="${local.id}"></option>
 								</select>
-							</div>
-							<div class="form-group">
-								<label for="lote">Produto &emsp;|&emsp; Lote &emsp;|&emsp; Estoque:</label>
-								<select class="form-control custom-select" th:field="*{quantidade}" title="Estoque do Produto">
-									<!-- <option th:each="estoque : ${estoques}"  th:text="${estoque.id.lote.produto.nome} +' | '+ ${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy') +' | '+ ${estoque.quantidade}}" th:value="${estoque.id.lote.id}"></option> -->
-									<option th:each="estoque : ${estoques}" 
-												th:text="${estoque.id.lote.produto.nome} +'&ensp; | &ensp;'+ 
-														${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy')} +'&ensp; | &ensp;'+ 
-														${estoque.quantidade}" th:value="${estoque.id.lote.id}"></option>
-									<!-- <option th:each="estoque : ${estoques}" th:text="${estoque.quantidade}" th:value="${estoque.id.lote.id}"></option> -->
-								</select>	
-							</div>	
-							<div class="form-group">
-								<label for="quantidade">Quantidade:</label>
-								<input type="number" class="form-control" th:field="*{quantidade}" min="1" required title="Quantidade" placeholder="Digite a quantidade de produtos">
-							</div>
-							<div class="form-group">
-								<label for="motivo">Motivo</label>
-								<select class="form-control custom-select" th:field="*{motivo}" title="Selecione uma motivo de saída">
-									<option th:each="mot : ${motivos}" th:text="${mot.nome}" th:value="${mot.id}"></option>
+							</div> -->
+
+							<!-- É preciso preciso remover o th:field se não vai dar erro na hora de fazer o th:attr. -->
+							<!-- <div class="form-group">
+								<label for="local">Local:</label>
+								<select class="custom-select" name="local" id="local" title="Local de Armazenagem">
+									<option th:each="local : ${locais}" th:text="${local.nome}" 
+													th:value="@{/movimentacao/cadastrar/saida/{id} (id=${local.id})}" 
+													th:attr="selected=${local.id == msg} ? 'selected'"
+													th:classappend="${local.id == msg} ? 'selected'"></option>
 								</select>
-							</div>
+							</div> -->
+
+							<!-- Não funcionou porque o Java não aceita o Value com: /movimentacao/cadastrar/saida/{id}. Precisa ser o valor do Id. -->
+							<!-- <div class="form-group">
+								<label for="local">Local:</label>
+								<select class="custom-select" th:field="*{local}" title="Local de Armazenagem">
+									<option th:each="loc : ${locais}" th:text="${loc.nome}" 
+													th:value="@{/movimentacao/cadastrar/saida/{id} (id=${loc.id})}" 
+													th:attr="selected=${loc.id == return} ? 'selected'"
+													th:attrappend="selected=${loc.id == return} ? 'selected'"
+													th:classappend="${loc.id == return} ? 'selected'"></option>
+								</select>
+							</div> -->
+
+							<!-- Tags não mais utilizadas -->
 							<!-- <div class="form-group">
 								<label for="lote">Produto | Lote:</label>
 								<select class="form-control custom-select" th:field="*{lote}" title="Lote do Produto">
@@ -90,6 +133,7 @@
 							<label for="valorUnitario">Preço:</label>
 							<input type="number" class="form-control" th:field="*{preco}" step="0.01" required>
 						</div>  -->
+</div>
 						</div><!--card-body-->
 						<div class="card-footer text-right">
 							<button type="submit" class="btn btn-success">Salvar</button>
@@ -100,4 +144,31 @@
 		</div>
 	</main>
 </body>
+<th:block th:fragment="scripts">
+	<script>
+		/* Redirecionamento com Select: Quando houver a troca de opção na <option> será feita uma nova requisição via URL */
+
+		const selectEl = document.getElementById('local');
+		selectEl.addEventListener('change', function() {
+				const selectedUrl = this.value;
+				if (selectedUrl) {
+						window.location.href = selectedUrl;
+				}
+		});
+	</script>
+	<script>
+		/* Procura pelo atributo class="selected" e adiciona o atributo 'selected' para deixar a option selecionada. */
+
+		// Seleciona todos os elementos com a classe "selected"
+    var selectedElements = document.querySelectorAll('.selected');
+    		selectedElements.forEach(function(element) {
+        
+				// Remove a classe "selected"
+        // element.classList.remove('selected');
+        
+				// Adiciona o atributo "selected"
+				element.setAttribute('selected', '');
+    });
+	</script>
+	</th:block>
 </html>

@@ -1,268 +1,85 @@
 <!DOCTYPE html>
-<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, ~{::styles}, ~{::scripts})}" lang="pt-br">
 <head>
+	<th:block th:fragment="styles">
+	<style>
+					span i {
+						transition: transform 0.5s ease;
+					}
+					span i:hover {
+							transform: scale(1.3);
+					}
+	</style>
+	<style type="text/css">
+				/* Chart.js */
+			@keyframes chartjs-render-animation {
+				from {
+						opacity: 0.99;
+				}
+				to {
+						opacity: 1;
+				}
+			}
+			.chartjs-render-monitor {
+				animation: chartjs-render-animation 1ms;
+			}
+			.chartjs-size-monitor,
+			.chartjs-size-monitor-expand,
+			.chartjs-size-monitor-shrink {
+				position: absolute;
+				direction: ltr;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				overflow: hidden;
+				pointer-events: none;
+				visibility: hidden;
+				z-index: -1;
+			}
+			.chartjs-size-monitor-expand > div {
+				position: absolute;
+				width: 1000000px;
+				height: 1000000px;
+				left: 0;
+				top: 0;
+			}
+			.chartjs-size-monitor-shrink > div {
+				position: absolute;
+				width: 200%;
+				height: 200%;
+				left: 0;
+				top: 0;
+			}
+	</style>
+	</th:block>
 	<title>Dashboard</title>
 </head>
 <body>
 	<main>
 		<div class="container-fluid">
-				<!-- <div class="row">
+				<div class="row">
 						<div class="col-sm-12">
 								<h1>Bem vindo ao StockRoll</h1>
 						</div>
-				</div> -->
-				<!-- https://ionic.io/ionicons -->
-				<!-- https://fontawesome.com -->
-				<div class="row">
-						<div class="col-lg-3 col-6">
-							<div class="small-box bg-info">
-									<div class="inner">
-										<h3 th:text="${totalEstoque}"></h3>
-										<p>Total de Produtos</p>
-									</div>
-									<div class="icon">
-										<!-- <i class="ion ion-bag"></i> -->
-										<i class="nav-icon fas fa-cubes"></i>
-									</div>
-									<a th:href="@{/quantidade}" class="small-box-footer">Mais Info 
-										<i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-6">
-							<div class="small-box bg-success">
-									<div class="inner">
-										<h3>53<sup style="font-size: 20px">%</sup></h3>
-										<p>Taxa de Vendas</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-stats-bars"></i>
-									</div>
-									<a th:href="@{/#}" class="small-box-footer">Mais info 
-										<i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-6">
-							<div class="small-box bg-warning">
-									<div class="inner">
-										<!-- <h3 th:text="${'R$ ' + valorEstoque}">44</h3> -->
-										<h3 th:text="${#numbers.formatCurrency(valorEstoque)}">44</h3>
-										<p>Valor do Estoque</p>
-									</div>
-									<div class="icon">
-										<!-- <i class="ion ion-person-add"></i> -->
-										<i class="ion ion-cash"></i>
-									</div>
-									<a th:href="@{/estoque}" class="small-box-footer">Mais info 
-										<i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-6">
-							<div class="small-box bg-danger">
-									<div class="inner">
-										<h3>65</h3>
-										<p>Unique Visitors</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-pie-graph"></i>
-									</div>
-									<a th:href="@{/#}" class="small-box-footer">Mais info 
-										<i class="fas fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-				</div><!--row-->
+				</div>		
 
-				<h5 class="mb-2"><strong>Tatuapé</strong></h5>	
-				<div class="row">
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Produtos</span>
-									<span class="info-box-number">1,410</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Bookmarks</span>
-									<span class="info-box-number">410</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Uploads</span>
-									<span class="info-box-number">13,648</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-							<span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Likes</span>
-									<span class="info-box-number">93,139</span>
-								</div>
-							</div>
-						</div>						
-				</div>
+			
 
-				<h5 class="mb-2"><strong>Aricanduva</strong></h5>	
-				<div class="row">
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Produtos</span>
-									<span class="info-box-number">1,410</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Bookmarks</span>
-									<span class="info-box-number">410</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Uploads</span>
-									<span class="info-box-number">13,648</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-							<span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Likes</span>
-									<span class="info-box-number">93,139</span>
-								</div>
-							</div>
-						</div>						
-				</div>
+					
 
-				<div class="row">
-						<div class="col-lg-6 mx-auto">
-							<div class="card">
-									<div class="card-header border-0">
-										<div class="d-flex justify-content-between">
-												<h3 class="card-title">Vendas</h3>
-												<a href="javascript:void(0);">Ver Relatório</a>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="d-flex">
-												<p class="d-flex flex-column">
-													<span class="text-bold text-lg">R$ 18.230,00</span>
-													<span>Vendas ao longo do tempo</span>
-												</p>
-												<p class="ml-auto d-flex flex-column text-right">
-													<span class="text-success">
-															<i class="fas fa-arrow-up"></i> 33.1%
-													</span>
-													<span class="text-muted">Desde o último mês</span>
-												</p>
-										</div>
-										<div class="position-relative mb-4">
-												<canvas id="sales-chart" height="200"></canvas>
-										</div>
-										<div class="d-flex flex-row justify-content-end">
-												<span class="mr-2">
-													<i class="fas fa-square text-primary"></i> Este Ano
-												</span>
-												<span>
-													<i class="fas fa-square text-gray"></i> Ano Passado
-												</span>
-										</div>
-									</div><!--card-body-->
-							</div><!--card-->
-						</div>
-						<div class="col-lg-6">
-							<img src="/img/grafico.png" alt="como será a implementação do gráfico"/>
-						</div>
-				</div><!--row-->
-
-				<div class="row">
-						<div class="col-md-6 col-6">
-						<div class="card">
-							<div class="card-header">
-									<h3 class="card-title">Produtos próximos do vencimento</h3>
-							</div>
-							<div class="card-body p-0">
-									<table class="table table-sm">
-										<thead>
-												<tr>
-													<th style="width: 10px">#</th>
-													<th>Produto</th>
-													<th>Progresso</th>
-													<th style="width: 40px">Taxa</th>
-												</tr>
-										</thead>
-										<tbody>
-												<tr>
-													<td>1.</td>
-													<td>Update software</td>
-													<td>
-															<div class="progress progress-xs">
-																<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-															</div>
-													</td>
-													<td><span class="badge bg-danger">55%</span></td>
-												</tr>
-												<tr>
-													<td>2.</td>
-													<td>Clean database</td>
-													<td>
-															<div class="progress progress-xs">
-																<div class="progress-bar bg-warning" style="width: 70%"></div>
-															</div>
-													</td>
-													<td><span class="badge bg-warning">70%</span></td>
-												</tr>
-												<tr>
-													<td>3.</td>
-													<td>Cron job running</td>
-													<td>
-															<div class="progress progress-xs progress-striped active">
-																<div class="progress-bar bg-primary" style="width: 30%"></div>
-															</div>
-													</td>
-													<td><span class="badge bg-primary">30%</span></td>
-												</tr>
-												<tr>
-													<td>4.</td>
-													<td>Fix and squish bugs</td>
-													<td>
-															<div class="progress progress-xs progress-striped active">
-																<div class="progress-bar bg-success" style="width: 90%"></div>
-															</div>
-													</td>
-													<td><span class="badge bg-success">90%</span></td>
-												</tr>
-										</tbody>
-									</table>
-							</div><!--card-body-->
-						</div><!--card-->
-					</div><!--col-->
-				</div><!--row-->
 		</div><!--container-fluid-->
+
+		
 	</main>
-	<th:block th:fragment="scripts">
-			<script>
-				$(function () {
-						$('[data-toggle="popover"]').popover();
-				});
-			</script>
+	<th:block th:fragment="scripts">		
+
+		<!-- <script>
+			$(function () {
+					$('[data-toggle="popover"]').popover();
+			});
+		</script>  -->
 	</th:block>
 </body>
 </html>

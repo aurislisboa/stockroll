@@ -2,12 +2,11 @@ package br.com.usystem.stockroll.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.usystem.stockroll.repository.EstoqueRepository;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -22,22 +21,27 @@ public class EstoqueController {
       var modelAndView = new ModelAndView("estoque/listar");
           modelAndView.addObject("estoques", estoqueRepository.findByQuantidadeGreaterThan(0)); // lista pela quantidade maior que '0'
           
-    return modelAndView;
+    return modelAndView; 
   }
 
-  
-  
-  // Exemplo de como os dados são eviados:
-  /*
-    EstoqueId
-      (
-        local=Local(id=1, nome=CD - Principal), 
-        lote=Lote(id=1, produto=Produto(id=1, codigoBarra=0000000000001, nome=Leite Jussara), 
-        vencimento=2024-06-10, 
-        quantidade=100, 
-        valorUnitario=1.00)
-      )
 
-  */
+  /* ESSES MÉTODS NÃO FORAM IMPLEMENTADOS */
+  // ----- Porque ao editar um Lote ele já atualiza a quantidade no Estoque ---- //
+
+  // @GetMapping("/{localId}/{loteId}")
+  // public ModelAndView editar(@PathVariable Integer localId, @PathVariable Integer loteId) {
+  //   var modelAndView = new ModelAndView("/estoque/formulario");
+  //       modelAndView.addObject("estoque", estoqueRepository.findByLocalAndLoteId(localId, loteId));
+
+  //   return modelAndView;
+  // }
+
+
+  // @PostMapping("/{localId}/{produtoId}")
+  // public String editar(Estoque estoque) {
+  //   //estoqueRepository.save(estoque);
+  // return "redirect:/lote";
+  // }
+
 
 }

@@ -18,7 +18,9 @@ public class LoteService {
 
 
   public List<Lote> buscarTodosLotes() {
-      return loteRepository.findByQuantidadeGreaterThan(0);
+    //   return loteRepository.findByQuantidadeGreaterThan(0);
+      return loteRepository.findAll();
+
   }
 
 
@@ -36,7 +38,7 @@ public class LoteService {
       loteRepository.deleteById(id);
   }
 
-
+  
 
 
 

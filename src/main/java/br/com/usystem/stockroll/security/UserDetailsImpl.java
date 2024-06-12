@@ -7,8 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.usystem.stockroll.model.Usuario;
 
-public class UserDetailsImpl implements UserDetails {
 
+
+public class UserDetailsImpl implements UserDetails {
 
     private Usuario usuario;
 

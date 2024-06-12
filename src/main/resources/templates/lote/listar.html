@@ -34,22 +34,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="lote : ${lotes}">
-										<th scope="row" th:text="${lote.id}"></th>
-										<!-- <td><a th:href="@{/lote/{id} (id=${lote.id})}" th:text="${lote.nome}"></a></td> -->
-										<!-- <td th:text="${lote.produto.nome}"></td> -->
-										<td th:text="${lote.produto.nome}"></td>
-										<td th:text="${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}"></td>
-               			<td th:text="${#numbers.formatCurrency(lote.valorUnitario)}"></td>
-										<td th:text="${lote.quantidade}" class="text-center"></td>
+									<tr th:each="estoque : ${estoques}">
+										<th scope="row" th:text="${estoque.id.lote.id}"></th>
+										<!-- <td><a th:href="@{/estoque.lote/{id} (id=${estoque.lote.id})}" th:text="${estoque.lote.nome}"></a></td> -->
+										<td th:text="${estoque.id.lote.produto.nome}"></td>
+										<td th:text="${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy')}"></td>
+               			<td th:text="${#numbers.formatCurrency(estoque.id.lote.valorUnitario)}"></td>
+										<td th:text="${estoque.quantidade}" class="text-center"></td>
 										<td class="text-center py-0 align-middle">
 											<div class="btn-group btn-group-sm">
-												 <a th:href="@{/lote/{id} (id=${lote.id})}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+												 <a th:href="@{/lote/{id} (id=${estoque.id.lote.id})}" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
 											</div>
 										</td>
 										<td class="text-center py-0 align-middle">
 											<div class="btn-group btn-group-sm">
-												<a th:href="@{/movimentacao/cadastrar/entrada/{id} (id=${lote.id})}" class="btn btn-success">
+												<a th:href="@{/movimentacao/cadastrar/entrada/{id} (id=${estoque.id.lote.id})}" class="btn btn-success">
 													<i class="fas fa-shipping-fast"></i>&ensp;Transferir</a>
 											</div>
 										</td>

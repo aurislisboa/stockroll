@@ -2,27 +2,158 @@
 <!-- <aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4"> -->
 <!-- <aside th:fragment="aside" class="main-sidebar sidebar-light-primary elevation-2"> -->
 <!-- <aside th:fragment="aside" class="main-sidebar sidebar-light-primary elevation-4"> -->
-  <aside th:fragment="aside" class="main-sidebar sidebar-light-info elevation-4">
+<aside th:fragment="aside" class="main-sidebar sidebar-light-info elevation-4">
 <!-- ========================================= SIDEBAR =============================================== -->
-  
-  <!-- Brand Logo -->
-  <a th:href="@{/}" class="brand-link bg-info">
-    <!-- <img th:src="@{/img/logo.png}" alt="StockLog Logo" class="brand-image img-circle elevation-3"> -->
-    <img th:src="@{/img/logo.png}" alt="StockLog Logo" class="brand-image elevation-1">
-    <span class="brand-text font-weight-light">StockRoll</span>
-  </a>
 
-  <!-- Sidebar -->
-  <!-- <div class="sidebar"> -->
-  <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden">
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
-      <!-- <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false"> -->
-      <!-- <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false"> -->
-      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-        <br>
+<!-- Brand Logo -->
+<a th:href="@{/dashboard}" class="brand-link bg-info">
+<!-- <img th:src="@{/img/logo.png}" alt="StockLog Logo" class="brand-image img-circle elevation-3"> -->
+<img th:src="@{/img/logo.png}" alt="StockLog Logo" class="brand-image elevation-1">
+<span class="brand-text font-weight-light">StockRoll</span>
+</a>
+
+<!-- Sidebar -->
+<!-- <div class="sidebar"> -->
+<div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden">
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+<!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
+<!-- <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false"> -->
+<!-- <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false"> -->
+<ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- -------- Produto ---------- -->
+    <li class="nav-item">
+      <a th:href="@{/produto}" class="nav-link">
+        <i class="nav-icon fas fa-barcode"></i>
+        <p>Produto</p>
+      </a>
+    </li>
+      
+    <!-- -------- Lote ---------- -->
+    <li class="nav-item">
+      <a th:href="@{/lote}" class="nav-link">
+        <i class="nav-icon fas fa-cubes"></i>
+        <p>Lotes</p>
+      </a>
+    </li> 
+    
+    <!-- ----- Centro de Distribuição ------ -->
+    <!-- <li class="nav-item">
+      <a th:href="@{/lote}" class="nav-link">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p>Centro Distribuição</i></p>
+      </a>
+    </li>  -->
+
+    <!-- -------- Entrada ---------- -->
+    <!-- <li class="nav-item">
+      <a th:href="@{/movimentacao/cadastrar/entrada-cd}" class="nav-link">
+        <i class="nav-icon fas fa-solid fa-download"></i>
+        <p>Registrar Entrada</p>
+      </a>
+    </li> -->
+    
+    <!-- -------- Saída ---------- -->
+    <!-- <li class="nav-item">
+      <a th:href="@{/movimentacao/cadastrar/saida-cd}" class="nav-link">
+        <i class="nav-icon fas fa-solid fa-upload"></i>
+        <p>Registrar Saída</p>
+      </a>
+    </li> -->
+
+    <!-- -------- Movimentação ---------- -->
+    <li class="nav-item mb-1">
+      <a th:href="@{/movimentacao}" class="nav-link">
+        <!-- <i class="nav-icon fas fa-bars"></i> -->
+        <i class="nav-icon fas fa-exchange-alt"></i>
+        <p>Movimentação</p>
+      </a>
+    </li>
+
+    <!-- -------- Estoque ---------- -->
+    <li class="nav-item mb-1">
+      <a th:href="@{/estoque}" class="nav-link">
+        <i class="nav-icon fas fa-database"></i>
+        <p>Estoque</p>
+      </a>
+    </li> 
+    
+    <!-- -------- Relatórios ---------- -->
+    <li class="nav-item mb-1">
+      <a th:href="@{/relatorio}" class="nav-link">
+        <i class="nav-icon fas fa-scroll"></i>
+        <p>Relatórios</p>
+      </a>
+    </li> 
+
+    <br>
+    <span class="sidebar-custom"></span>
+    <br>
+
+    <!-- -------- Quiosque ---------- -->
+      <li class="nav-item">
+        <a th:href="@{/movimentacao/cadastrar/saida/2}" class="nav-link">
+          <i class="nav-icon fas fa-store"></i>
+          <p>Quiosque</p>
+        </a>
+      </li> 
+      <br>
+      <span class="sidebar-custom"></span>
+      <br>
+    
+    
+   
+
+    <!-- ----- Mais Opções ------ -->
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-sliders-h"></i>
+        <p>
+          Mais Opções
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+              
+              <!-- ---- Quantidade Por Local ------ -->
+              <li class="nav-item mb-1">
+                <a th:href="@{/quantidade}" class="nav-link">
+                  <i class="nav-icon fas fa-balance-scale"></i>
+                  <p>Quantidade</p>
+                </a>
+              </li>  
+              
+              <!-- -------- Motivos ---------- -->
+              <li class="nav-item mb-1">
+                <a th:href="@{/motivo}" class="nav-link">
+                  <i class="nav-icon fas fa-exclamation-circle"></i>
+                  <p>Motivos</p>
+                </a>
+              </li> 
+              
+              <!-- -------- Locais ---------- -->
+              <li class="nav-item mb-1">
+                <a th:href="@{/local}" class="nav-link">
+                  <i class="nav-icon fas fa-map-marker-alt"></i>
+                  <p>Locais</p>
+                </a>
+              </li> 
+
+              <!-- -------- Usuários ---------- -->
+              <li class="nav-item mb-1">
+                <a th:href="@{/usuario}" class="nav-link">
+                  <!-- <i class="nav-icon fas fa-user-tie"></i> -->
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Usuários</p>
+                </a>
+              </li> 
         
+        </ul><!--nav-link-->
+    </li><!--mais-opções-->
+  </ul>
+            
+
+<div th:remove="all">            
         <!-- -------- Produto ---------- -->
         <li class="nav-item">
           <a th:href="@{/produto}" class="nav-link">
@@ -46,7 +177,7 @@
             </li> -->
           <!-- </ul> -->
         </li>
-         
+          
         <!-- -------- Lote ---------- -->
         <li class="nav-item">
           <a th:href="@{/lote}" class="nav-link">
@@ -70,7 +201,7 @@
           </ul> -->
         </li> 
         
-        <!-- -------- Centro de Distribuição ---------- -->
+        <!-- ----- Centro de Distribuição ------ -->
         <!-- <li class="nav-item menu-open"> -->
         <li class="nav-item">
           <!-- <a href="#" class="nav-link active"> -->
@@ -104,14 +235,23 @@
                 <p>Registrar Saída</p>
               </a>
             </li> -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a th:href="@{/movimentacao}" class="nav-link">
                 &nbsp;<i class="fas fa-bars nav-icon"></i>
                 <p>Listar</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li> 
+
+        <!-- -------- Locais ---------- -->
+        <li class="nav-item mb-1">
+          <a th:href="@{/movimentacao}" class="nav-link">
+            <i class="nav-icon fas fa-bars"></i>
+            <p>Movimentação</p>
+          </a>
+        </li>
+
         <br>
         <span class="sidebar-custom"></span>
         <br>
@@ -133,7 +273,7 @@
                 </a>
               </li> -->
               <li class="nav-item">
-                <a th:href="@{/movimentacao/cadastrar/saida}" class="nav-link">
+                <a th:href="@{/movimentacao/cadastrar/saida/2}" class="nav-link">
                   &nbsp;<i class="nav-icon fas fa-solid fa-upload"></i>
                   <p>Registrar Saída</p>
                 </a>
@@ -172,7 +312,7 @@
           </ul> -->
         </li> 
 
-        <!-- -------- Quantidade Por Local ---------- -->
+        <!-- ---- Quantidade Por Local ------ -->
         <li class="nav-item mb-1">
           <a th:href="@{/quantidade}" class="nav-link">
             <i class="nav-icon fas fa-balance-scale"></i>
@@ -201,6 +341,7 @@
             <!-- <i class="fas fa-table nav-icon"></i> -->
             <!-- <i class="fas fa-list nav-icon"></i> -->
             <!-- <i class="fas fa-sign-out-alt"></i> -->
+            <!-- <i class="nav-icon fas fa-bars"></i> -->
             <!-- <i class="nav-icon fas fa-barcode"></i> -->
             <!-- <i class="nav-icon fas fa-list"></i> -->
             <!-- <i class="nav-icon fas fa-briefcase"></i> -->
@@ -285,7 +426,7 @@
           </ul> -->
         </li> 
 
-     
+      
         <!-- -------- Quantidade Por Local ---------- -->
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">
@@ -310,8 +451,8 @@
             </li>
           </ul>
         </li> -->
-
       </ul>
+</div>          
     </nav>
     <!-- /.sidebar-menu -->
   </div>

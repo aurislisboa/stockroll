@@ -15,28 +15,29 @@
 					<i class="fas fa-list"></i>&nbsp;&nbsp;Listar Lotes</a>
 			</div><br>
 			<div class="card card-cyan card-outline">
-				<!-- <div class="card-header">
-					<h5 class="card-title">Informações do Lote</h5>
-				</div> -->
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
-						<!-- <li class="card-text list-group-item">Nome:&nbsp;
-							<strong><span th:text="${lote.nome}"></span></strong>
-						</li> -->
-						<li class="card-text list-group-item">Produto:&nbsp;
+						<li class="card-text list-group-item">Nome:&nbsp;
 							<strong><span th:text="${lote.produto.nome}"></span></strong>
 						</li>
+						<!-- <li class="card-text list-group-item">Produto:&nbsp;
+							<strong><span th:text="${estoque.id.lote.produto.nome}"></span></strong>
+						</li> -->
 						<li class="card-text list-group-item">Vencimento:&nbsp;
 							<strong><span th:text="${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}"></span></strong>
 						</li>
-						<li class="card-text list-group-item">Quantidade:&nbsp;
-							<strong><span th:text="${lote.quantidade}"></span></strong>
-						</li>
-						<li class="card-text list-group-item mb-3">Preço:&nbsp;
+						<!-- <li class="card-text list-group-item">Quantidade:&nbsp;
+							<strong><span th:text="${estoque.quantidade}"></span></strong>
+						</li> -->
+						<li class="card-text list-group-item">Preço:&nbsp;
 							<strong><span th:text="${#numbers.formatCurrency(lote.valorUnitario)}"></span></strong>
 						</li>
+						<!-- <li class="card-text list-group-item mb-3">Total:&nbsp;
+							<strong><span th:text="${'R$ ' + #aggregates.sum({estoque.quantidade * estoque.id.lote.valorUnitario})}"></span></strong>
+						</li> -->
 						<li class="list-group-item text-center">
 							<a th:href="@{/lote/editar/{id} (id=${lote.id})}" class="btn btn-warning">Editar</a>
+							<!-- <a th:href="@{/lote/editar/{loteId}/{localId} (loteId=${estoque.id.local.id}, localId=${estoque.id.lote.id})}" class="btn btn-warning">Editar</a> -->
 							<a th:href="@{/lote/excluir/{id} (id=${lote.id})}"
 								 onclick="return confirm('Deseja realmente excluir esse Lote?');"
 							   class="btn btn-danger">Excluir</a>
