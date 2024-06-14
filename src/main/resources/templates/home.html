@@ -59,19 +59,150 @@
 <body>
 	<main>
 		<div class="container-fluid">
-				<div class="row">
+				<div class="row mb-5">
 						<div class="col-sm-12">
 								<h1>Bem vindo ao StockRoll</h1>
 						</div>
 				</div>		
-
+		</div><!--container-fluid-->	
 			
-
+		<div class="container">
+			<div class="row mx-auto">
+				<a th:href="@{/produto}" class="col-6 col-sm-6 col-md-3">
+						<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-barcode"></i>
+								</span>
+								<div class="info-box-content">
+									<span class="info-box-text"><strong>PRODUTOS</strong></span>
+								</div>
+						</div>
+				</a>
 					
+				<a th:href="@{/lote}" class="col-6 col-sm-6 col-md-3">
+							<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-cubes"></i>
+								</span>
+								<div class="info-box-content">
+										<span class="info-box-text"><strong>LOTES</strong></span>
+								</div>
+							</div>
+				</a>
 
-		</div><!--container-fluid-->
+				<a th:href="@{/movimentacao}" class="col-6 col-sm-6 col-md-3">
+						<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-exchange-alt"></i>
+								</span>
+								<div class="info-box-content">
+									<span class="info-box-text"><strong>MOVIMENTAÇÕES</strong></span>
+								</div>
+						</div>
+				</a>
+				
+				<a th:href="@{/estoque}" class="col-6 col-sm-6 col-md-3">
+							<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-database"></i>
+								</span>
+								<div class="info-box-content">
+										<span class="info-box-text"><strong>ESTOQUES</strong></span>
+								</div>
+							</div>
+				</a>
+					
+				<a th:href="@{/relatorio}" class="col-6 col-sm-6 col-md-3">
+						<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-scroll"></i>
+								</span>
+								<div class="info-box-content">
+									<span class="info-box-text"><strong>RELATÓRIOS</strong></span>
+								</div>
+						</div>
+				</a>
 
-		
+				<a th:href="@{/movimentacao/cadastrar/saida/2}" class="col-6 col-sm-6 col-md-3">
+							<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-store"></i>
+								</span>
+								<div class="info-box-content">
+										<span class="info-box-text"><strong>QUIOSQUES</strong></span>
+								</div>
+							</div>
+				</a>
+
+				<a th:href="@{/dashboard}" class="col-6 col-sm-6 col-md-3">
+						<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-chart-pie"></i>
+								</span>
+								<div class="info-box-content">
+									<span class="info-box-text"><strong>PAINEL</strong></span>
+								</div>
+						</div>
+				</a>
+
+				<a th:href="@{/#}" class="col-6 col-sm-6 col-md-3">
+					<div class="info-box mb-3 btn btn-outline btn-light">
+							<span class="info-box-icon bg-info elevation-1">
+								<i class="fas fa-bell"></i>
+							</span>
+							<div class="info-box-content">
+								<span class="info-box-text"><strong>ALERTAS</strong></span>
+							</div>
+					</div>
+				</a>
+
+				<a th:href="@{/quantidade}" class="col-6 col-sm-6 col-md-3">
+							<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-balance-scale"></i>
+								</span>
+								<div class="info-box-content">
+										<span class="info-box-text"><strong>QUANTIDADE</strong></span>
+								</div>
+							</div>
+				</a>
+
+				<a th:href="@{/motivo}" class="col-6 col-sm-6 col-md-3">
+						<div class="info-box mb-3 btn btn-outline btn-light">
+								<span class="info-box-icon bg-info elevation-1">
+									<i class="fas fa-exclamation-circle"></i>
+								</span>
+								<div class="info-box-content">
+									<span class="info-box-text"><strong>MOTIVOS</strong></span>
+								</div>
+						</div>
+					</a>
+
+				<a th:href="@{/local}" class="col-6 col-sm-6 col-md-3">
+					<div class="info-box mb-3 btn btn-outline btn-light">
+							<span class="info-box-icon bg-info elevation-1">
+								<i class="fas fa-map-marker-alt"></i>
+							</span>
+							<div class="info-box-content">
+								<span class="info-box-text"><strong>LOCAIS</strong></span>
+							</div>
+					</div>
+				</a>
+
+				<a th:href="@{/usuario}" class="col-6 col-sm-6 col-md-3">
+				<div class="info-box mb-3 btn btn-outline btn-light">
+						<span class="info-box-icon bg-info elevation-1">
+							<i class="fas fa-user"></i>
+						</span>
+						<div class="info-box-content">
+							<span class="info-box-text"><strong>USUÁRIOS</strong></span>
+						</div>
+				</div>
+				</a>
+			</div><!--row-->
+		</div><!--container-->
+				
+
 	</main>
 	<th:block th:fragment="scripts">		
 

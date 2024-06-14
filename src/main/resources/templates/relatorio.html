@@ -66,22 +66,22 @@
 								<div class="table-responsive">
 									<table class="table table-borderless table-hover">
 									<tbody>
-									<tr> 
-										<td class="text-center align-middle"><strong>Relação do Estoque</strong></td>
-											<div class="form-group ">
-												<form th:action="@{/relatorio/estoque}" method="get">
-													<td class="text-center align-middle">
-														<select class="form-control align-middle" id="local" name="local" title="Selecione um local">
-															<option value="">Todos</option>
-															<option th:each="local : ${locais}" th:value="${local.id}" th:text="${local.nome}"></option>
-														</select>
-													</td>
-													<td class="align-middle">
-														<button type="submit" class="btn btn-outline-info" formtarget="_blank"><i class="fas fa-file-pdf"></i></button>
-													</td>
-												</form>											
-											</div>
-									</tr>
+										<tr> 
+											<td class="text-center align-middle"><strong>Relação do Estoque</strong></td>
+												<div class="form-group">
+													<form th:action="@{/relatorio/estoque}" method="get">
+														<td class="text-center align-middle">
+															<select class="form-control align-middle" id="local" name="local" title="Selecione um local">
+																<option value="">Todos</option>
+																<option th:each="local : ${locais}" th:value="${local.id}" th:text="${local.nome}"></option>
+															</select>
+														</td>
+														<td class="align-middle">
+															<button type="submit" class="btn btn-outline-info" formtarget="_blank" title="Ver relatório"><i class="fas fa-file-pdf"></i></button>
+														</td>
+													</form>											
+												</div>
+										</tr>
 									</tbody>
 									</table>
 								</div><!--col-->
