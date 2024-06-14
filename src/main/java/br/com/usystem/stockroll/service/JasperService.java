@@ -27,6 +27,11 @@ public class JasperService {
     @Autowired
     ResourceLoader resourceLoader;
 
+
+    private static final String JASPER_DIRETORIO = "classpath:jasper/";
+    // private static final String JASPER_PREFIXO = "funcionarios-";
+    private static final String JASPER_SUFIXO = ".jasper";
+
     private Map<String, Object> params = new HashMap<>();
 
 
@@ -34,15 +39,18 @@ public class JasperService {
         this.params.put(key, value);
     }
 
-    public byte[] exportarPDF() {
+
+    public byte[] exportarPDF(String nome) {
         byte[] bytes = null;
         try {
             Resource resource = resourceLoader
-                    .getResource("classpath:jasper/produtos.jasper");
+                .getResource(JASPER_DIRETORIO.concat(nome).concat(JASPER_SUFIXO));
             InputStream stream = resource.getInputStream();
 
             JasperPrint print = JasperFillManager.fillReport(stream, params, connection);
             bytes = JasperExportManager.exportReportToPdf(print);
+            // System.out.println("\n\n\nparams: " + params);
+
         } catch ( JRException | IOException e) {
             e.printStackTrace();
         }
