@@ -122,124 +122,130 @@
 						
 <hr>
 			 
-		<!--Gráfico -->
 <div class="row">
-				<div class="col-lg-6 mx-auto">
-					<div class="card">
-							<div class="card-header border-0">
-								<div class="d-flex justify-content-between">
-										<h3 class="card-title">Vendas</h3>
-										<a href="javascript:void(0);">Ver Relatório</a>
-								</div>
-							</div>
-							<div class="card-body">
-								<div class="d-flex">
-										<p class="d-flex flex-column">
-											<span class="text-bold text-lg">R$ 18.230,00</span>
-											<span>Vendas ao longo do tempo</span>
-										</p>
-										<p class="ml-auto d-flex flex-column text-right">
-											<span class="text-success">
-													<i class="fas fa-arrow-up"></i> 33.1%
-											</span>
-											<span class="text-muted">Desde o último mês</span>
-										</p>
-								</div>
-								<div class="position-relative mb-4">
-										<canvas id="sales-chart" height="200"></canvas>
-								</div>
-								<div class="d-flex flex-row justify-content-end">
-										<span class="mr-2">
-											<i class="fas fa-square text-primary"></i> Este Ano
-										</span>
-										<span>
-											<i class="fas fa-square text-gray"></i> Ano Passado
-										</span>
-								</div>
-							</div><!--card-body-->
-					</div><!--card-->
-				</div>
-				<!--End Gráfico -->
-
-				<!-- Gráfico Pie -->
-				<div class="col-lg-6 mx-auto">
-					<div class="card card-info">
-						<div class="card-header">
-							<h3 class="card-title">Pie Chart</h3>
-							<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de pizza">
-									<i class="fas fa-minus"></i>
-								</button>
-							</div>
-						</div>
-						<div class="card-body">
-							<div class="chartjs-size-monitor">
-								<div class="chartjs-size-monitor-expand">
-									<div class="">
-									</div>
-								</div>
-								<div class="chartjs-size-monitor-shrink">
-									<div class="">
-									</div>
-								</div>
-							</div>
-							<canvas id="pie-chart" 
-								style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 453px;" 
-								width="453" height="250" class="chartjs-render-monitor">
-							</canvas>
+		<!--Gráfico -->
+		<div class="col-lg-6 mx-auto">
+			<div class="card">
+					<div class="card-header border-0">
+						<div class="d-flex justify-content-between">
+								<h3 class="card-title">Vendas</h3>
+								<a href="javascript:void(0);">Ver Relatório</a>
 						</div>
 					</div>
+					<div class="card-body">
+						<div class="d-flex">
+								<p class="d-flex flex-column">
+									<span class="text-bold text-lg">R$ 18.230,00</span>
+									<span>Vendas ao longo do tempo</span>
+								</p>
+								<p class="ml-auto d-flex flex-column text-right">
+									<span class="text-success">
+											<i class="fas fa-arrow-up"></i> 33.1%
+									</span>
+									<span class="text-muted">Desde o último mês</span>
+								</p>
+						</div>
+						<div class="position-relative mb-4">
+								<canvas id="sales-chart" height="200"></canvas>
+						</div>
+						<div class="d-flex flex-row justify-content-end">
+								<span class="mr-2">
+									<i class="fas fa-square text-primary"></i> Este Ano
+								</span>
+								<span>
+									<i class="fas fa-square text-gray"></i> Ano Passado
+								</span>
+						</div>
+					</div><!--card-body-->
+			</div><!--card-->
+		</div>
+		<!--End Gráfico -->
+
+		<!-- Gráfico Pie -->
+		<!-- <div class="col-lg-6 mx-auto">
+			<div class="card card-info">
+				<div class="card-header">
+					<h3 class="card-title">Pie Chart</h3>
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de pizza">
+							<i class="fas fa-minus"></i>
+						</button>
+					</div>
 				</div>
+				<div class="card-body">
+					<div class="chartjs-size-monitor">
+						<div class="chartjs-size-monitor-expand">
+							<div class="">
+							</div>
+						</div>
+						<div class="chartjs-size-monitor-shrink">
+							<div class="">
+							</div>
+						</div>
+					</div>
+					<canvas id="pie-chart" 
+						style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 453px;" 
+						width="453" height="250" class="chartjs-render-monitor">
+					</canvas>
+				</div>
+			</div>
+		</div>
+</div> -->
+		<!--row-->
+		<!-- End Gráfico Pie -->
+
+		
+
 </div><!--row-->
-	<!-- End Gráfico Pie -->
+
 
 <hr>
 
 	<!-- Cards dos Quiosques -->
-		<div class="row">
-		<div class="col-lg-12 mx-auto">
-			<div th:each="quiosque : ${quiosques}">
-				<h5 class="mb-2 mt-1"><strong th:text="${quiosque.nome}">Tatuapé</strong></h5>	
-				<div class="row">
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Produtos em Estoque</span>
-									<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalEstoque}">80</strong></h5></span>
-								</div>
+	<div class="row">
+	<div class="col-lg-12 mx-auto">
+		<div th:each="quiosque : ${quiosques}">
+			<h5 class="mb-2 mt-1"><strong th:text="${quiosque.nome}">Tatuapé</strong></h5>	
+			<div class="row">
+					<div class="col-md-3 col-sm-6 col-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Produtos em Estoque</span>
+								<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalEstoque}">80</strong></h5></span>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-success"><i class="fas fa-chart-line"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Saídas</span>
-									<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalSaida}">410</strong></h5></span>
-								</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-success"><i class="fas fa-chart-line"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Saídas</span>
+								<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalSaida}">410</strong></h5></span>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-warning"><i class="far fa-flag"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Alertas</span>
-									<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalAlerta}">0</strong></h5></span>
-								</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-warning"><i class="far fa-flag"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Alertas</span>
+								<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalAlerta}">0</strong></h5></span>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-12">
-							<div class="info-box">
-							<span class="info-box-icon bg-danger"><i class="far fa-trash-alt"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Desperdícios</span>
-									<span class="info-box-number ml-2"><h5><strong>0</strong></h5></span>
-								</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-12">
+						<div class="info-box">
+						<span class="info-box-icon bg-danger"><i class="far fa-trash-alt"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Desperdícios</span>
+								<span class="info-box-number ml-2"><h5><strong>0</strong></h5></span>
 							</div>
-						</div>						
-				</div><!--row-->
-			</div><!--foreach-->
-		</div><!--col-->
+						</div>
+					</div>						
+			</div><!--row-->
+		</div><!--foreach-->
+	</div><!--col-->
 	</div><!--row-->
 	<!--End Cards dos Quiosques -->
 
@@ -249,14 +255,10 @@
 		<div class="col-lg-6 mx-auto">
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">Bar Chart</h3>
+					<h3 class="card-title">Bar Chart xxxxx</h3>
 					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de pizza">
-							<i class="fas fa-minus"></i>
-						</button>
-						<!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="gráfico de pizza">
-							<i class="fas fa-times"></i>
-						</button> -->
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de Barra"><i class="fas fa-minus"></i></button>
+						<button type="button" class="btn btn-tool" data-card-widget="remove" title="gráfico de Barra"><i class="fas fa-times"></i></button>
 					</div>
 				</div>
 				<div class="card-body">
@@ -270,127 +272,183 @@
 							</div>
 						</div>
 					</div>
-					<canvas id="abcChart" 
-						>
-					</canvas>
+					<canvas id="abcChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 453px;" width="453" height="250" class="chartjs-render-monitor"></canvas>
 				</div>
 			</div>
 		</div>
-	</div>
 	<!-- End Gráfico Bar -->
 
-
-			
-
-
 	<!-- Gráfico Linha -->
+		<div class="col-lg-6 mx-auto">
+			<div class="card card-info">
+				<div class="card-header">
+					<h3 class="card-title">Line Chart xxxx</h3>
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de Linha"><i class="fas fa-minus"></i></button>
+						<button type="button" class="btn btn-tool" data-card-widget="remove" title="gráfico de Linha"><i class="fas fa-times"></i></button>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="chartjs-size-monitor">
+						<div class="chartjs-size-monitor-expand">
+							<div class="">
+							</div>
+						</div>
+						<div class="chartjs-size-monitor-shrink">
+							<div class="">
+							</div>
+						</div>
+					</div>
+					<canvas id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 453px;" width="453" height="250" class="chartjs-render-monitor"></canvas>
+				</div>
+			</div>
+		</div>
+	</div><!--row-->
+	<!-- End Gráfico Linha -->
+
+
+	<!-- Gráfico Donut -->
 	<div class="row">
 		<div class="col-lg-6 mx-auto">
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">Line Chart</h3>
+					<h3 class="card-title">Donut Chart</h3>
 					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="gráfico de pizza">
-							<i class="fas fa-minus"></i>
-						</button>
+						<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+						<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
 					</div>
 				</div>
-				<div class="card-body">
-					<div class="chartjs-size-monitor">
-						<div class="chartjs-size-monitor-expand">
-							<div class="">
-							</div>
-						</div>
-						<div class="chartjs-size-monitor-shrink">
-							<div class="">
-							</div>
-						</div>
-					</div>
-					<canvas id="line-chart" 
-						style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 453px;" 
-						width="453" height="250" class="chartjs-render-monitor">
-					</canvas>
-				</div>
+				<div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+					<canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 429px;" width="429" height="250" class="chartjs-render-monitor"></canvas>
+				</div>	
 			</div>
 		</div>
-	</div>
-	<!-- End Gráfico Linha -->
+		<!-- End Gráfico Donut -->
 
 
-
-
-	<!-- Vencimento -->
-		<div class="row">
-				<div class="col-md-6 col-6">
-				<div class="card">
+			<!-- Gráfico Pizza -->
+			<div class="col-lg-6 mx-auto">
+				<div class="card card-info">
 					<div class="card-header">
-							<h3 class="card-title">Produtos próximos do vencimento</h3>
+						<h3 class="card-title">Pie Chart</h3>
+						<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+								<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+						</div>
 					</div>
-					<div class="card-body p-0">
-							<table class="table table-sm">
-								<thead>
-										<tr>
-											<th style="width: 10px">#</th>
-											<th>Produto</th>
-											<th>Progresso</th>
-											<th style="width: 40px">Taxa</th>
-										</tr>
-								</thead>
-								<tbody>
-										<tr>
-											<td>1.</td>
-											<td>Update software</td>
-											<td>
-													<div class="progress progress-xs">
-														<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-													</div>
-											</td>
-											<td><span class="badge bg-danger">55%</span></td>
-										</tr>
-										<tr>
-											<td>2.</td>
-											<td>Clean database</td>
-											<td>
-													<div class="progress progress-xs">
-														<div class="progress-bar bg-warning" style="width: 70%"></div>
-													</div>
-											</td>
-											<td><span class="badge bg-warning">70%</span></td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td>Cron job running</td>
-											<td>
-													<div class="progress progress-xs progress-striped active">
-														<div class="progress-bar bg-primary" style="width: 30%"></div>
-													</div>
-											</td>
-											<td><span class="badge bg-primary">30%</span></td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td>Fix and squish bugs</td>
-											<td>
-													<div class="progress progress-xs progress-striped active">
-														<div class="progress-bar bg-success" style="width: 90%"></div>
-													</div>
-											</td>
-											<td><span class="badge bg-success">90%</span></td>
-										</tr>
-								</tbody>
-							</table>
-					</div><!--card-body-->
-				</div><!--card-->
-			</div><!--col-->
+					<div class="card-body">
+						<div class="chartjs-size-monitor">
+								<div class="chartjs-size-monitor-expand"><div class=""></div></div>
+								<div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+						</div>
+						<canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 456px;" width="456" height="250" class="chartjs-render-monitor"></canvas>
+					</div>
+				</div>
+			</div>
+	</div><!--row-->
+	<!-- End Gráfico Pizza -->
+
+
+		<!-- Vencimento -->
+		<div class="row">
+			<div class="col-md-12 col-12">
+			<div class="card">
+				<div class="card-header">
+						<h3 class="card-title"><strong>Produtos próximos do Vencimento</strong></h3>
+				</div>
+				<div class="card-body p-0">
+						<table class="table table-sm">
+							<thead>
+									<tr>
+										<th style="width: 10px">#</th>
+										<th>Produto</th>
+										<th>Progresso</th>
+										<th style="width: 40px">Taxa</th>
+									</tr>
+							</thead>
+							<tbody>
+									<tr>
+										<td>1.</td>
+										<td>Update software</td>
+										<td>
+												<div class="progress progress-xs">
+													<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+												</div>
+										</td>
+										<td><span class="badge bg-danger">55%</span></td>
+									</tr>
+									<tr>
+										<td>2.</td>
+										<td>Clean database</td>
+										<td>
+												<div class="progress progress-xs">
+													<div class="progress-bar bg-warning" style="width: 70%"></div>
+												</div>
+										</td>
+										<td><span class="badge bg-warning">70%</span></td>
+									</tr>
+									<tr>
+										<td>3.</td>
+										<td>Cron job running</td>
+										<td>
+												<div class="progress progress-xs progress-striped active">
+													<div class="progress-bar bg-primary" style="width: 30%"></div>
+												</div>
+										</td>
+										<td><span class="badge bg-primary">30%</span></td>
+									</tr>
+									<tr>
+										<td>4.</td>
+										<td>Fix and squish bugs</td>
+										<td>
+												<div class="progress progress-xs progress-striped active">
+													<div class="progress-bar bg-success" style="width: 90%"></div>
+												</div>
+										</td>
+										<td><span class="badge bg-success">90%</span></td>
+									</tr>
+							</tbody>
+						</table>
+				</div><!--card-body-->
+			</div><!--card-->
+		</div><!--col-->
 		</div><!--row-->
-	<!--End Vencimento -->
-			
+		<!--End Vencimento -->
+
 
 		</div><!--container-fluid-->
 	</main>
 	<th:block th:fragment="scripts">
 		<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 		<script th:src="@{/js/dashboard.js}" src=""></script>
+
+		<script th:inline="javascript">
+			//-------------
+			//- PIE CHART -
+			//-------------
+			// Get context with jQuery - using jQuery's .get() method.
+			// var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+			var pieChartCanvas = document.getElementById('pieChart');
+			var pieData = {
+				labels: [[${surveyMap.keySet()}]],
+				datasets: [{
+												data: [[${surveyMap.values()}]],
+						backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+					}]
+			}
+			var pieOptions = {
+				maintainAspectRatio : false,
+				responsive : true,
+			}
+			//Create pie or douhnut chart
+			// You can switch between pie and douhnut using the method below.
+			new Chart(pieChartCanvas, {
+				type: 'pie',
+				data: pieData,
+				options: pieOptions
+			})
+		</script>
+
 		<script>
 				$(function () {
 						$('[data-toggle="popover"]').popover();
