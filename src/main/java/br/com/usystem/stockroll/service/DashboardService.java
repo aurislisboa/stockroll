@@ -1,7 +1,9 @@
 package br.com.usystem.stockroll.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,11 @@ public class DashboardService {
   private LocalService localService;
   private QtdPorLocalService qtdPorLocalService;
 
-
+  
 
   public List<DashboardQuiosque> resumoDosQuiosques() {
       List<DashboardQuiosque> lista = new ArrayList<>();
-      List<Local> locais = localService.listarTodosQuiosques(); // retorna todos os quiosques.
+      List<Local> locais = localService.listarTodosQuiosques();     // retorna todos os quiosques.
 
       /* Popula o Objeto DashboardQuiosque */
       for (Local local : locais) {
@@ -77,6 +79,43 @@ public class DashboardService {
   }//End
 
   
+
+    public Map<String, Integer> produtosMaiorSaida() {
+        Map<String, Integer> pieChartMap = new HashMap<>();
+          pieChartMap.put("Leite Ninho", 700);
+          pieChartMap.put("Roll Maltine", 500);
+          pieChartMap.put("Nutela Pote Grande", 400); 
+          pieChartMap.put("Chocolate Milka", 600);
+          pieChartMap.put("Castanha", 300);
+          pieChartMap.put("Refrigerante", 100);
+          return pieChartMap;
+    }
+
+
+
+    public Map<String, Integer> totalSaidasPorQuiosque() {
+        Map<String, Integer> donutChartMap = new HashMap<>();
+        List<Local> locais = localService.listarTodosQuiosques();                               // retorna todos os quiosques.
+            for (Local local : locais) {                                                        // itera sobre cada estoque.
+                String nomeQuiosque = local.getNome();
+                Integer totalSaidas = estoqueService.totalDeSaidasDeProdutos(local.getId());     // obtém o total saídas nesse Quiosque
+                donutChartMap.put(nomeQuiosque, totalSaidas);
+            }
+        return donutChartMap;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

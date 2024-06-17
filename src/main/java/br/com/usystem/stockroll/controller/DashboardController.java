@@ -41,14 +41,8 @@ public class DashboardController {
           modelAndView.addObject("alertas", dashboardService.alertaMinimoEmEstoque());
           // System.out.println(dashboardService.alertaMinimoEmEstoque()); 
 
-          Map<String, Integer> surveyMap = new HashMap<>();
-          surveyMap.put("Navegador1", 700);
-          surveyMap.put("Navegador2", 500);
-          surveyMap.put("Navegador3", 400);
-          // surveyMap.put("Navegador4", 600);
-          // surveyMap.put("Navegador5", 300);
-          // surveyMap.put("Navegador6", 100);
-          modelAndView.addObject("surveyMap", surveyMap);
+          modelAndView.addObject("pieChartMap", dashboardService.produtosMaiorSaida());
+          modelAndView.addObject("donutChartMap", dashboardService.totalSaidasPorQuiosque());
 
         return modelAndView;
     }
