@@ -41,7 +41,7 @@ Dashboard
 ![Dashboard](telas-projeto/dashboard.png)
 
 Login
-![Resumo Financenrio](telas-projeto/login.png)
+![Login](telas-projeto/login.png)
 
 Movimentações de Produtos
 ![Movimentações de Produtos](telas-projeto/movimentacao.png)
@@ -50,18 +50,19 @@ Cadastrar Novo Lote
 ![Cadastrar Novo Lote](telas-projeto/cadastro-lote.png)
 
 Lista de Lotes
-![Lista de Clientes](telas-projeto/lotes.png)
+![Lista de Lotes](telas-projeto/lotes.png)
 
 Detalhes do Usuário
-![Cadastro de Cliente](telas-projeto/detalhe-usuario.png)
+![Cadastro de Usuário](telas-projeto/detalhe-usuario.png)
 
 Relatório de Produtos
 ![Relatório de Produtos](telas-projeto/relatorio-produto.png)
 
 Transfência de Produto
-![Nova Venda](telas-projeto/transferir-produto.png)
+![Transferencia](telas-projeto/transferir-produto.png)
 
-
+Diagrama do Banco
+![Diagrama do Banco](diagrama-db.png)
 
 
 ## Histórico de lançamentos
