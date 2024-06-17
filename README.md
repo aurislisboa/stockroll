@@ -35,31 +35,31 @@ https://github.com/aurislisboa/stockroll.git
 ## Telas do Sistema
 
 Tela Inicial
-![Tela Inicial](telas-projeto/home.png)
+![Tela Inicial](prints-projeto/home.png)
 
 Dashboard
-![Dashboard](telas-projeto/dashboard.png)
+![Dashboard](prints-projeto/dashboard.png)
 
 Login
-![Login](telas-projeto/login.png)
+![Login](prints-projeto/login.png)
 
 Movimentações de Produtos
-![Movimentações de Produtos](telas-projeto/movimentacao.png)
+![Movimentações de Produtos](prints-projeto/movimentacao.png)
 
 Cadastrar Novo Lote
-![Cadastrar Novo Lote](telas-projeto/cadastro-lote.png)
+![Cadastrar Novo Lote](prints-projeto/cadastro-lote.png)
 
 Lista de Lotes
-![Lista de Lotes](telas-projeto/lotes.png)
+![Lista de Lotes](prints-projeto/lotes.png)
 
 Detalhes do Usuário
-![Cadastro de Usuário](telas-projeto/detalhe-usuario.png)
+![Cadastro de Usuário](prints-projeto/detalhe-usuario.png)
 
 Relatório de Produtos
-![Relatório de Produtos](telas-projeto/relatorio-produto.png)
+![Relatório de Produtos](prints-projeto/relatorio-produto.png)
 
 Transfência de Produto
-![Transferencia](telas-projeto/transferir-produto.png)
+![Transferencia](prints-projeto/transferir-produto.png)
 
 Diagrama do Banco
 ![Diagrama do Banco](diagrama-db.png)
