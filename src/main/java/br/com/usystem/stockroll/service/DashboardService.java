@@ -20,7 +20,7 @@ public class DashboardService {
   private EstoqueService estoqueService;  
   private LocalService localService;
   private QtdPorLocalService qtdPorLocalService;
-
+  private MovimentacaoService movimentacaoService;
   
 
   public List<DashboardQuiosque> resumoDosQuiosques() {
@@ -82,18 +82,19 @@ public class DashboardService {
 
     public Map<String, Integer> produtosMaiorSaida() {
         Map<String, Integer> pieChartMap = new HashMap<>();
-          pieChartMap.put("Leite Ninho", 700);
-          pieChartMap.put("Roll Maltine", 500);
-          pieChartMap.put("Nutela Pote Grande", 400); 
-          pieChartMap.put("Chocolate Milka", 600);
-          pieChartMap.put("Castanha", 300);
-          pieChartMap.put("Refrigerante", 100);
+        List<Map<String, Object>> topFive = movimentacaoService.mapProdutosMaisVendidos();
+        for (Map<String, Object> produto : topFive) {
+            String nomeProduto = produto.get("nomeProduto").toString();             // O parse não deu certo.
+            Integer total = Integer.parseInt(produto.get("total").toString());      // foi preciso converter para String e depois para Integer.
+            pieChartMap.put(nomeProduto, total);                                     // pieChartMap.put("Roll Maltine", 500);
+        }
           return pieChartMap;
     }
 
 
 
     public Map<String, Integer> totalSaidasPorQuiosque() {
+
         Map<String, Integer> donutChartMap = new HashMap<>();
         List<Local> locais = localService.listarTodosQuiosques();                               // retorna todos os quiosques.
             for (Local local : locais) {                                                        // itera sobre cada estoque.

@@ -2,7 +2,10 @@ package br.com.usystem.stockroll.service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -35,6 +38,12 @@ public class MovimentacaoService {
 
 
 
+
+    public Integer totalSaidas() {
+        return movimentacaoRepository.totalSaidas();
+    }
+
+
     public List<Movimentacao> buscarTodos() {
             //     Collections.reverse(movimentacao);                       // outra forma de fazer.
         return movimentacaoRepository.findAll(Sort.by("id").descending());
@@ -50,6 +59,16 @@ public class MovimentacaoService {
         return movimentacaoRepository.getReferenceById(id);
     }
 
+
+    public List<Map<String, Object>> mapProdutosMaisVendidos() {
+        List<Object[]> results = movimentacaoRepository.mapProdutosMaisVendidos();
+        return results.stream().map(result -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("nomeProduto", result[0]);
+            map.put("total", result[1]);
+            return map;
+        }).collect(Collectors.toList());
+    }
 
 
 
@@ -269,6 +288,8 @@ public class MovimentacaoService {
             // adiciono ao estoque
         // se não 
             // exclui do estoque
+
+
 
 
 

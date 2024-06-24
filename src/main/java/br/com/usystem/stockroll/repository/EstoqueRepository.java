@@ -14,8 +14,8 @@ import br.com.usystem.stockroll.model.EstoqueId;
 public interface EstoqueRepository extends JpaRepository<Estoque, EstoqueId> {
 
 
-  List<Estoque> findByQuantidadeGreaterThan(int quantidade);   // lista os produtos pela quantidade informada. 
-  
+  List<Estoque> findByQuantidadeGreaterThan(int quantidade);   // Será preciso agrupar pelo nome do produto. 
+
 
   @Query(value = "SELECT e FROM Estoque e WHERE e.quantidade > 0")
   public List<Estoque> findAllEstoqueMaiorQueZero();   

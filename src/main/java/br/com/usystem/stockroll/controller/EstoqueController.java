@@ -25,7 +25,7 @@ public class EstoqueController {
   }
 
 
-  /* ESSES MÉTODS NÃO FORAM IMPLEMENTADOS */
+  /* ESSES MÉTODOS NÃO FORAM IMPLEMENTADOS */
   // ----- Porque ao editar um Lote ele já atualiza a quantidade no Estoque ---- //
 
   // @GetMapping("/{localId}/{loteId}")

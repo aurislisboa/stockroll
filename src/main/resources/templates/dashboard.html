@@ -80,7 +80,7 @@
 						<div class="small-box bg-success">
 								<div class="inner">
 									<!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
-									<h3>53</h3>
+									<h3 th:text="${totalSaidas}">53</h3>
 									<p>Total de Saídas</p>
 								</div>
 								<div class="icon">
@@ -222,124 +222,7 @@
 		<!--End Cards dos Quiosques -->
 
 
-		<!-- Area  -->
-		<div class="row">
-			<div class="col-lg-6 mx-auto">
-				<div class="card card-primary">
-					<div class="card-header">
-						<h3 class="card-title">Area Chart</h3>
-						<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-								<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="chart">
-								<div class="chartjs-size-monitor">
-									<div class="chartjs-size-monitor-expand"><div class=""></div></div>
-									<div class="chartjs-size-monitor-shrink"><div class=""></div></div>
-								</div>
-								<canvas id="areaChart" style=" min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 456px;" 
-									width="456" height="250" class="chartjs-render-monitor"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- End Area -->
-
-
-
-		<!-- Line -->
-		<div class="col-lg-6 mx-auto">
-				<div class="card card-info">
-					<div class="card-header">
-						<h3 class="card-title">Line Chart</h3>
-						<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-								<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="chart">
-								<div class="chartjs-size-monitor">
-									<div class="chartjs-size-monitor-expand"><div class=""></div></div>
-									<div class="chartjs-size-monitor-shrink"><div class=""></div></div>
-								</div>
-								<canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 456px;" 
-								width="456" height="250" class="chartjs-render-monitor"></canvas>
-						</div>
-					</div>
-				</div>
-		</div>
-		</div><!--row-->
-		<!-- End Line -->
-
-
-		<!-- Bar -->
-		<div class="row">
-			<div class="col-lg-6 mx-auto">
-				<div class="card card-success">
-					<div class="card-header">
-						<h3 class="card-title">Bar Chart VERDE</h3>
-						<div class="card-tools">
-								<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-								<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="chart">
-								<div class="chartjs-size-monitor">
-									<div class="chartjs-size-monitor-expand"><div class=""></div></div>
-									<div class="chartjs-size-monitor-shrink"><div class=""></div></div>
-								</div>
-								<canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 456px;" 
-								width="456" height="250" class="chartjs-render-monitor"></canvas>
-						</div>
-					</div>
-			</div>
-			</div>
-		<!-- End Bar -->
-		
-		<!--Gráfico -->
-			<div class="col-lg-6 mx-auto">
-				<div class="card">
-						<div class="card-header border-0">
-							<div class="d-flex justify-content-between">
-									<h3 class="card-title">Vendas</h3>
-									<a href="javascript:void(0);">Ver Relatório</a>
-							</div>
-						</div>
-						<div class="card-body">
-							<div class="d-flex">
-									<p class="d-flex flex-column">
-										<span class="text-bold text-lg">R$ 18.230,00</span>
-										<span>Vendas ao longo do tempo</span>
-									</p>
-									<p class="ml-auto d-flex flex-column text-right">
-										<span class="text-success">
-												<i class="fas fa-arrow-up"></i> 33.1%
-										</span>
-										<span class="text-muted">Desde o último mês</span>
-									</p>
-							</div>
-							<div class="position-relative mb-4">
-									<canvas id="sales-chart" height="200"></canvas>
-							</div>
-							<div class="d-flex flex-row justify-content-end">
-									<span class="mr-2">
-										<i class="fas fa-square text-primary"></i> Este Ano
-									</span>
-									<span>
-										<i class="fas fa-square text-gray"></i> Ano Passado
-									</span>
-							</div>
-						</div><!--card-body-->
-				</div><!--card-->
-			</div>
-		</div><!--row-->
-		<!--End Gráfico -->
-
-
+	
 		<!-- Vencimento -->
 		<div class="row">
 			<div class="col-md-12 col-12">
