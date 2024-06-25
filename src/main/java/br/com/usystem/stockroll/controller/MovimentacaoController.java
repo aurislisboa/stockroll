@@ -28,6 +28,7 @@ import br.com.usystem.stockroll.repository.LoteRepository;
 import br.com.usystem.stockroll.repository.MotivoRepository;
 import br.com.usystem.stockroll.repository.MovimentacaoRepository;
 import br.com.usystem.stockroll.repository.UsuarioRepository;
+import br.com.usystem.stockroll.service.EstoqueService;
 import br.com.usystem.stockroll.service.MovimentacaoService;
 import br.com.usystem.stockroll.service.UsuarioService;
 import lombok.AllArgsConstructor;
@@ -211,6 +212,9 @@ public class MovimentacaoController {
         if (id == null) {
             return "redirect:/lote";                // Criar uma mensagem de erro, ou devolver um page: 404
         }
+
+        boolean isMaior = movimentacaoService.isQtdSuperiorEmEstoque(movimentacao.getLote(), movimentacao.getQuantidade());
+        if(isMaior) throw new IllegalArgumentException("Não foi dessa vez Gerson!");              // a quantidade informada é maior que a quantidade em estoque.
 
         movimentacaoService.cadastrarEntradaNoQuiosqueViaTransferencia(movimentacao, principal);
         

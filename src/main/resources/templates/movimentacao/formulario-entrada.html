@@ -33,69 +33,13 @@
 									</div>
 									<div class="form-group">
 										<label for="quantidade">Quantidade:</label>
-										<input type="number" class="form-control" th:field="*{quantidade}" min="1" required 
-												title="Quantidade" placeholder="Digite a quantidade de produtos" autofocus="true"/>
+										<input type="number" class="form-control" th:field="*{quantidade}" title="Quantidade" 
+													 placeholder="Digite a quantidade de produtos" autofocus="true" min="1" required/>
 									</div>
-
-									
-<div th:remove="all">									
-									<!-- <div class="form-group mb-3">
-										<label for="usuario" class="form-label">Usuário:</label>
-										<select class="form-control custom-select rounded-0" th:field="*{usuario}">
-											<option th:each="user : ${usuarios}" th:text="${user.nome}" th:value="${user.id}"></option>
-										</select> 
-									</div>-->
-									<!-- <div class="form-group">
-										<label for="codigoBarra">Código de Barras:</label>
-										<div class="input-group">
-											<input type="text" class="form-control" th:field="*{lote.produto.codigoBarra}" autofocus="true" title="Código de Barras">
-											<div class="input-group-append">
-												<button class="input-group-text btn btn-sidebar" title="Buscar produto"><i class="fas fa-search"></i></button>
-											</div>
-										</div>
-									</div> -->
-									<!-- <option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${lote.vencimento}" th:value="${lote.id}"></option> -->
-									<!-- <div class="form-group">
-										<label for="lote">Produto | Lote:</label>
-										<select class="form-control custom-select" th:field="*{lote}" title="Lote do Produto">
-												<option th:each="lote : ${lotes}" th:text="${lote.produto.nome} +' | '+ ${#temporals.format(lote.vencimento, 'dd-MM-yyyy')}" th:value="${lote.id}"></option>
-										</select>
-									</div> -->
-									<!-- <div class="form-group">
-										<label for="valorUnitario" class="form-label">Valor Unitário:</label>
-										<input type="text" class="form-control money" id="valorUnitario" th:field="*{valorUnitario}" placeholder="R$ 0,00" min="0" required/>
-									</div> -->
-									<!-- <div class="form-group">
-											<label for="produto">Produto:</label>
-											<select class="form-control custom-select" th:field="*{produto}" title="Nome do Produto">
-												<option th:each="prod : ${produtos}" th:text="${prod.nome}" th:value="${prod.id}"></option>
-											</select>
-										</div> -->
-									<!-- <div class="form-group">
-										<label for="dataMovimentacao">Data:</label>
-											<div class="input-group date">
-											<input type="text" class="form-control datetimepicker-input" th:field="*{dataMovimentacao}" data-target="#reservationdate"  title="Data da Movimentação">
-												<div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-												<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-											</div>
-										</div>
-									</div> -->
-									<!-- <div class="form-group">
-										<label for="dataMovimentacao">Data:</label>
-										<div class="input-group date">
-											<input type="date" class="form-control" th:field="*{dataMovimentacao}" title="Data da Movimentação">
-										</div>
-									</div> -->
-									<!-- <div class="form-group">
-										<label for="tipoMovimentacao">Movimentação</label>
-										<select disabled class="form-control custom-select" th:field="*{tipoMovimentacao}">
-											<option th:text="${'Entrada'}" th:value="${'Entrada'}" selected></option>
-										</select>
-									</div> -->
-</div>									
 							</div><!--card-body-->
 							<div class="card-footer text-right">
 									<button type="submit" class="btn btn-success">Salvar</button>
+									<a type="button" onclick="history.back()"  class="btn btn-default float-left">Voltar</a>
 							</div><!--card-footer-->
 						</form>
 				</div><!--card-->

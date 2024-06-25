@@ -34,6 +34,9 @@ public class MovimentacaoService {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private EstoqueService estoqueService;
   
 
 
@@ -70,6 +73,17 @@ public class MovimentacaoService {
         }).collect(Collectors.toList());
     }
 
+
+
+    /* 
+     * Valida se o usuário digitou um valor maior do que existe em Estoque.
+     */
+    public boolean isQtdSuperiorEmEstoque(Lote lote, Integer quantidade) {
+        var qtdEmEstoque = estoqueService.buscarLoteDoCdPrincipalPorId(lote.getId()).getQuantidade();
+        if(quantidade > qtdEmEstoque) { return true; }
+        else { return false; }
+      }
+  
 
 
 // ------------------------------------------------------------------------------------------//
@@ -288,6 +302,8 @@ public class MovimentacaoService {
             // adiciono ao estoque
         // se não 
             // exclui do estoque
+
+
 
 
 

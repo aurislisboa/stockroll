@@ -17,9 +17,6 @@
 						</div>
 						<br>
 						<div class="card card-cyan card-outline">
-									<!-- <div class="card-header">
-										<h5 class="card-title">Detalhes do Produto</h5>										
-									</div> -->
 									<div class="card-body">
 										<ul class="list-group list-group-flush">
 												<li class="card-text list-group-item">Código de Barras:&nbsp;&nbsp;
@@ -28,19 +25,6 @@
 												<li class="card-text list-group-item">Nome:&nbsp;&nbsp;
 													<strong><span th:text="${produto.nome}"></span></strong>
 												</li>
-												
-												<!-- <li class="card-text list-group-item">Quantidade em Estoque:&nbsp;&nbsp;
-													<strong><span th:text="${produto.qtdAtualEstoque}"></span></strong>
-												</li>
-												<li class="card-text list-group-item">Valor Unitário:&nbsp;&nbsp;
-													<strong><span th:text="${produto.valorUnitario}"></span></strong>
-												</li>
-												<li class="card-text list-group-item">Quantidade Ideal:&nbsp;&nbsp;
-													<strong><span th:text="${produto.qtdIdealEstoque}"></span></strong>
-												</li>
-												<li class="card-text list-group-item">Quantidade Mínima:&nbsp;&nbsp;
-													<strong><span th:text="${produto.qtdMinEstoque}"></span></strong>
-												</li> -->
 												<br>
 												<li class="list-group-item text-center">
 														<a th:href="@{/produto/editar/{id} (id=${produto.id})}" class="btn btn-warning">Editar</a>

@@ -6,8 +6,7 @@
 <body>
 <main>
 	<header class="col-sm-6">				
-    <!-- <h3 class="m-0"><i class="nav-icon fas fa-barcode"></i>&ensp;
-			 [ //[${produto.id == null ? 'Cadastrar Novo' : 'Editar'}]] Produto</h3><br><br> -->
+    <h3 class="m-0"><i class="nav-icon fas fa-barcode"></i>&ensp;[[${form.id == null ? 'Cadastrar Novo' : 'Editar'}]] Produto</h3><br><br>
   </header>
 	<div class="col-sm-12 col-md-6 mx-auto">
 		<div class="card card-cyan card-outline">
@@ -23,16 +22,16 @@
 						</div>
 						<div class="form-group mb-3">
 								<label for="nome" class="form-label">Nome do Produto:</label>
-								<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" th:field="*{nome}"
+								<input type="text" class="form-control"  th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" th:field="*{nome}"
 								placeholder="Digite o nome do produto" id="nome" required>
 								<span class="error invalid-feedback" style="display: inline;" th:each="erro : ${#fields.errors('nome')}" th:text="${erro}"></span>
 						</div>
 					</div><!--card-body-->
 					<div class="card-footer text-right">
 						<button type="submit" class="btn btn-success">Salvar</button>
-						<!-- <a th:href="@{/produto}" type="submit" class="btn btn-default float-left">Cancelar</a> -->
+						<!-- <a th:href="@{/produto}" type="button" class="btn btn-default float-left">Voltar</a> -->
+						<a onclick="history.back()" type="button" class="btn btn-default float-left">Voltar</a>
 				</form>
-					<a type="button" onclick="history.back()"  class="btn btn-default float-left">Voltar</a>
 				</div><!--card-footer-->
 		</div><!--card-->
 	</div><!--col-->

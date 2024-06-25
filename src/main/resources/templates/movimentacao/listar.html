@@ -38,7 +38,7 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
+									<!-- <th scope="col">#</th> -->
 									<th scope="col">Data</th>
 									<!-- <th></th> -->
 									<th scope="col">Movimentação</th>
@@ -54,7 +54,7 @@
 							</thead>							
 							<tbody>
 								<tr th:each="mov : ${movimentacao}">
-									<td th:text="${mov.id}">1</td>
+									<!-- <td th:text="${mov.id}">1</td> -->
 									<td th:text="${#temporals.format(mov.dataMovimentacao, 'dd-MM-yyyy HH:mm')}"></td>
 									<!-- <td><i class="fas fa-dollar-sign fa-chevron-up" th:if="${mov.tipoMovimentacao == 'Saida'}"></i></td> -->
 									<td th:text="${mov.tipoMovimentacao}"></td>

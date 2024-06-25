@@ -26,11 +26,9 @@
 						</li>
 						<br>
 						<li class="list-group-item text-center">
-							<a th:href="@{/motivo/editar/{id} (id=${motivo.id})}" 
-								class="btn btn-warning">Editar</a>
-							<a th:href="@{/motivo/excluir/{id} (id=${motivo.id})}"
-							onclick="return confirm('Deseja realmente excluir esse motivo de saída?');"
-							class="btn btn-danger">Excluir</a>
+							<a th:href="@{/motivo/editar/{id} (id=${motivo.id})}" class="btn btn-warning">Editar</a>
+							<a th:href="@{/motivo/excluir/{id} (id=${motivo.id})}" class="btn btn-danger"
+								 onclick="return confirm('Deseja realmente excluir esse motivo de saída?');">Excluir</a>
 						</li>
 					</ul>
 				</div><!--card-body-->
