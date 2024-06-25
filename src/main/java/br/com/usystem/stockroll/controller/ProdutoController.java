@@ -8,15 +8,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.usystem.stockroll.dto.ProdutoForm;
+import br.com.usystem.stockroll.mappers.ProdutoMapper;
 import br.com.usystem.stockroll.model.Produto;
 import br.com.usystem.stockroll.repository.ProdutoRepository;
 import br.com.usystem.stockroll.service.QtdPorLocalService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/produto")
@@ -28,7 +33,8 @@ public class ProdutoController {
     @Autowired
     private QtdPorLocalService qtdPorLocalService;
 
-
+    @Autowired
+    private ProdutoMapper mapper;
 
 
 
@@ -87,19 +93,24 @@ public class ProdutoController {
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("produto/formulario");
-        modelAndView.addObject("produto", new Produto());
+        modelAndView.addObject("form", new ProdutoForm());
 
         return modelAndView;
     }
 
 
     @PostMapping("/cadastrar")
-    public ModelAndView cadastrar(Produto produto) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/lote/cadastrar");
-        Produto produtoSalvo = produtoRepository.save(produto);
+    public String cadastrar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result) {
 
+        if (result.hasErrors()) {                                      // se houver erro no preenchimento do formulário.
+            return "produto/formulario";                               // retorna para o mesmo formulário.
+        } 
+                    
+        var produto = mapper.toModel(form);                            // converte o formulário para produto.
+        Produto produtoSalvo = produtoRepository.save(produto);
         qtdPorLocalService.adicionaQuantidaeMinimaEIdeal(produtoSalvo);        
-        return modelAndView;
+
+        return "redirect:/lote/cadastrar";
     }
 
 
@@ -110,15 +121,24 @@ public class ProdutoController {
         ModelAndView modelAndView = new ModelAndView("produto/formulario");
 
         Produto produto = produtoRepository.getReferenceById(id);
-        modelAndView.addObject("produto", produto);
+        var form = mapper.toForm(produto);
+        modelAndView.addObject("form", form);
+
         return modelAndView;
     }
 
     @PostMapping("/editar/{id}")
-    public ModelAndView editar(Produto produto) {
+    public ModelAndView editar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
-        //System.out.println(produto);
+        if (result.hasErrors()) {
+            modelAndView.setViewName("produto/formulario");                     // outra maneira de redirecionar.
+            return modelAndView;
+        }            
+        
+        var produto = mapper.toModel(form);
+            // produto.setId(id);
         produtoRepository.save(produto);
+
         return modelAndView;
     }
 
