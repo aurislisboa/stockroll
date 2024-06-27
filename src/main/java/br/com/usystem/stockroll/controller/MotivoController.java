@@ -1,5 +1,7 @@
 package br.com.usystem.stockroll.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -62,8 +64,15 @@ public class MotivoController {
         if(result.hasErrors()) return "motivo/formulario";
 
         Motivo motivo = mapper.toModel(form);
-        // ------------------  criar uma validação para conferir se já existe um nome idêntico no banco.
+        
+        
+        var existe = motivoRepository.existsByNome(motivo.getNome());                   // confere se já existe um nome idêntico no banco.
+        if(existe) {
+            throw new IllegalArgumentException("Já existe um motivo cadastrado com esse nome!");
+        } 
+          
         motivoRepository.save(motivo);
+
         return "redirect:/motivo";
     }
 
