@@ -7,19 +7,19 @@
 <main>
   <header class="col-sm-6">				
     <h3 class="m-0"><i class="nav-icon fas fa-exclamation-circle"></i>&ensp;
-      [[${motivo.id == null ? 'Cadastrar Novo' : 'Editar'}]] Motivo</h3><br>
+      [[${form.id == null ? 'Cadastrar Novo' : 'Editar'}]] Motivo</h3><br>
   </header>
   <div class="row">
     <div class="col-sm-6 col-md-8 mx-auto">
       <div class="card card-cyan card-outline">
-          <form method="post" th:object="${motivo}">
+          <form method="post" th:object="${form}">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">          
             <div class="card-body">
                 <div class="form-group mb-3">
                   <label for="nome" class="form-label">Nome do Motivo:</label>
-                  <input type="text" class="form-control" id="nome" th:field="*{nome}"
-                        placeholder="Digite o nome do motivo" autofocus="true" 
-                        title="Digite o nome do motivo de Saída ou Entrada" required>
+                  <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" th:field="*{nome}"
+                        placeholder="Digite o nome do motivo" autofocus="true" title="Digite o nome do motivo de Saída ou Entrada">
+                   <div class="error invalid-feedback" th:each="erro : ${#fields.errors('nome')}" th:text="${erro}"></div>
                 </div>
                 <br>
               </div><!--card-body-->
