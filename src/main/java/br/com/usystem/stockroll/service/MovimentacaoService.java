@@ -63,6 +63,17 @@ public class MovimentacaoService {
     }
 
 
+    public Integer totalDesperdicio(Integer localId) {
+        return movimentacaoRepository.totalDescarte(localId);
+    }
+
+
+    public Integer totalGeralDescarteProdutos() {
+        return movimentacaoRepository.totalGeralDescarte();
+    }
+
+
+
     public List<Map<String, Object>> mapProdutosMaisVendidos() {
         List<Object[]> results = movimentacaoRepository.mapProdutosMaisVendidos();
         return results.stream().map(result -> {
@@ -155,8 +166,8 @@ public class MovimentacaoService {
         movimentacao.setId(null);                                            // Cria sempre um novo registro e não permite atualização do 'id'.
         movimentacao.setUsuario(usuario);                                       // usuário que fez a movimentação.
         movimentacao.setDataMovimentacao(LocalDateTime.now());                  // data que foi feita a movimentação.
-        movimentacao.setTipoMovimentacao("Transferência");           // trava como uma Entrada.
-        movimentacao.setMotivo(new Motivo(1));                     // trava como '-' porque não é uma 'devolução' ou 'descarte'
+        movimentacao.setTipoMovimentacao("Transferência");           // trava como uma Transferência.
+        movimentacao.setMotivo(new Motivo(1));                               // trava como 'Saída' porque 
         Lote lote = movimentacao.getLote();                                     // Captura informações do Lote desta Movimentação.
         movimentacao.setValorUnitario(lote.getValorUnitario());                 // (remover) retorna o preço desse produto e copia para preço na Movimentação. 
 

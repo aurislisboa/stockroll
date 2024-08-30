@@ -29,4 +29,21 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long
   @Query(value = "SELECT COUNT(*) FROM movimentacao AS m WHERE m.tipo_mov = 'Saida'", nativeQuery = true)
   public Integer totalSaidas();
 
+  @Query(value = "SELECT SUM(mov.qtd_produto) FROM movimentacao AS mov "+
+                 "INNER JOIN motivo AS mot "+
+                 "ON mot.id_motivo = mov.id_motivo "+
+                 "WHERE mov.tipo_mov = 'Saida' "+ 
+                 "AND mot.nome_motivo = 'Descarte' "+
+                 "AND mov.id_local = :localId ", nativeQuery = true)
+  public Integer totalDescarte(Integer localId);
+
+
+
+  @Query(value = "SELECT SUM(mov.qtd_produto) FROM movimentacao AS mov "+
+                 "INNER JOIN motivo AS mot "+
+                 "ON mot.id_motivo = mov.id_motivo "+
+                 "WHERE mov.tipo_mov = 'Saida'  "+
+                 "AND mot.nome_motivo = 'Descarte' ", nativeQuery = true)
+  public Integer totalGeralDescarte();
+
 }

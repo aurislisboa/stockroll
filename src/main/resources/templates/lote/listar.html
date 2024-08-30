@@ -11,7 +11,7 @@
 		<div class="row">			
 			<div class="col-sm-12 col-md-8 mx-auto">
 					<div class="card-tools text-right">
-						<a th:href="@{/lote/cadastrar}" class="btn btn-info">
+						<a th:href="@{/lote/consulta}" class="btn btn-info">
 								<i class="fas fa-cube"></i>&emsp;Novo Lote</a>
 					</div>
 					<br/>
@@ -23,7 +23,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th scope="col">#</th>
+										<!-- <th scope="col">#</th> -->
 										<!-- <th scope="col">Lote</th> -->
 										<th scope="col">Produto</th>
 										<th scope="col">Vencimento</th>
@@ -35,7 +35,7 @@
 								</thead>
 								<tbody>
 									<tr th:each="estoque : ${estoques}">
-										<th scope="row" th:text="${estoque.id.lote.id}"></th>
+										<!-- <th scope="row" th:text="${estoque.id.lote.id}"></th> -->
 										<!-- <td><a th:href="@{/estoque.lote/{id} (id=${estoque.lote.id})}" th:text="${estoque.lote.nome}"></a></td> -->
 										<td th:text="${estoque.id.lote.produto.nome}"></td>
 										<td th:text="${#temporals.format(estoque.id.lote.vencimento, 'dd-MM-yyyy')}"></td>

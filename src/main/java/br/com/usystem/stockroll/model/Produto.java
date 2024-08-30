@@ -31,6 +31,7 @@ public class Produto {
     @Column(name = "nome_produto")
     private String nome;
 
+
     // @Column(name = "qtd_estoque", columnDefinition = "default '0'")
     // private Integer qtdAtualEstoque;
     

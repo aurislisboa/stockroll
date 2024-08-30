@@ -36,6 +36,7 @@ public class DashboardService {
           dashQuiosque.setNome(local.getNome());
           dashQuiosque.setTotalEstoque(estoqueService.totalEmEstoquePorLocalId(localId));         // busca pelo id do quiosque.
           dashQuiosque.setTotalSaida(estoqueService.totalDeSaidasDeProdutos(localId));            // devo mudar para saída por dia.
+          dashQuiosque.setTotalDescarte(movimentacaoService.totalDesperdicio(localId));
                 for (Estoque estoque : estoqueService.buscarProdutosEmEstoquePorLocal(localId)) { // retorna todos os produtos procurando pelo local informado.
                         Integer produtoId = estoque.getId().getLote().getProduto().getId();             // qual o id desse produto.
                         QtdPorLocal qtdPorLocal = qtdPorLocalService.buscaPorLocalEProduto(localId, produtoId); // faz uma consulta na tabela que guarda o mínimo para cada produto.
@@ -69,7 +70,7 @@ public class DashboardService {
                     Integer qtdMinima = qtdPorLocal.getMinimo();                                                // recupera o minimo para esse produto.
 
 
-                    if(qtdEstoque <= qtdMinima) {                                                   // se estive abaixo do mínimo exbie um alerta.
+                    if(qtdEstoque <= qtdMinima) {                                                   // se estive abaixo do mínimo exibe um alerta.
                         // System.out.println("\n ==================== \n\n"+qtdEstoque +" "+ nomeProduto+" "+localId);
                         sininhoAlerta.add(" "+ qtdEstoque +" -  "+ nomeProduto +" - "+ estoque.getId().getLocal().getNome()); 
                     }        
@@ -94,7 +95,6 @@ public class DashboardService {
 
 
     public Map<String, Integer> totalSaidasPorQuiosque() {
-
         Map<String, Integer> donutChartMap = new HashMap<>();
         List<Local> locais = localService.listarTodosQuiosques();                               // retorna todos os quiosques.
             for (Local local : locais) {                                                        // itera sobre cada estoque.

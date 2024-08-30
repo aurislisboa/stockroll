@@ -28,18 +28,18 @@
         <!-- <li class="nav-item dropdown show"> -->
           <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
             <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+            <span class="badge badge-warning navbar-badge">5</span>
             <!-- <span class="badge badge-warning navbar-badge" th:if="${not #lists.isEmpty()}"  th:text="${#lists.size(alertas)}">15</span> -->
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px">
-            <span class="dropdown-item dropdown-header">15 Notificações</span>
+            <span class="dropdown-item dropdown-header">5 Notificações</span>
             
             <div th:each="alerta : ${alertas}">
               <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                  <i class="fas fa-exclamation mr-2"></i>
+                  <!-- <i class="fas fa-exclamation mr-2"></i> -->
                   <span th:text="${#strings.abbreviate(alerta, 30)}"></span>
-                  <span class="float-right text-muted text-sm">3 mins</span>
+                  <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
               </a>
             </div>
 

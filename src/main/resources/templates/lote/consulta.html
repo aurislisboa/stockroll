@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html th:replace="~{template_base :: layout (~{::title}, ~{::main}, _, ~{::scripts})}">
+<head>
+  <title>Consultar Produto</title>
+</head>
+<body>
+<main>
+  <header class="col-sm-6 mb-5">         				
+    <h3 class="m-0"><i class="nav-icon fas fa-cubes"></i>&ensp; Lote</h3>
+  </header>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 mx-auto">
+      <div class="card card-cyan card-outline">
+          <!-- <form method="post" th:action="@{/lote/cadastrar}">  -->
+          <form id="consultaForm" method="post" th:action="@{/lote/barcode}"> 
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">   -->
+              <div class="card-body">
+                <div class="form-group">
+                    <label for="codigoBarra" class="form-label">Código de Barras:</label>
+                    <input type="text" class="form-control" name="codigoBarra" id="codigoBarra" autofocus="true">
+                </div>                                            
+              </div><!--card-body-->
+            </form>
+              <div class="card-footer text-right">
+                <!-- <button type="submit" class="btn btn-success" title="Pesquisar pelo Código de Barras">Pesquisar</button> -->
+                <a th:href="@{/lote/cadastrar}" type="button" class="btn btn-info" title="Selecionar novo Lote">Novo Lote</a>
+				        <a th:href="@{/lote}" type="button" class="btn btn-default float-left" title="Voltar para listagem de lotes">Voltar</a>
+              </div><!--card-footer-->
+      </div><!--card-->
+    </div><!--col-->
+  </div><!--row-->
+</main>
+<th:block th:fragment="scripts">
+		<script>
+        // // keydown, keyup, change, submit, mouseover, mouseout, focus, blur
+        
+        // versão mais simples:
+				// const selectEl = document.getElementById('codigoBarra');
+				// selectEl.addEventListener('keydown', function() {
+				// 		const selectedUrl = "/lote/barcode";
+				// 		if (selectedUrl) {
+				// 				window.location.href = selectedUrl;
+				// 		}
+				// });
+
+        // funciona normalmente:
+        // document.getElementById('codigoBarra').addEventListener('change', function() {
+        //     const cod = this.value;
+        //     const selectedUrl = "/lote/barcode?cod=" + encodeURIComponent(cod);
+        //     if (selectedUrl) {
+        //         window.location.href = selectedUrl;
+        //     }
+        // });
+		</script>
+    <script>
+      document.getElementById('codigoBarra').addEventListener('change', function() {
+          document.getElementById('consultaForm').submit();
+      });
+  </script>
+	</th:block>
+</body>
+</html>

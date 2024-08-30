@@ -34,6 +34,8 @@
   <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/daterangepicker/daterangepicker.css}">
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/summernote/summernote-bs4.min.css}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" th:href="@{/webjars/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css}">
   
   <!-- ------------------------------------ More Styles ------------------------------------ -->
   <th:block th:replace="${styles}"></th:block>
@@ -66,21 +68,26 @@
       <!-- ------------------------------------ Main ------------------------------------ -->
         <!-- Main content -->    
         <section class="content">
+            <!-- Menssagem de Alerta -->
+            <!-- <div th:if="${alert != null}" th:classappend="${alert.classeCss}" class="alert alert-dismissible fade show" role="alert"> 
+              <span th:text="${alert.mensagem}"></span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> -->
+            <!-- End Menssagem de Alerta -->
+
             <!-- <div class="container-fluid" th:include="${content}"></div> -->
             <div class="container-fluid">
                 <div th:replace="${content}"></div>
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+            </div><!-- /.container-fluid -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
 
 
 <!-- ------------------------------------ Footer ------------------------------------ -->
   <footer th:replace="~{fragments/_footer :: footer}"></footer>
-  </div>
-  <!-- ./wrapper -->
+  </div><!-- ./wrapper -->
 
   <!-- jQuery -->
   <script th:src="@{/webjars/AdminLTE/plugins/jquery/jquery.min.js}"></script>
@@ -112,8 +119,26 @@
   <script th:src="@{/webjars/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
   <!-- AdminLTE App -->
   <script th:src="@{/webjars/AdminLTE/dist/js/adminlte.min.js}"></script>
+  <!-- SweetAlert2 -->
+  <script th:src="@{/webjars/AdminLTE/plugins/sweetalert2/sweetalert2.min.js}"></script>
 
-  <!-- <script>
+  <!-- SweetAlert2 -->
+   
+  <script th:if="${alert != null}">
+     const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      padding: "1em",
+    });
+    Toast.fire({
+      icon: "[[${alert.classeCss}]]",
+      title: '[[${alert.mensagem}]]'
+    });
+  </script>
+
+    <!-- <script>
     $('.nav-link').click(function() {
       $(this).addClass('active');
       // $(this).siblings('.nav-link').removeClass('active');

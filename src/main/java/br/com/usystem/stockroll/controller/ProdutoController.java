@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.usystem.stockroll.dto.AlertDTO;
 import br.com.usystem.stockroll.dto.ProdutoForm;
 import br.com.usystem.stockroll.mappers.ProdutoMapper;
 import br.com.usystem.stockroll.model.Produto;
 import br.com.usystem.stockroll.repository.ProdutoRepository;
+import br.com.usystem.stockroll.repository.QtdPorLocalRepository;
 import br.com.usystem.stockroll.service.QtdPorLocalService;
 import jakarta.validation.Valid;
 
@@ -47,7 +50,7 @@ public class ProdutoController {
 
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) {
-        int pageSize = 5;   
+        int pageSize = 10;   
         Page<Produto> page = findPaginated(pageNo, pageSize);
         List<Produto> produtos = page.getContent();
 
@@ -100,17 +103,18 @@ public class ProdutoController {
 
 
     @PostMapping("/cadastrar")
-    public String cadastrar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result) {
+    public String cadastrar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result, RedirectAttributes attr) {
 
-        if (result.hasErrors()) {                                      // se houver erro no preenchimento do formulário.
-            return "produto/formulario";                               // retorna para o mesmo formulário.
-        } 
-                    
-        var produto = mapper.toModel(form);                            // converte o formulário para produto.
+        if (result.hasErrors()) return "produto/formulario";           // se houver erro no preenchimento retorna para o mesmo formulário.
+                                           
+        Produto produto = mapper.toModel(form);                            // converte o formulário para produto.
         Produto produtoSalvo = produtoRepository.save(produto);
         qtdPorLocalService.adicionaQuantidaeMinimaEIdeal(produtoSalvo);        
-
-        return "redirect:/lote/cadastrar";
+    
+        AlertDTO alert = new AlertDTO("Produto cadastrado com sucesso!", "success");
+        attr.addFlashAttribute("alert", alert);
+        
+        return "redirect:/produto";
     }
 
 
@@ -128,16 +132,18 @@ public class ProdutoController {
     }
 
     @PostMapping("/editar/{id}")
-    public ModelAndView editar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result) {
+    public ModelAndView editar(@Valid @ModelAttribute("form") ProdutoForm form, BindingResult result, RedirectAttributes attr) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
         if (result.hasErrors()) {
-            modelAndView.setViewName("produto/formulario");                     // outra maneira de redirecionar.
+            modelAndView.setViewName("produto/formulario");                     // outra maneira de redirecionar usando o modelAndView.
             return modelAndView;
         }            
         
         var produto = mapper.toModel(form);
-            // produto.setId(id);
         produtoRepository.save(produto);
+
+        AlertDTO alert = new AlertDTO("Produto editado com sucesso!", "success");
+        attr.addFlashAttribute("alert", alert);
 
         return modelAndView;
     }
@@ -147,8 +153,11 @@ public class ProdutoController {
     @GetMapping("/excluir/{id}")
     public ModelAndView exluir(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/produto");
-
-        produtoRepository.deleteById(id);
+        
+        // var produto = produtoRepository.getReferenceById(id);
+        // produto.setDesativado(true);                     // exclusão lógica
+        // produtoRepository.save(produto);                            
+        produtoRepository.deleteById(id);                        // exclusão física
         return modelAndView;
     }
 

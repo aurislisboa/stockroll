@@ -29,6 +29,7 @@ public class DashboardController {
 
           modelAndView.addObject("totalEstoque", loteRepository.selectSumQtdProdutos());
           modelAndView.addObject("totalSaidas", movimentacaoService.totalSaidas());
+          modelAndView.addObject("totalGeralDescarte", movimentacaoService.totalGeralDescarteProdutos());
           modelAndView.addObject("valorEstoque", loteRepository.selectSumValorUnitario());
           modelAndView.addObject("quiosques", dashboardService.resumoDosQuiosques());
 

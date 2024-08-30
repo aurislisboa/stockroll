@@ -35,7 +35,7 @@
                         <table class="table table-hover">
                            <thead>
                               <tr>
-                                 <th scope="col">#</th>
+                                 <!-- <th scope="col">#</th> -->
                                  <th scope="col">Nome</th>
                                  <th scope="col">Cód. de Barras</th>
                                  <th scope="col" class="text-center">Detalhe</th>
@@ -47,7 +47,7 @@
                            </thead>
                            <tbody>
                               <tr th:each="produto : ${produtos}">
-                                 <td scope="row" th:text="${produto.id}"></td>
+                                 <!-- <td scope="row" th:text="${produto.id}"></td> -->
                                  <!-- <td><a th:href="@{/produto/{id} (id=${produto.id}) }" th:text="${produto.nome}"></a></td> -->
                                  <td th:text="${produto.nome}"></td>
                                  <td th:text="${produto.codigoBarra}"></td>

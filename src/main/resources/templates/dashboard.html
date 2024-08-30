@@ -108,7 +108,7 @@
 					<div class="col-lg-3 col-6">
 						<div class="small-box bg-danger">
 								<div class="inner">
-									<h3>65</h3>
+									<h3 th:text="${totalGeralDescarte}">65</h3>
 									<p>Desperdício</p>
 								</div>
 								<div class="icon">
@@ -209,8 +209,8 @@
 							<div class="info-box">
 							<span class="info-box-icon bg-danger"><i class="far fa-trash-alt"></i></span>
 								<div class="info-box-content">
-									<span class="info-box-text">Desperdícios</span>
-									<span class="info-box-number ml-2"><h5><strong>0</strong></h5></span>
+									<span class="info-box-text">Desperdício</span>
+									<span class="info-box-number ml-2"><h5><strong th:text="${quiosque.totalDescarte == null ? 0 : quiosque.totalDescarte}">0</strong></h5></span>
 								</div>
 							</div>
 						</div>						
@@ -224,7 +224,7 @@
 
 	
 		<!-- Vencimento -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-12 col-12">
 			<div class="card">
 				<div class="card-header">
@@ -283,10 +283,11 @@
 									</tr>
 							</tbody>
 						</table>
-				</div><!--card-body-->
-			</div><!--card-->
-		</div><!--col-->
-		</div><!--row-->
+				</div>
+			</div>
+		</div>
+		</div> -->
+		<!--row-->
 		<!--End Vencimento -->
 
 

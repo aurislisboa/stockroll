@@ -23,8 +23,8 @@ public class QtdPorLocalService {
 
 
 
-  public QtdPorLocal buscaPorLocalEProduto(Integer local, Integer produto) {
-      return qtdPorLocalRepository.findByLocalAndProdutoId(local, produto);
+  public QtdPorLocal buscaPorLocalEProduto(Integer localId, Integer produtoId) {
+      return qtdPorLocalRepository.findByLocalAndProdutoId(localId, produtoId);
   }
 
 

@@ -14,5 +14,6 @@ public class DashboardQuiosque {
   private Integer totalEstoque;
   private Integer totalSaida;
   private Integer totalAlerta;
+  private Integer totalDescarte; 
 
 }

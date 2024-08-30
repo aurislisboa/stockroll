@@ -17,8 +17,8 @@ public class UsuarioService {
 
 
   public Usuario getUsuarioLogadoNoSistema(Principal principal) {
-        // return usuarioRepository.findByEmail(principal.getName()).orElseThrow();     // obtém o usuário logado no sistema.
-        return usuarioRepository.getReferenceById(4);                                   // desativar esse campo quando fizer o login.
+        return usuarioRepository.findByEmail(principal.getName()).orElseThrow();     // obtém o usuário logado no sistema.
+        // return usuarioRepository.getReferenceById(4);                                   // desativar esse campo quando ativar o login.
     }
 
 

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.usystem.stockroll.dto.AlertDTO;
 import br.com.usystem.stockroll.model.Estoque;
 import br.com.usystem.stockroll.model.EstoqueId;
 import br.com.usystem.stockroll.model.Local;
@@ -207,16 +209,24 @@ public class MovimentacaoController {
     /* Cadastra uma ENTRADA no ESTOQUE via POST. --- ID do LOTE */
 
     @PostMapping("/cadastrar/entrada/{id}")
-    public String cadastrarEntradaPorLote(Movimentacao movimentacao, Principal principal, @PathVariable Integer id) { // id do LOTE.  // fui obrigado a incluir o 'id', o VSCode reclamou.
+    public String cadastrarEntradaPorLote(Movimentacao movimentacao, Principal principal, @PathVariable Integer id, RedirectAttributes attr) { // id do LOTE.  // fui obrigado a incluir o 'id', o VSCode reclamou.
 
         if (id == null) {
             return "redirect:/lote";                // Criar uma mensagem de erro, ou devolver um page: 404
         }
 
         boolean isMaior = movimentacaoService.isQtdSuperiorEmEstoque(movimentacao.getLote(), movimentacao.getQuantidade());
-        if(isMaior) throw new IllegalArgumentException("Não foi dessa vez Gerson!");              // a quantidade informada é maior que a quantidade em estoque.
+        // if(isMaior) throw new IllegalArgumentException("Não foi dessa vez Gerson!");              // a quantidade informada é maior que a quantidade em estoque.
+        if(isMaior) {
+            AlertDTO alert = new AlertDTO("Quantidade superior ao Estoque. Não foi dessa vez Gerson :)", "error");
+            attr.addFlashAttribute("alert", alert);
+            return "redirect:/lote";
+        }
 
         movimentacaoService.cadastrarEntradaNoQuiosqueViaTransferencia(movimentacao, principal);
+
+        AlertDTO alert = new AlertDTO("Produto transferido para o quiosque!", "success");
+        attr.addFlashAttribute("alert", alert);
         
         return "redirect:/lote";
     }
@@ -242,7 +252,7 @@ public class MovimentacaoController {
             modelAndView.addObject("usuarios", usuarioRepository.findAll());                // (remover) o spring security já devolve o usuário logado.
             // modelAndView.addObject("lotes", loteRepository.findAll(Sort.by("produto.nome")));
             modelAndView.addObject("lotes", loteRepository.findAll());                      // (remover) acho que não está sendo mais usado.
-            modelAndView.addObject("motivos", motivoRepository.findAll());
+            modelAndView.addObject("motivos", motivoRepository.findAll(Sort.by("id")));
             // modelAndView.addObject("estoques", estoqueRepository.findAll(Sort.by("id.lote.produto.nome")));
             // List<Estoque> estoques = estoqueRepository.findByQuantidadeGreaterThan(0);
             // List<Estoque> estoques = estoqueRepository.findAllEstoqueMaiorQueZeroAndOrderByProduto();
@@ -267,11 +277,21 @@ public class MovimentacaoController {
     /* Cadastra uma Saída do Quiosque via POST. --- ID do Local */
 
     @PostMapping("/cadastrar/saida/{id}")
-    public String cadastrarSaida(Movimentacao movimentacao, Principal principal, @PathVariable(required = false) Integer id) {   // id do LOCAL do Estoque
+    public String cadastrarSaida(Movimentacao movimentacao, Principal principal, @PathVariable(required = false) Integer id, RedirectAttributes attr) {   // id do LOCAL do Estoque
             
             if(id == 1) throw new DataIntegrityViolationException("Você não tem acesso a essa página!");  // id do CD-Principal
+           
+            try {
+                movimentacaoService.cadastrarSaidaDoQuiosque(movimentacao, principal);                
+            } catch (DataIntegrityViolationException e) {
+                AlertDTO alert = new AlertDTO("Quantidade superior ao Estoque. Não foi dessa vez Gerson :)", "error");
+                attr.addFlashAttribute("alert", alert);
+                return "redirect:/movimentacao";
+            }
+            
 
-            movimentacaoService.cadastrarSaidaDoQuiosque(movimentacao, principal);
+            AlertDTO alert = new AlertDTO("Saída registrada com sucesso!", "success");
+            attr.addFlashAttribute("alert", alert);
         
         return "redirect:/movimentacao/cadastrar/saida/"+id;              // retorna para a tela o id do local do quiosque.
     }

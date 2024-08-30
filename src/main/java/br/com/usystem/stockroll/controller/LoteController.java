@@ -5,16 +5,21 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.usystem.stockroll.dto.AlertDTO;
 import br.com.usystem.stockroll.dto.LoteForm;
 import br.com.usystem.stockroll.mappers.LoteMapper;
+import br.com.usystem.stockroll.mappers.ProdutoMapper;
 import br.com.usystem.stockroll.model.Lote;
 import br.com.usystem.stockroll.model.Movimentacao;
 import br.com.usystem.stockroll.model.Produto;
@@ -36,7 +41,6 @@ public class LoteController {
     private LoteService loteService;
     private EstoqueService estoqueService;
     private LoteMapper mapper;
-    // private EstoqueMapper mapper;
 
 
     @ModelAttribute("produtos")
@@ -64,6 +68,35 @@ public class LoteController {
 
 
 
+
+    @GetMapping("/consulta")
+    public String consulta() {
+        return "lote/consulta";
+    }
+
+
+
+    @PostMapping("/barcode")
+    public ModelAndView consulta(@RequestParam("codigoBarra") String codigoBarra, Model model, RedirectAttributes attr) {
+        var produto = produtoRepository.findByCodigoBarra(codigoBarra);
+        
+        if (produto == null) {
+            AlertDTO alert = new AlertDTO("Produto não foi localizado!", "error");
+            attr.addFlashAttribute("alert", alert);
+            ModelAndView modelAndView = new ModelAndView("redirect:/lote/consulta");
+            return modelAndView;
+        }
+        
+
+        var modelAndView = new ModelAndView("lote/formulario");
+        var form = new LoteForm();
+            form.setProduto(produto);
+        modelAndView.addObject("form", form);
+
+        return modelAndView;
+    }
+
+
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar() {
         var modelAndView = new ModelAndView("lote/formulario");
@@ -76,13 +109,17 @@ public class LoteController {
 
 
     @PostMapping("cadastrar")
-    public String cadastrar(@Valid @ModelAttribute("form") LoteForm form, BindingResult result, Principal principal) {   // Recebe os dados do lote e o Usuário logado
+    public String cadastrar(@Valid @ModelAttribute("form") LoteForm form, BindingResult result, Principal principal, RedirectAttributes attr) {   // Recebe os dados do lote e o Usuário logado
 
         if(result.hasErrors()) return "lote/formulario";                // confere se há erros de validação do formulário.
 
         var lote = mapper.toModel(form);                                // converte de form para Lote
         Lote loteNovo = loteService.salvarLote(lote);                   // salva o Lote e devolve o objeto cadastrado.
-        movimentacaoService.cadastrarMovimentacao(loteNovo, principal);    
+        movimentacaoService.cadastrarMovimentacao(loteNovo, principal);   
+        
+        AlertDTO alert = new AlertDTO("Lote cadastrado com sucesso!", "success");
+        attr.addFlashAttribute("alert", alert);
+        
         return "redirect:/lote";
     }
 
